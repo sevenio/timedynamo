@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/first_name"
+    style="?android:attr/spinnerItemStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/margins"
+    android:padding="@dimen/margins"
+    android:textColor="@color/select_text"
+    android:background="@android:color/white"
+    android:textSize="@dimen/small_text" />

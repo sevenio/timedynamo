@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.activity.SpalshActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please update to the latest version"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/small_text" />
+
+
+        <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumButton
+            android:id="@+id/updateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/update_btn_bg"
+            android:text="Update"
+            android:textAllCaps="false"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/small_text"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

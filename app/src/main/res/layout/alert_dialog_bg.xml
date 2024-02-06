@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/activity_vertical_margin"
+    android:layout_marginRight="@dimen/activity_vertical_margin"
+    android:background="@drawable/alert_background"
+    android:orientation="vertical"
+    android:padding="@dimen/margins">
+
+    <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="CALL"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/normal_text" />
+
+    <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+        android:id="@+id/alert_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margins"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/small_text" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+            android:id="@+id/negative_button"
+            android:layout_width="@dimen/spinner_height"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/spinner_height"
+            android:layout_toLeftOf="@+id/positive_button"
+            android:gravity="center"
+            android:padding="@dimen/padding"
+            android:text="NO"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/small_text" />
+
+        <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+            android:id="@+id/positive_button"
+            android:layout_width="@dimen/spinner_height"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:padding="@dimen/padding"
+            android:text="YES"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/small_text" />
+
+    </RelativeLayout>
+</LinearLayout>

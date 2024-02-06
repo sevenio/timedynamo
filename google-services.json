@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "62210015603",
+    "project_id": "slips-1371"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62210015603:android:bf0d5c2f3e2e561d",
+        "android_client_info": {
+          "package_name": "com.tvisha.slips"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62210015603-rel8n08bo9iclajql0scbv56pka86vgr.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "62210015603-fgr87ojk2pgs68qrbm01ispgaptsh6ii.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tvisha.slips",
+            "certificate_hash": "1fff2393db8399ec04157ca3656cb43f73c57b58"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK04qhPuOrmHam-8Ao7adTbft4huuf7B8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

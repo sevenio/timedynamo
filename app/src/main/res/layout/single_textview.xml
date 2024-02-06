@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_corners"
+    android:gravity="center">
+
+    <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+        android:id="@+id/attachment_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding"
+        android:drawableRight="@drawable/cross_image"
+        android:drawablePadding="@dimen/spinner_height"
+        android:gravity="left"
+        android:padding="@dimen/margins"
+        android:textColor="#5b5d5d"
+        android:textSize="@dimen/normal_text" />
+</LinearLayout>

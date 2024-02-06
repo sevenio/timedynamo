@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:orientation="horizontal"
+        android:weightSum="3.4">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2">
+
+            <ImageView
+                android:layout_width="@dimen/blue_dot_size"
+                android:layout_height="@dimen/blue_dot_size"
+                android:layout_gravity="center"
+                android:background="@drawable/blue_oval" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                android:id="@+id/compoff_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="03 Jun' 2018"
+                android:textColor="@color/attendance_history_light_grey_color"
+                android:textSize="@dimen/least_small_text" />
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                android:id="@+id/compoff_dayname_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Sunday)"
+                android:textColor="@color/attendance_history_light_grey_color"
+                android:textSize="@dimen/least_small_text" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="0.2"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/arrow_size"
+                android:layout_height="@dimen/arrow_size"
+                android:layout_gravity="center"
+                android:src="@drawable/arrow" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:orientation="horizontal">
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                android:id="@+id/worked_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="03 Jun' 2018"
+                android:textColor="@color/attendance_history_light_grey_color"
+                android:textSize="@dimen/least_small_text" />
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                android:id="@+id/worked_dayname_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" (Sunday) "
+                android:textColor="@color/attendance_history_light_grey_color"
+                android:textSize="@dimen/least_small_text" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <!-- <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:layout_marginBottom="@dimen/small_margin"
+         android:weightSum="3.4">
+
+         <FrameLayout
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="0.2">
+
+         <ImageView
+             android:layout_width="@dimen/blue_dot_size"
+             android:layout_height="@dimen/blue_dot_size"
+             android:layout_gravity="center"
+             android:background="@drawable/blue_oval"/>
+
+         </FrameLayout>
+
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:orientation="horizontal"
+             android:layout_weight="1.5">
+
+         <com.tvisha.trooptime.Activity.Activity.customViews.PoppinsRegularTextView
+             android:id="@+id/compoff_date_tv"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="03 Jun' 2018"
+             android:textColor="@color/attendance_history_light_grey_color"
+             android:textSize="@dimen/least_small_text"/>
+
+             <com.tvisha.trooptime.Activity.Activity.customViews.PoppinsRegularTextView
+                 android:id="@+id/compoff_dayname_tv"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text=" (Sunday) "
+                 android:textColor="@color/attendance_history_light_grey_color"
+                 android:textSize="@dimen/least_small_text"/>
+
+         </LinearLayout>
+
+
+
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:gravity="center_vertical"
+             android:layout_weight="0.2">
+
+             <ImageView
+                 android:layout_width="@dimen/arrow_size"
+                 android:layout_height="@dimen/arrow_size"
+                 android:layout_gravity="center"
+                 android:src="@drawable/arrow"/>
+
+         </LinearLayout>
+
+
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:orientation="horizontal"
+             android:layout_weight="1.5">
+
+             <com.tvisha.trooptime.Activity.Activity.customViews.PoppinsRegularTextView
+                 android:id="@+id/worked_date_tv"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="03 Jun' 2018"
+                 android:textColor="@color/attendance_history_light_grey_color"
+                 android:textSize="@dimen/least_small_text"/>
+
+             <com.tvisha.trooptime.Activity.Activity.customViews.PoppinsRegularTextView
+                 android:id="@+id/worked_dayname_tv"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text=" (Sunday) "
+                 android:textColor="@color/attendance_history_light_grey_color"
+                 android:textSize="@dimen/least_small_text"/>
+
+         </LinearLayout>
+
+
+
+     </LinearLayout>-->
+
+</RelativeLayout>

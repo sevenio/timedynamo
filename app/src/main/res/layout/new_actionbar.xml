@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/action_bar_holder_menu"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/white_color"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.7"
+        android:gravity="left">
+
+        <RelativeLayout
+            android:id="@+id/nav_drawer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margins"
+            android:paddingRight="@dimen/padding">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/navigation_image"
+                    android:layout_width="@dimen/image_size"
+                    android:layout_height="@dimen/image_size"
+                    android:layout_marginTop="5dp"
+                    android:padding="3dp"
+                    android:src="@drawable/menu"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:layout_width="@dimen/logo_image_width"
+                    android:layout_height="@dimen/logo_image_height"
+                    android:src="@drawable/td_logo" />
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/small_margin"
+                    android:text="T:me"
+                    android:textColor="@color/red_color"
+                    android:textSize="@dimen/very_large_text"
+                    android:visibility="gone" />
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+                    android:id="@+id/dynamo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/small_margin"
+                    android:text="Dynamo"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/very_large_text"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="0.3"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/filterImage"
+            android:layout_width="@dimen/filter_img_size"
+            android:layout_height="@dimen/filter_img_size"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/small_margin"
+            android:gravity="center"
+            android:padding="5dp"
+            android:src="@drawable/filter" />
+
+        <ImageView
+            android:id="@+id/reset_data"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_toLeftOf="@+id/notification"
+            android:gravity="center"
+            android:src="@drawable/ic_reset"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/notification"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/padding"
+            android:layout_marginRight="@dimen/margins"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/margins"
+            android:paddingBottom="@dimen/padding"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/add_back"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:padding="3dp"
+                android:src="@drawable/notifications" />
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                android:id="@+id/notification_count"
+                android:layout_width="@dimen/activity_vertical_margin"
+                android:layout_height="@dimen/activity_vertical_margin"
+                android:layout_marginStart="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:background="@drawable/filter_background"
+                android:gravity="center"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/least_small_text" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

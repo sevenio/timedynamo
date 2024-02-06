@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/itemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/very_small_margin"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:layout_marginBottom="@dimen/very_small_margin">
+
+                <ImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="@dimen/events_profile_image_size"
+                    android:layout_height="@dimen/events_profile_image_size"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/very_small_margin"/>
+            </FrameLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/very_small_margin"
+                android:orientation="vertical">
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                    android:id="@+id/employeeName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tekula Mounika"
+                    android:singleLine="true"
+                    android:textColor="@color/events_holidays_name_color"
+                    android:textSize="@dimen/normal_text" />
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="06 jun,2018"
+                    android:textColor="@color/events_holidays_date_color"
+                    android:textSize="@dimen/least_small_text" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginRight="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/very_small_margin"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/very_small_padding">
+
+            <ImageView
+                android:id="@+id/eventImage"
+                android:layout_width="@dimen/event_image_size"
+                android:layout_height="@dimen/event_image_size"
+                android:src="@drawable/birthday" />
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                android:id="@+id/eventMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/very_small_margin"
+                android:text="Birthday"
+                android:textColor="@color/home_sky_blue_color"
+                android:textSize="@dimen/least_small_text" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/itemLayout"
+        android:layout_marginLeft="@dimen/small_margin"
+        android:layout_marginRight="@dimen/small_margin"
+        android:background="@color/request_lineColor"
+        android:visibility="invisible" />
+
+
+</RelativeLayout>

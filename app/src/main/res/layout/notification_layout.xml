@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/action_bar"
+            layout="@layout/common_action_bar" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tlTabView"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/defult_spacing"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:background="@drawable/tab_background"
+            app:layout_constraintTop_toBottomOf="@+id/action_bar"
+            app:tabGravity="fill"
+            app:tabIndicatorHeight="0dp"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/black_color"
+            app:tabTextColor="@color/black_color" />
+        <!--<com.tvisha.trooptime.Activity.Activity.customViews.PoppinsRegularTextView
+            app:layout_constraintEnd_toStartOf="@+id/tvTeam"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/tvSelf"
+            android:gravity="center"
+            android:text="Self"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <com.tvisha.trooptime.Activity.Activity.customViews.PoppinsRegularTextView
+            app:layout_constraintStart_toEndOf="@+id/tvSelf"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/tvTeam"
+            android:background="@drawable/tab_select_background"
+            android:gravity="center"
+            android:text="Team"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>-->
+
+        <!--</TableLayout>-->
+        <com.tvisha.trooptime.activity.activity.customViews.LockableViewPager
+            android:id="@+id/notificationViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/defult_spacing"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tlTabView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

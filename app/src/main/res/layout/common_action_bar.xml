@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/menu_bg_color"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/actionBack"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="onClick"
+            android:src="@drawable/ic_back" />
+
+        <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+            android:id="@+id/actionLable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/actionBack"
+            android:layout_toRightOf="@+id/actionBack"
+            android:gravity="center_vertical"
+            android:padding="@dimen/defult_spacing"
+            android:text="@string/lable"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/large_text" />
+
+        <ImageButton
+            android:id="@+id/actionButton1"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="onClick"
+            android:src="@drawable/reset_image" />
+    </RelativeLayout>
+</layout>

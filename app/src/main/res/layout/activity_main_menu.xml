@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                app:elevation="0dp">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/white_color"
+
+                    >
+
+                    <include
+                        android:id="@+id/tool_bar"
+                        layout="@layout/main_header" />
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/content_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/card_nav"
+                android:layout_below="@id/appBarLayout"
+                android:background="@color/white_color">
+
+                <include layout="@layout/fragment_home" />
+            </RelativeLayout>
+
+            <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
+            <!--   <FrameLayout
+                   android:id="@+id/content_main"
+                   android:layout_below="@id/appBarLayout"
+                   android:layout_above="@id/card_nav"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   app:layout_behavior="@string/appbar_scrolling_view_behavior"/>-->
+
+            <LinearLayout
+                android:id="@+id/card_nav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bottom_menubar_bg">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/navigation"
+                    style="@style/MyCustomTabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/tab_layout_height"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:paddingTop="@dimen/very_small_padding"
+                    app:tabGravity="fill"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMaxWidth="0dp"
+                    app:tabMode="fixed">
+
+                </com.google.android.material.tabs.TabLayout>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    <!-- Container for contents of drawer - use NavigationView to make configuration easier -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="@dimen/nav_header_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/menu_bg_color">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/navigation_design" />
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

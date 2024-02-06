@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.activity.activities.CheckinActivity">
+
+    <RelativeLayout
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/exception_action_bar" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/actionBar"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/blue_bg_color"
+            android:orientation="vertical">
+
+            <!--android:format12Hour="dd-MMM-yyyy:hh:mm:ss a"-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginLeft="@dimen/very_small_margin"
+
+                android:orientation="vertical">
+
+                <TextClock
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white_color"
+                    android:textSize="@dimen/very_large_text"
+                    android:format12Hour="hh:mm a"/>
+
+                <TextClock
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:format12Hour="EEEE,dd MMM yyyy"
+                    android:textColor="@color/date_color"
+                    android:textSize="@dimen/small_text"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/small_padding"
+                android:paddingRight="@dimen/small_padding"
+                android:layout_margin="@dimen/very_large_margin">
+
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Check-In Exception"
+                    android:layout_marginTop="@dimen/medium_margin"
+                    android:textSize="@dimen/medium_text"
+                    android:gravity="center"
+                    android:textColor="@color/white_color"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your check-in was recorded on "
+                        android:textSize="@dimen/small_text"
+                        android:gravity="center"
+                        android:textColor="@color/white_color"/>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/date_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="08 Nov'19 "
+                        android:textSize="@dimen/medium_text"
+                        android:gravity="center"
+                        android:textColor="@color/sky_blue_color"/>
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reason"
+                    android:layout_marginTop="@dimen/medium_margin"
+                    android:textSize="@dimen/medium_text"
+                    android:gravity="center"
+                    android:textColor="@color/white_color"/>
+
+                <RelativeLayout
+                    android:id="@+id/dateLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/exception_reason_bg"
+                    android:padding="8dp"
+                    android:weightSum="2.5"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:orientation="horizontal">
+
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                        android:id="@+id/exception_date_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date"
+                        android:textColor="@color/exception_reason_color"
+                        android:layout_weight="2"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/small_text"
+                        />
+
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="8dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_exception_calender" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/timeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/exception_reason_bg"
+                    android:padding="8dp"
+                    android:weightSum="2.5"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:orientation="horizontal">
+
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                        android:id="@+id/exception_time_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Time"
+                        android:textColor="@color/exception_reason_color"
+                        android:layout_weight="2"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/small_text"
+                        />
+
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="8dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_exception_time" />
+
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/exception_reason_bg"
+                    android:padding="8dp"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/reason_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Select Reason"
+                        android:visibility="gone"
+                        android:textColor="@color/exception_reason_color"
+                        android:textSize="@dimen/small_text"/>
+
+                    <RelativeLayout
+                        android:id="@+id/spinnerLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+
+                        >
+
+
+                        <Spinner
+                            android:id="@+id/reasonType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:popupBackground="@color/white_color"
+                            android:overlapAnchor="false"
+                            app:backgroundTint="@android:color/transparent" />
+
+
+                        <LinearLayout
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:visibility="visible">
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="8dp"
+                                android:src="@drawable/ic_angle_white_arrow_down" />
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+
+
+
+
+                </LinearLayout>
+
+                <com.tvisha.trooptime.activity.activity.customViews.PopinMediumEditTextView
+                    android:id="@+id/description_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/exception_reason_bg"
+                    android:maxHeight="100dp"
+                    android:minHeight="100dp"
+                    android:layout_marginTop="@dimen/medium_margin"
+                    android:hint="Enter Text (optional)"
+                    android:textColorHint="@color/exception_reason_color"
+                    android:gravity="top"
+                    android:padding="8dp"
+                    android:textColor="@color/exception_reason_color"
+                    android:textSize="@dimen/small_text"
+                    android:scrollbars="vertical" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:gravity="center"
+                    android:layout_margin="@dimen/very_large_margin"
+                    android:orientation="horizontal">
+
+
+
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/submit_bth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SUBMIT"
+                        android:layout_weight="1"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/exception_submit_bg"
+                        android:textColor="@color/white_color"
+                        android:textSize="@dimen/medium_text"/>
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

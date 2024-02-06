@@ -1,0 +1,1198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!--<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">-->
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/margins">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
+
+                            <ImageView
+                                android:id="@+id/profileImage"
+                                android:layout_width="@dimen/attendance_profile_image_size"
+                                android:layout_height="@dimen/attendance_profile_image_size"
+                                android:layout_gravity="center"
+                                android:padding="2dp"
+                                android:src="@drawable/ic_user_avatar_defualt" />
+                        </FrameLayout>
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                            android:id="@+id/employee_name_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/padding"
+                            android:text=" Tekula Mounika "
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/small_text" />
+
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:padding="@dimen/margins"
+                            android:id="@+id/closeImage"
+                            android:layout_width="?actionBarSize"
+                            android:layout_height="match_parent"
+                            android:layout_toStartOf="@+id/refreshImage"
+                            android:src="@drawable/remove"
+                            android:visibility="invisible" />
+                        <ImageView
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:padding="@dimen/margins"
+                            android:id="@+id/refreshImage"
+                            android:layout_width="?actionBarSize"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_refresh" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/white_color"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/very_small_padding"
+                    android:paddingRight="@dimen/very_small_padding"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:id="@+id/dateLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                            android:id="@+id/name_of_month_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:text=" Jul,2018 "
+                            android:textColor="@color/name_of_month_text_color"
+                            android:textSize="@dimen/small_text" />
+
+                        <View
+                            android:id="@+id/underline_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/red_color"
+                            android:visibility="visible" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/filterDateLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                            android:id="@+id/filterDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:text="Jul,2019"
+                            android:textColor="@color/name_of_month_text_color"
+                            android:textSize="@dimen/small_text" />
+
+                        <ImageView
+                            android:id="@+id/closeFilterImage"
+                            android:layout_width="@dimen/close_image_size"
+                            android:layout_height="@dimen/close_image_size"
+                            android:src="@drawable/close" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/small_margin"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/navigation"
+                            style="@style/MyCustomSmallTabLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:minWidth="0dp"
+                            android:minHeight="0dp"
+                            app:tabGravity="fill"
+                            app:tabIndicatorHeight="0dp"
+                            app:tabMaxWidth="0dp"
+                            app:tabMode="fixed">
+
+                        </com.google.android.material.tabs.TabLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- list layout-->
+                <!--<androidx.core.widget.NestedScrollView
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">-->
+                <LinearLayout
+                    android:id="@+id/listLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/titleLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/small_tab_inactive_background_color">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="20dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="50dp"
+                            android:paddingTop="@dimen/very_small_padding"
+                            android:paddingBottom="@dimen/very_small_padding"
+                            android:weightSum="3.4">
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center">
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_vertical"
+                                    android:text="Check In"
+                                    android:textColor="@color/name_of_month_text_color"
+                                    android:textSize="@dimen/very_small_text"
+                                    android:textStyle="italic" />
+
+
+                            </LinearLayout>
+
+                            <FrameLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.2"
+                                android:visibility="invisible">
+
+                                <ImageView
+                                    android:layout_width="@dimen/arrow_size"
+                                    android:layout_height="@dimen/arrow_size"
+                                    android:layout_gravity="center_vertical"
+                                    android:src="@drawable/arrow" />
+                            </FrameLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center">
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_vertical"
+                                    android:text="Check Out"
+                                    android:textColor="@color/name_of_month_text_color"
+                                    android:textSize="@dimen/very_small_text"
+                                    android:textStyle="italic" />
+
+
+                            </LinearLayout>
+
+                            <FrameLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.2"
+                                android:visibility="invisible">
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:background="@color/line_color" />
+                            </FrameLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center">
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_vertical"
+                                    android:text="Work Time"
+                                    android:textColor="@color/name_of_month_text_color"
+                                    android:textSize="@dimen/very_small_text"
+                                    android:textStyle="italic" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/attendance_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/very_small_margin"
+                        android:visibility="visible"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+                </LinearLayout>
+                <!--</androidx.core.widget.NestedScrollView>-->
+
+
+                <!--attendance layout-->
+
+                <LinearLayout
+                    android:id="@+id/attendanceLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/attendance_row_bg"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/very_small_padding"
+                        android:paddingRight="@dimen/very_small_padding">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2">
+
+                            <com.google.android.material.tabs.TabLayout
+                                android:id="@+id/attendanceTablayout"
+                                style="@style/MyCustomSmallTabLayout"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:minWidth="0dp"
+                                android:minHeight="0dp"
+                                app:tabGravity="fill"
+                                app:tabIndicatorHeight="0dp"
+                                app:tabMaxWidth="0dp"
+                                app:tabMode="fixed">
+
+                            </com.google.android.material.tabs.TabLayout>
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="4.3">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/working_days_bg"
+                                android:orientation="vertical"
+                                android:paddingLeft="@dimen/small_padding"
+                                android:paddingTop="@dimen/small_padding"
+                                android:paddingBottom="@dimen/small_padding">
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                    android:id="@+id/working_days_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textColor="@color/white_color"
+                                    android:textSize="@dimen/small_text" />
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Working Days"
+                                    android:textColor="@color/white_color"
+                                    android:textSize="@dimen/least_small_text" />
+
+                            </LinearLayout>
+
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/permissions_bg"
+                                android:orientation="vertical"
+                                android:paddingLeft="@dimen/small_padding"
+                                android:paddingTop="@dimen/small_padding"
+                                android:paddingBottom="@dimen/small_padding">
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                    android:id="@+id/permissions_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textColor="@color/white_color"
+                                    android:textSize="@dimen/small_text" />
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Permissions"
+                                    android:textColor="@color/white_color"
+                                    android:textSize="@dimen/least_small_text" />
+
+                            </LinearLayout>
+
+
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/leaves_bg"
+                                android:orientation="vertical"
+                                android:paddingLeft="@dimen/small_padding"
+                                android:paddingTop="@dimen/small_padding"
+                                android:paddingBottom="@dimen/small_padding">
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                    android:id="@+id/leaves_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textColor="@color/white_color"
+                                    android:textSize="@dimen/small_text" />
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Leaves"
+                                    android:textColor="@color/white_color"
+                                    android:textSize="@dimen/least_small_text" />
+
+
+                            </LinearLayout>
+
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1" />
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/lops_bg"
+                                android:orientation="vertical"
+                                android:paddingLeft="@dimen/small_padding"
+                                android:paddingTop="@dimen/small_padding"
+                                android:paddingBottom="@dimen/small_padding">
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                    android:id="@+id/lops_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textColor="@color/white_color"
+                                    android:textSize="@dimen/small_text" />
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="LOPs"
+                                    android:textColor="@color/white_color"
+                                    android:textSize="@dimen/least_small_text" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/small_margin"
+                            android:layout_marginBottom="@dimen/small_margin"
+                            android:background="@color/line_color" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="4.3">
+
+                            <LinearLayout
+                                android:id="@+id/earlyLogoutsLayout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:paddingTop="@dimen/small_padding"
+                                android:paddingBottom="@dimen/small_padding">
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="Early Logouts"
+                                    android:textColor="@color/attendance_history_light_grey_color"
+                                    android:textSize="@dimen/least_small_text" />
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                    android:id="@+id/early_logouts_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:textColor="@color/attendance_history_dark_grey_color"
+                                    android:textSize="@dimen/small_text" />
+
+
+                            </LinearLayout>
+
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:paddingTop="@dimen/small_padding"
+                                android:paddingBottom="@dimen/small_padding">
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/line_color" />
+
+                            </FrameLayout>
+
+                            <LinearLayout
+                                android:id="@+id/lateLoginsLayout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:paddingTop="@dimen/small_padding"
+                                android:paddingBottom="@dimen/small_padding">
+
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="Late Logins"
+                                    android:textColor="@color/attendance_history_light_grey_color"
+                                    android:textSize="@dimen/least_small_text" />
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                    android:id="@+id/late_logins_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:textColor="@color/attendance_history_dark_grey_color"
+                                    android:textSize="@dimen/small_text" />
+
+                            </LinearLayout>
+
+
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:paddingTop="@dimen/small_padding"
+                                android:paddingBottom="@dimen/small_padding">
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/line_color" />
+                            </FrameLayout>
+
+                            <LinearLayout
+                                android:id="@+id/permissionsLayout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:paddingTop="@dimen/small_padding"
+                                android:paddingBottom="@dimen/small_padding">
+
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="Permissions"
+                                    android:textColor="@color/attendance_history_light_grey_color"
+                                    android:textSize="@dimen/least_small_text" />
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                    android:id="@+id/permissions_count_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:textColor="@color/attendance_history_dark_grey_color"
+                                    android:textSize="@dimen/small_text" />
+
+
+                            </LinearLayout>
+
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:paddingTop="@dimen/small_padding"
+                                android:paddingBottom="@dimen/small_padding">
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/line_color" />
+
+                            </FrameLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/lessThanWorkingHoursLayout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:paddingTop="@dimen/small_padding"
+                                android:paddingBottom="@dimen/small_padding">
+
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="@string/workong_hours"
+                                    android:textColor="@color/attendance_history_light_grey_color"
+                                    android:textSize="@dimen/least_small_text" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                        android:id="@+id/lessathan_working_hours"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="0"
+                                        android:textColor="@color/attendance_history_dark_grey_color"
+                                        android:textSize="@dimen/small_text" />
+
+                                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=" days"
+                                        android:textColor="@color/attendance_history_dark_grey_color"
+                                        android:textSize="@dimen/least_small_text" />
+
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/small_margin"
+                            android:layout_marginBottom="@dimen/small_margin"
+                            android:background="@color/line_color" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                android:id="@+id/comp_off_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/small_margin"
+                                android:text="Comp Off :"
+                                android:textColor="@color/attendance_history_dark_grey_color"
+                                android:textSize="@dimen/small_text"
+                                android:visibility="gone" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/comp_off_recycler_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                        </LinearLayout>
+
+
+                        <RelativeLayout
+                            android:id="@+id/stackChartLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="gone">
+
+                            <WebView
+                                android:id="@+id/stackChart"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false">
+
+                            </WebView>
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+                                android:id="@+id/noData"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="center_horizontal"
+                                android:text="No chart data available"
+                                android:visibility="invisible" />
+
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <com.github.mikephil.charting.charts.HorizontalBarChart
+                    android:id="@+id/stackedBarChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="600dp"
+                    android:visibility="gone" />
+
+
+                <!--leave layout-->
+
+
+                <LinearLayout
+                    android:id="@+id/leaveLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/attendance_row_bg"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/very_small_padding"
+                        android:paddingRight="@dimen/very_small_padding"
+                        android:weightSum="2">
+
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/leaveTablayout"
+                            style="@style/MyCustomSmallTabLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:minWidth="0dp"
+                            android:minHeight="0dp"
+                            app:tabGravity="fill"
+                            app:tabIndicatorHeight="0dp"
+                            app:tabMaxWidth="0dp"
+                            app:tabMode="fixed">
+
+
+                        </com.google.android.material.tabs.TabLayout>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/very_small_padding"
+                        android:paddingRight="@dimen/very_small_padding"
+                        android:weightSum="4.3">
+
+                        <LinearLayout
+                            android:id="@+id/sickLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/working_days_bg"
+                            android:orientation="vertical"
+                            android:paddingLeft="@dimen/small_padding"
+                            android:paddingTop="@dimen/small_padding"
+                            android:paddingBottom="@dimen/small_padding">
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                android:id="@+id/sick_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="@color/white_color"
+                                android:textSize="@dimen/small_text" />
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sick"
+                                android:textColor="@color/white_color"
+                                android:textSize="@dimen/least_small_text" />
+
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"></FrameLayout>
+
+                        <LinearLayout
+                            android:id="@+id/casualLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/permissions_bg"
+                            android:orientation="vertical"
+                            android:paddingLeft="@dimen/small_padding"
+                            android:paddingTop="@dimen/small_padding"
+                            android:paddingBottom="@dimen/small_padding">
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                android:id="@+id/casual_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="@color/white_color"
+                                android:textSize="@dimen/small_text" />
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Casual"
+                                android:textColor="@color/white_color"
+                                android:textSize="@dimen/least_small_text" />
+
+                        </LinearLayout>
+
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"></FrameLayout>
+
+                        <LinearLayout
+                            android:id="@+id/optionalLeaveLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/leaves_bg"
+                            android:orientation="vertical"
+                            android:paddingLeft="@dimen/small_padding"
+                            android:paddingTop="@dimen/small_padding"
+                            android:paddingBottom="@dimen/small_padding">
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                android:id="@+id/optional_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="@color/white_color"
+                                android:textSize="@dimen/small_text" />
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Optional"
+                                android:textColor="@color/white_color"
+                                android:textSize="@dimen/least_small_text" />
+
+
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"></FrameLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/lopsLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/lops_bg"
+                            android:orientation="vertical"
+                            android:paddingLeft="@dimen/small_padding"
+                            android:paddingTop="@dimen/small_padding"
+                            android:paddingBottom="@dimen/small_padding">
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                android:id="@+id/lops_tv1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="@color/white_color"
+                                android:textSize="@dimen/small_text" />
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="LOPs"
+                                android:textColor="@color/white_color"
+                                android:textSize="@dimen/least_small_text" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/very_small_padding"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:layout_marginRight="@dimen/very_small_padding"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:background="@color/line_color" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/very_small_padding"
+                        android:paddingRight="@dimen/very_small_padding"
+                        android:weightSum="4.3">
+
+                        <LinearLayout
+                            android:id="@+id/exceptionsLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/small_padding"
+                            android:paddingBottom="@dimen/small_padding">
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Exception"
+                                android:textColor="@color/attendance_history_light_grey_color"
+                                android:textSize="@dimen/least_small_text" />
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                android:id="@+id/exception_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="0"
+                                android:textColor="@color/attendance_history_dark_grey_color"
+                                android:textSize="@dimen/small_text" />
+
+
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:paddingTop="@dimen/small_padding"
+                            android:paddingBottom="@dimen/small_padding">
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/line_color" />
+
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:id="@+id/autoCheckOutLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/small_padding"
+
+                            android:paddingBottom="@dimen/small_padding">
+
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Leaves"
+                                android:textColor="@color/attendance_history_light_grey_color"
+                                android:textSize="@dimen/least_small_text" />
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                android:id="@+id/auto_checkout_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="0"
+                                android:textColor="@color/attendance_history_dark_grey_color"
+                                android:textSize="@dimen/small_text" />
+
+                        </LinearLayout>
+
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:paddingTop="@dimen/small_padding"
+
+                            android:paddingBottom="@dimen/small_padding">
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/line_color" />
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:id="@+id/permissionsLayout1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/small_padding"
+                            android:paddingBottom="@dimen/small_padding">
+
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Permissions"
+                                android:textColor="@color/attendance_history_light_grey_color"
+                                android:textSize="@dimen/least_small_text" />
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                android:id="@+id/permissions_count_tv1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="0"
+                                android:textColor="@color/attendance_history_dark_grey_color"
+                                android:textSize="@dimen/small_text" />
+
+
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:paddingTop="@dimen/small_padding"
+                            android:paddingBottom="@dimen/small_padding">
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/line_color" />
+
+                        </FrameLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/lessThanWorkingHoursLayout1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/small_padding"
+                            android:paddingBottom="@dimen/small_padding">
+
+
+                            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/workong_hours"
+                                android:textColor="@color/attendance_history_light_grey_color"
+                                android:textSize="@dimen/least_small_text" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                    android:id="@+id/lessathan_working_hours1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textColor="@color/attendance_history_dark_grey_color"
+                                    android:textSize="@dimen/small_text" />
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=" days"
+                                    android:textColor="@color/attendance_history_dark_grey_color"
+                                    android:textSize="@dimen/least_small_text" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/very_small_padding"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:layout_marginRight="@dimen/very_small_padding"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:background="@color/line_color" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/very_small_padding"
+                        android:paddingRight="@dimen/very_small_padding">
+
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                            android:id="@+id/comp_off_title1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/small_margin"
+                            android:text="Comp Off :"
+                            android:textColor="@color/attendance_history_dark_grey_color"
+                            android:textSize="@dimen/small_text"
+                            android:visibility="gone" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/comp_off_recycler_view1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+    <!--</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+
+
+    <ImageView
+
+        android:id="@+id/noDataImage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nodata_img_size"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:src="@drawable/no_data_image"
+        android:visibility="gone" />
+</RelativeLayout>

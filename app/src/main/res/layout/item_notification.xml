@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/notificationLeftPannel"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/notificationDataHolder"
+        android:layout_alignBottom="@+id/notificationDataHolder"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/progressLineTop"
+            android:layout_width="2dp"
+            android:layout_height="@dimen/notification_status_top_line_height"
+            android:layout_above="@+id/userPic"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="3dp"
+            android:background="@color/notification_left_line_color" />
+
+        <ImageView
+            android:id="@+id/userPic"
+            android:layout_width="@dimen/notification_user_pic"
+            android:layout_height="@dimen/notification_user_pic"
+            android:layout_centerInParent="true"
+            android:background="@drawable/user_img_rounded_bg"
+            android:padding="@dimen/notification_user_pic_padding"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_late_login_list_icon" />
+
+        <View
+            android:id="@+id/progressLineBottom"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/userPic"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:background="@color/notification_left_line_color" />
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/notificationDataHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/notificationLeftPannel"
+        app:cardBackgroundColor="@color/notification_bg"
+        app:cardElevation="@dimen/notification_defult_space"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/notification_min_height">
+
+            <RelativeLayout
+                android:id="@+id/motificationBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/notification_data_spacing">
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                    android:id="@+id/notificationTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="notificationTitle"
+                    android:textColor="@color/notification_title_color"
+                    android:textSize="@dimen/notification_normal_text_size" />
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                    android:id="@+id/notificationSubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/notificationTitle"
+                    android:text="notificationTitle"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/notification_header_text_size" />
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+                    android:id="@+id/notificationTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/notificationSubject"
+                    android:text="notificationTitle"
+                    android:textColor="@color/notification_time_color"
+                    android:textSize="@dimen/notification_normal_text_size" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/lateLoginOptions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/notificationTime"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/commentsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/motificationBody"
+                android:layout_marginBottom="@dimen/notification_comments_margin_bottom"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

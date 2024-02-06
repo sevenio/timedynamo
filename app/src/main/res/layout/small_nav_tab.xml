@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_tab"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+        android:id="@+id/nav_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/very_small_margin"
+        android:gravity="center"
+        android:shadowColor="@android:color/black"
+        android:textColor="#333"
+        android:textSize="@dimen/least_small_text"
+        tools:text="Courses" />
+
+</LinearLayout>
+

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#59729c"
+                android:orientation="horizontal"
+                android:padding="@dimen/margins"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                        android:id="@+id/name_of_month"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/padding"
+                        android:text="Jul,2018"
+                        android:textAllCaps="true"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/small_text" />
+
+                    <View
+                        android:id="@+id/underline_view"
+                        android:layout_width="@dimen/textview_width"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/padding"
+                        android:background="#bb6d87"
+                        android:visibility="visible" />
+
+                    <View
+                        android:id="@+id/underline_view2"
+                        android:layout_width="@dimen/profile_image_h"
+                        android:layout_height="1dp"
+                        android:background="#bb6d87"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padding"
+                        android:layout_marginRight="@dimen/padding"
+                        android:layout_weight="3">
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                            android:id="@+id/text_self"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/filter_bg_color"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="SELF"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/small_text" />
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                            android:id="@+id/text_team"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#d1d2d4"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="TEAM"
+                            android:textColor="@color/text_notselected"
+                            android:textSize="@dimen/small_text" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/self_request_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

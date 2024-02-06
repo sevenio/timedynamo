@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.activity.activities.CheckinActivity">
+
+    <RelativeLayout
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/new_actionbar" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/actionBar"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/blue_bg_color"
+            android:orientation="vertical">
+
+            <!--android:format12Hour="dd-MMM-yyyy:hh:mm:ss a"-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginLeft="@dimen/very_small_margin"
+                android:orientation="vertical">
+
+                <TextClock
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white_color"
+                    android:textSize="@dimen/very_large_text"
+                    android:format12Hour="hh:mm a"/>
+
+                <TextClock
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:format12Hour="EEEE,dd MMM yyyy"
+                    android:textColor="@color/date_color"
+                    android:textSize="@dimen/small_text"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/large_margin"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/profile_pic"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:padding="3dp"
+                        android:background="@drawable/sky_blue_oval"
+                        android:src="@drawable/avatar_placeholder_light"/>
+
+                    <ProgressBar
+                        android:id="@+id/imageLoadingProgressBar"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerInParent="true"
+                        android:indeterminateTint="@color/colorPrimaryDark"
+                        android:indeterminateTintMode="src_in"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/emp_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nandhini Singh"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:textSize="@dimen/large_text"
+                    android:textColor="@color/sky_blue_color"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/emp_id_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EMP ID:TT240"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:textSize="@dimen/medium_text"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white_color"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Today's working Hours"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:textSize="@dimen/medium_text"
+                    android:textColor="@color/white_color"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="2dp"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:orientation="horizontal">
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/hours_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="08"
+                        android:textSize="@dimen/medium_text"
+                        android:textColor="@color/sky_blue_color"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" Hrs  "
+                        android:textSize="@dimen/small_text"
+                        android:textColor="@color/white_color"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/mins_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="40"
+                        android:textSize="@dimen/medium_text"
+                        android:textColor="@color/sky_blue_color"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" Min"
+                        android:textSize="@dimen/small_text"
+                        android:textColor="@color/white_color"/>
+
+
+                </LinearLayout>
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/location_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Checked-in from:SS Arcrade, Madhapur"
+                    android:layout_marginTop="@dimen/medium_margin"
+                    android:textSize="@dimen/small_text"
+                    android:gravity="center"
+                    android:textColor="@color/white_color"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:gravity="center"
+                    android:layout_margin="@dimen/very_large_margin"
+                    android:orientation="horizontal">
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/check_out_bth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CHECK-OUT"
+                        android:layout_weight="1"
+                        android:background="@drawable/check_in_or_check_out_bg"
+                        android:textColor="@color/white_color"
+                        android:textSize="@dimen/medium_text"/>
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom">
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:weightSum="3"
+                    android:background="@color/white_color"
+                    android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/breakBtn"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:textSize="@dimen/small_text"
+                            android:textColor="@color/light_grey_color"
+                            android:gravity="center"
+                            android:background="@color/white_color"
+                            android:orientation="horizontal"
+                            android:layout_weight="1"
+                            android:textAllCaps="false"
+                            android:text="Break"/>
+
+
+                       <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:background="@color/login_grey_color"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/transitBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/small_text"
+                        android:textColor="@color/light_grey_color"
+                        android:gravity="center"
+                        android:background="@color/white_color"
+                        android:orientation="horizontal"
+                        android:textAllCaps="false"
+                        android:layout_weight="1"
+                        android:text="Transit"/>
+
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:background="@color/login_grey_color"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/clientVisitBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/small_text"
+                        android:textColor="@color/light_grey_color"
+                        android:gravity="center"
+                        android:background="@color/white_color"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:textAllCaps="false"
+                        android:text="Client Visit"/>
+
+
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tvisha.trooptime.activity.activity.LeaveRequestActivity">
+
+    <include layout="@layout/common_action_bar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/actionBar"
+        android:fillViewport="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/req_shadow_bg"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/small_margin"
+                    android:layout_marginRight="@dimen/small_margin"
+                    android:orientation="vertical">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                        style="@style/requestFormLable"
+                        android:text="@string/to" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/to_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="@dimen/very_small_margin"
+                        android:scrollbars="vertical"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/toUserName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/to_recycler_view"
+                        android:layout_gravity="center"
+                        android:completionThreshold="2"
+                        android:editable="false"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:visibility="gone" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/req_line_color" />
+
+
+                    <!--<com.tvisha.trooptime.Activity.Activity.customViews.ContactsCompletionView
+                        android:id="@+id/toAddress"
+                        style="@style/requestFormEditText"
+                        android:layout_height="wrap_content" />-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/small_margin"
+                    android:layout_marginTop="@dimen/very_small_margin"
+                    android:layout_marginRight="@dimen/small_margin"
+                    android:orientation="vertical">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                        style="@style/requestFormLable"
+                        android:text="@string/cc" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/cc_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="@dimen/very_small_margin"
+                        android:scrollbars="vertical"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+                        />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/ccUserName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/cc_recycler_view"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:completionThreshold="2"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:textSize="@dimen/small_text" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginTop="@dimen/very_small_margin"
+                        android:layout_marginBottom="@dimen/very_small_margin"
+                        android:background="@color/req_line_color" />
+
+
+                    <!--<com.tvisha.trooptime.Activity.Activity.customViews.ContactsCompletionView
+                        android:id="@+id/ccAddress"
+                        style="@style/requestFormEditText"
+                        android:layout_height="wrap_content" />-->
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/weekOffDropDownLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/small_margin"
+                    android:layout_marginRight="@dimen/small_margin"
+                    android:orientation="vertical">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                        style="@style/requestFormLable"
+                        android:text="YOUR WEEKOFF" />
+
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:orientation="horizontal">
+
+
+                        <Spinner
+                            android:id="@+id/weekOffDateSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.5"
+                            android:background="@android:color/transparent"
+                            android:clickable="false"
+                            android:gravity="center_vertical"
+                            android:overlapAnchor="false"
+                            android:popupBackground="@color/white_color"
+                            android:spinnerMode="dialog"
+                            app:backgroundTint="@android:color/transparent">
+
+                        </Spinner>
+
+
+                        <FrameLayout
+
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:visibility="visible">
+
+                            <ImageView
+                                android:layout_width="@dimen/bottom_arrow_image_size"
+                                android:layout_height="@dimen/bottom_arrow_image_size"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/angle_arrow_down" />
+
+                        </FrameLayout>
+
+
+                    </LinearLayout>
+
+                    <AutoCompleteTextView
+                        android:id="@+id/yourWeekOffDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/swap_recycler_view"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@null"
+                        android:completionThreshold="3"
+                        android:editable="false"
+                        android:enabled="false"
+                        android:hint="Select WeekOff Date"
+                        android:imeOptions="actionDone"
+                        android:inputType="textVisiblePassword"
+                        android:singleLine="true"
+                        android:textSize="@dimen/small_text"
+                        android:visibility="gone" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginTop="@dimen/very_small_margin"
+                        android:layout_marginBottom="@dimen/very_small_margin"
+                        android:background="@color/req_line_color" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/small_margin"
+                    android:layout_marginRight="@dimen/small_margin"
+                    android:orientation="vertical">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                        style="@style/requestFormLable"
+                        android:text="SWAP WITH" />
+
+                    <RelativeLayout
+                        android:id="@+id/swapWithLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/swapTitle"
+                        android:clickable="true">
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/swap_recycler_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_margin="@dimen/very_small_margin"
+                            android:scrollbars="vertical"
+                            android:visibility="gone"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+                            />
+
+                        <AutoCompleteTextView
+                            android:id="@+id/swapWithName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/swap_recycler_view"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/very_small_margin"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="@dimen/very_small_margin"
+                            android:background="@null"
+                            android:completionThreshold="3"
+                            android:hint="Employee Name"
+                            android:imeOptions="actionDone"
+                            android:inputType="textVisiblePassword"
+                            android:singleLine="true"
+                            android:textSize="@dimen/small_text" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginBottom="@dimen/very_small_margin"
+                        android:background="@color/req_line_color" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/swapDateDropDownLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/small_margin"
+                    android:layout_marginRight="@dimen/small_margin"
+                    android:orientation="vertical">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                        style="@style/requestFormLable"
+                        android:text="SWAP DATE" />
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:orientation="horizontal">
+
+
+                        <Spinner
+                            android:id="@+id/swapDateSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.5"
+                            android:background="@android:color/transparent"
+                            android:clickable="false"
+                            android:gravity="center_vertical"
+                            android:overlapAnchor="false"
+                            android:popupBackground="@color/white_color"
+                            android:spinnerMode="dialog"
+                            app:backgroundTint="@android:color/transparent">
+
+                        </Spinner>
+
+                        <FrameLayout
+
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:visibility="visible">
+
+                            <ImageView
+                                android:layout_width="@dimen/bottom_arrow_image_size"
+                                android:layout_height="@dimen/bottom_arrow_image_size"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/angle_arrow_down" />
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <AutoCompleteTextView
+                        android:id="@+id/swapDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/swap_recycler_view"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:background="@null"
+                        android:completionThreshold="3"
+                        android:editable="false"
+                        android:enabled="false"
+                        android:hint="Swap Date"
+                        android:imeOptions="actionDone"
+                        android:inputType="textVisiblePassword"
+                        android:singleLine="true"
+                        android:textSize="@dimen/small_text"
+                        android:visibility="gone" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginTop="@dimen/very_small_margin"
+                        android:layout_marginBottom="@dimen/very_small_margin"
+                        android:background="@color/req_line_color" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/small_margin"
+                    android:layout_marginRight="@dimen/small_margin"
+                    android:orientation="vertical">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                        style="@style/requestFormLable"
+                        android:text="Reason" />
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PopinMediumEditTextView
+                        android:id="@+id/resonForLeave"
+                        style="@style/requestFormEditText"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:maxHeight="70dp"
+                        android:minHeight="10dp"
+                        android:scrollbars="vertical" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_marginTop="@dimen/very_small_margin"
+                        android:layout_marginBottom="@dimen/large_margin"
+                        android:background="@color/req_line_color" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_margin"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/very_small_margin"
+                    android:orientation="vertical">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumButton
+                        android:id="@+id/sendRequest"
+                        android:layout_width="@dimen/requestFormButtonWidth"
+                        android:layout_height="@dimen/requestFormButtonHeight"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/very_large_margin"
+                        android:layout_marginBottom="@dimen/very_large_margin"
+                        android:background="@color/red_color"
+                        android:gravity="center"
+                        android:onClick="onClick"
+                        android:text="@string/request"
+                        android:textColor="@android:color/white" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

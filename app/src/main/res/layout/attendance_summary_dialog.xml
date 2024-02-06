@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+
+    <RelativeLayout
+        android:id="@+id/cancelLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/cancelImage"
+        android:layout_width="@dimen/cancel_image_size"
+        android:layout_height="@dimen/cancel_image_size"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/very_small_margin"
+        android:src="@drawable/cancel_img" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cancelLayout"
+        android:background="@drawable/early_logout_bg"
+        android:orientation="vertical">
+
+
+        <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Early Logouts"
+            android:textColor="@color/attendance_history_dark_grey_color"
+            android:textSize="@dimen/medium_text" />
+
+
+        <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+            android:id="@+id/emp_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Tekula Mounika"
+            android:textColor="@color/attendance_history_dark_grey_color"
+            android:textSize="@dimen/small_text" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/attendance_summary_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/small_margin"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/permission_summary_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </LinearLayout>
+
+</RelativeLayout>

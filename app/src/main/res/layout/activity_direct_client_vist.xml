@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tvisha.trooptime.activity.activity.DirectClientVistActivity">
+
+    <include layout="@layout/common_action_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/actionBar"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                    style="@style/requestFormLable"
+                    android:text="@string/what_will_effect" />
+
+                <RadioGroup
+                    android:id="@+id/effectType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumRadioButton
+                        android:id="@+id/checkIn"
+                        style="@style/requestFormRadioOptions"
+                        android:text="@string/check_in_time" />
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumRadioButton
+                        android:id="@+id/checkOut"
+                        style="@style/requestFormRadioOptions"
+                        android:text="@string/check_out_time" />
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumRadioButton
+                        android:id="@+id/totalDay"
+                        style="@style/requestFormRadioOptions"
+                        android:text="@string/whole_day" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                    style="@style/requestFormLable"
+                    android:text="@string/date" />
+
+                <com.tvisha.trooptime.activity.activity.customViews.PopinMediumEditTextView
+                    android:id="@+id/date"
+                    style="@style/requestFormEditText"
+                    android:drawableRight="@drawable/ic_calendars"
+                    android:editable="false" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                    style="@style/requestFormLable"
+                    android:text="@string/business_contact" />
+                <!--<com.tvisha.trooptime.Activity.Activity.customViews.PopinMediumEditTextView
+                    android:id="@+id/businessContact"
+                    style="@style/requestFormEditText"/>-->
+                <com.tvisha.trooptime.activity.activity.customViews.ContactsCompletionView
+                    android:id="@+id/businessContact"
+                    style="@style/requestFormEditText"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                    style="@style/requestFormLable"
+                    android:text="@string/to" />
+
+                <com.tvisha.trooptime.activity.activity.customViews.ContactsCompletionView
+                    android:id="@+id/toAddress"
+                    style="@style/requestFormEditText"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                    style="@style/requestFormLable"
+                    android:text="@string/cc" />
+
+                <com.tvisha.trooptime.activity.activity.customViews.ContactsCompletionView
+                    android:id="@+id/ccAddress"
+                    style="@style/requestFormEditText"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                    style="@style/requestFormLable"
+                    android:text="@string/comments" />
+
+                <com.tvisha.trooptime.activity.activity.customViews.PopinMediumEditTextView
+                    android:id="@+id/comment"
+                    style="@style/requestFormEditText"
+                    android:layout_height="70dp" />
+            </LinearLayout>
+
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumButton
+                android:id="@+id/submitForm"
+                android:layout_width="@dimen/requestFormButtonWidth"
+                android:layout_height="@dimen/requestFormButtonHeight"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/defult_spacing"
+                android:background="@color/colorAccent"
+                android:onClick="onClick"
+                android:text="@string/request"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

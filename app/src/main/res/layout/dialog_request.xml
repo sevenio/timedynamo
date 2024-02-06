@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_toStartOf="@+id/requestClose"
+            android:layout_toLeftOf="@+id/requestClose"
+            android:gravity="center_vertical"
+            android:padding="@dimen/defult_spacing"
+            android:text="@string/request"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/medium_text" />
+
+        <ImageButton
+            android:id="@+id/requestClose"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:src="@drawable/ic_cancel" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/titleBarDivider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/titleBar"
+        android:background="@color/colorPrimary" />
+
+    <RadioGroup
+        android:id="@+id/requestGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleBarDivider"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/leaveRequest"
+            style="@style/requestRadioOptions"
+            android:layout_width="match_parent"
+            android:text="@string/leave"
+            android:buttonTint="@color/colorPrimary"
+            android:textSize="@dimen/normal_text" />
+
+        <RadioButton
+            android:id="@+id/permissionRequest"
+            style="@style/requestRadioOptions"
+            android:layout_width="match_parent"
+            android:text="@string/permission"
+            android:buttonTint="@color/colorPrimary"
+            android:textSize="@dimen/normal_text" />
+
+        <RadioButton
+            android:id="@+id/directClientVistRequest"
+            style="@style/requestRadioOptions"
+            android:layout_width="match_parent"
+            android:text="@string/direct_client_visit"
+            android:buttonTint="@color/colorPrimary"
+            android:visibility="gone" />
+
+        <RadioButton
+            android:id="@+id/callManagerRequest"
+            style="@style/requestRadioOptions"
+            android:layout_width="match_parent"
+            android:text="@string/call_manager"
+            android:buttonTint="@color/colorPrimary"
+            android:visibility="gone" />
+
+        <RadioButton
+            android:id="@+id/compoffrequest"
+            style="@style/requestRadioOptions"
+            android:layout_width="match_parent"
+            android:buttonTint="@color/colorPrimary"
+            android:text="@string/comp_off"
+            android:visibility="visible" />
+
+        <RadioButton
+            android:id="@+id/swapRequest"
+            style="@style/requestRadioOptions"
+            android:layout_width="match_parent"
+            android:buttonTint="@color/colorPrimary"
+            android:text="@string/swap"
+            android:visibility="visible" />
+    </RadioGroup>
+
+    <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+        android:id="@+id/request"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/requestGroup"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:background="@color/red_color"
+        android:gravity="center"
+        android:text="@string/request"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>

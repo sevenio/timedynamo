@@ -1,0 +1,143 @@
+<resources>
+    <string name="app_name">Time Dynamo</string>
+    <string name="time_dynamo_app_name">Time Dynamo</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="workong_hours">&lt; working hours</string>
+
+    <string name="name">abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYS&#160;</string>
+    <string name="number">0123456789</string>
+    <string name="no_internet_connection">Please check network connection</string>
+    <string name="some_thing_went_wrong">Something went wrong try again later</string>
+    <string name="no_future_data_available">No data found</string>
+    <string name="no_to_users_msg">Reporting boss can"'"t be be empty, please contact admin</string>
+
+    <string name="total_leaves">Total Leaves</string>
+    <string name="loss_of_pay">Loss Of Pay</string>
+    <string name="available_leaves">Available Leaves</string>
+    <string name="leaves_last_month">Leaves Last Month</string>
+    <string name="notifications">Notifications</string>
+    <string name="attendence">Attendence</string>
+
+    <string name="dashboard">Dashboard</string>
+    <string name="logout">Logout</string>
+
+    <string name="request">Request</string>
+    <string name="permission">Permission</string>
+
+
+    <string name="leave">Leave</string>
+    <string name="direct_client_visit">Direct-Client-Visit</string>
+    <string name="call_manager">Call Manager</string>
+    <string name="comp_off">Comp off</string>
+    <string name="swap">Swap</string>
+    <string name="lable">lable</string>
+    <string name="what_will_effect">What will effect ?</string>
+    <string name="check_in_time">Check-in Time</string>
+    <string name="check_out_time">Check-out Time</string>
+    <string name="whole_day">Whole Day</string>
+    <string name="date">Date</string>
+    <string name="business_contact">Business Contact</string>
+    <string name="to">To</string>
+    <string name="cc">cc</string>
+    <string name="comments">comments</string>
+    <string name="leave_type">Leave Type</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">End Date</string>
+    <string name="start_time">Start time</string>
+    <string name="end_time">End Time</string>
+    <string name="no">no</string>
+    <string name="yes">yes</string>
+    <string name="e_mail_mobile">E-Mail/Mobile Number</string>
+    <string name="password">Password</string>
+    <string name="please_wait">Please Wait...</string>
+    <string name="network_check">Please check network connection</string>
+    <string name="somthing_went_wrong">Something went wrong...</string>
+    <string name="late_login">Late Login</string>
+    <string name="early_logouts">Early Logout</string>
+    <string name="mobile_number">1234567890</string>
+    <string name="title_activity_requests">RequestsActivity</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="appwidget_text">Check in Missing</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+    <string name="newwork_msg">Please check internet connection</string>
+
+    <string name="Pick_from_camera">Pick from camera</string>
+    <string name="Pick_from_gallery">Pick from gallery</string>
+
+    <string-array name="check_in">
+        <item>All</item>
+        <item>Before 9 AM</item>
+        <item>Before 9:30 AM</item>
+        <item>Before 10 AM</item>
+        <item>After 10 AM</item>
+    </string-array>
+    <string-array name="check_out">
+        <item>All</item>
+        <item>Before 6 PM</item>
+        <item>Before 7 PM</item>
+        <item>After 7 PM</item>
+    </string-array>
+    <string-array name="break_time">
+        <item>All</item>
+        <!--<item> > 20min</item>
+        <item>20-40 min</item>
+        <item>40-60 min</item>
+        <item>1hr or more</item>-->
+    </string-array>
+    <string-array name="request_type">
+        <item>Any</item>
+        <item>Leave</item>
+        <item>Permission</item>
+        <item>Comp Off</item>
+        <item>Swap</item>
+        <item>Over Time</item>
+    </string-array>
+    <string-array name="work_time">
+        <item>Any</item>
+        <item>&lt; 8hrs</item>
+        <item>&gt; 8hrs</item>
+        <item>&gt; 10hrs</item>
+    </string-array>
+    <string-array name="remarks">
+        <item>Any</item>
+        <!--<item>Absent</item>
+        <item>Late</item>
+        <item>Left Early</item>-->
+    </string-array>
+    <string-array name="permission">
+        <item>Select</item>
+        <item>1 hour</item>
+        <item>2 hours</item>
+        <item>Half day</item>
+        <!--<item>1 hour</item>
+        <item>1 hr 15 mins</item>
+        <item>1 hr 30 mins</item>
+        <item>1 hr 45 mins</item>
+        <item>2 hours</item>-->
+    </string-array>
+    <string-array name="ontheway">
+        <item>Select</item>
+        <item>15 mins</item>
+        <item>30 mins</item>
+    </string-array>
+    <string-array name="leaveType">
+        <item>Sick Leave</item>
+        <item>Casual Leave</item>
+
+        <!--  <item>Optional Holiday</item>-->
+        <item>Optional Leave</item>
+    </string-array>
+    <string-array name="half_day_array">
+        <item>Full Day</item>
+        <item>First Half</item>
+        <item>Second Half</item>
+    </string-array>
+
+
+    <string name="Notification">Notification</string>
+    <string name="Self">Self</string>
+    <string name="Team">Team</string>
+</resources>

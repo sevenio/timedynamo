@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/very_small_margin"
+        android:background="@drawable/shadow_rectangle_bg"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginRight="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin">
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+                android:id="@+id/employeeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tekula Mounika"
+                android:textColor="@color/message_text_color"
+                android:textSize="14sp" />
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumButton
+                android:id="@+id/requestType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:background="@drawable/permission_rectangle_bg"
+                android:minHeight="@dimen/request_type_min_height"
+                android:text="permission"
+                android:textAllCaps="false"
+                android:textSize="@dimen/small_text" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_toRightOf="@+id/requsetLayout"
+            android:orientation="horizontal">
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+                android:id="@+id/subRequestType"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="12sp" />
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+                android:id="@+id/from"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="date"
+                android:textSize="@dimen/small_text" />
+
+            <ImageView
+                android:id="@+id/arrow"
+                android:layout_width="@dimen/arrow_size"
+                android:layout_height="@dimen/arrow_size"
+                android:layout_gravity="center"
+                android:src="@drawable/arrow" />
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+                android:id="@+id/to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="date"
+                android:textSize="@dimen/small_text" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginRight="5dp"
+            android:background="@color/line_color" />
+
+        <com.tvisha.trooptime.activity.activity.customViews.PopinRegularEditTextView
+            android:id="@+id/reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_margin"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_toRightOf="@+id/remarks"
+            android:background="@drawable/comment_bg"
+            android:gravity="start"
+            android:hint="comment here"
+            android:minHeight="@dimen/comment_min_height"
+            android:padding="@dimen/small_padding" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginRight="5dp"
+            android:background="@color/line_color" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/single_self_request_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/small_margin"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

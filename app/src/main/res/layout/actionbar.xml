@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/action_bar_holder_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="left">
+
+        <RelativeLayout
+            android:id="@+id/nav_drawer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:gravity="left"
+            android:padding="@dimen/padding">
+
+            <ImageView
+                android:id="@+id/navigation_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:src="@drawable/ic_menu" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:src="@mipmap/ic_launcher" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="right">
+        <!-- <RelativeLayout
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:id="@+id/add_task"
+             android:gravity="left"
+             android:background="?attr/selectableItemBackgroundBorderless"
+             android:padding="@dimen/padding">
+             <ImageView
+                 android:layout_width="@dimen/image_size"
+                 android:layout_height="@dimen/image_size"
+                 android:src="@drawable/ic_plus"/>
+         </RelativeLayout>-->
+        <RelativeLayout
+            android:id="@+id/notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:gravity="left"
+            android:padding="@dimen/padding">
+
+            <ImageView
+                android:id="@+id/add_back"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:src="@drawable/ic_notification_bell" />
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+                android:id="@+id/notification_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:background="@drawable/filter_background"
+                android:gravity="center"
+                android:paddingRight="@dimen/padding"
+                android:text="0"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/least_small_text" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

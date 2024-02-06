@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rr_navigate"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/menu_bg_color"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#cccccc" />
+
+        <LinearLayout
+            android:id="@+id/dashBoardLayout"
+            style="@style/navMenuItem">
+
+            <ImageView
+                android:id="@+id/dashBoardImage"
+                style="@style/navMenuItemIcon"
+                android:src="@drawable/dashboard" />
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                android:id="@+id/dashBoard"
+                style="@style/navMenuItemLable"
+                android:text="@string/dashboard" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#cccccc" />
+
+        <LinearLayout
+            android:id="@+id/todo_task"
+            style="@style/navMenuItem">
+
+            <ImageView
+                android:id="@+id/image_todo"
+                style="@style/navMenuItemIcon"
+                android:src="@drawable/ic_calender" />
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                android:id="@+id/text_todo"
+                style="@style/navMenuItemLable"
+                android:text="@string/attendence" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#cccccc" />
+
+        <LinearLayout
+
+            android:id="@+id/nav_request"
+
+            style="@style/navMenuItem">
+
+            <ImageView
+                style="@style/navMenuItemIcon"
+                android:src="@drawable/ic_request" />
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                style="@style/navMenuItemLable"
+                android:text="@string/request" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#cccccc" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@+id/logout"
+        android:background="#cccccc" />
+
+    <LinearLayout
+        android:id="@+id/logout"
+        style="@style/navMenuItem"
+        android:layout_width="@dimen/nav_header_width"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/navMenuItemIcon"
+            android:src="@drawable/ic_logout" />
+
+        <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+            style="@style/navMenuItemLable"
+            android:padding="5dp"
+            android:text="@string/logout" />
+    </LinearLayout>
+</RelativeLayout>

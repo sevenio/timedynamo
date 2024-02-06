@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:clickToClose="true">
+
+    <LinearLayout
+        android:id="@+id/ll_left_view"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/attendance_row_height"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/pin_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="#bababa"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_vertical_margin"
+            android:paddingRight="@dimen/activity_vertical_margin"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/pin_icon"
+                android:layout_width="@dimen/pin_unpin_img_size"
+                android:layout_height="@dimen/pin_unpin_img_size"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/defult_spacing"
+                android:padding="@dimen/defult_spacing"
+                android:src="@drawable/pin"
+                android:tag="0" />
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                android:id="@+id/pin_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pin_icon"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="Pin"
+                android:textColor="@color/white_color"
+                android:textSize="@dimen/small_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bottom_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="#f8962b"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_vertical_margin"
+            android:paddingRight="@dimen/activity_vertical_margin"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/bottom_icon"
+                android:layout_width="@dimen/pin_unpin_img_size"
+                android:layout_height="@dimen/pin_unpin_img_size"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/defult_spacing"
+                android:padding="@dimen/defult_spacing"
+                android:src="@drawable/bottom"
+                android:tag="0" />
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                android:id="@+id/bottom_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bottom_icon"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="Bottom"
+                android:textColor="@color/white_color"
+                android:textSize="@dimen/small_text"
+
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/attendance_row_height"
+        android:layout_gravity="center"
+        android:background="@color/white_color"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/singleitem_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="@color/second_item_col"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/padding">
+
+            <LinearLayout
+                android:id="@+id/attend_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/margins">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.4"
+                    android:gravity="center">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                            android:id="@+id/check_in_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <View
+                            android:id="@+id/under_line_view1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="1px"
+                            android:layout_below="@+id/check_in_time"
+                            android:layout_alignLeft="@+id/check_in_time"
+                            android:layout_alignRight="@+id/check_in_time"
+                            android:background="#d26658"
+                            android:visibility="invisible" />
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                            android:id="@+id/checkOutDate1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/under_line_view1"
+                            android:layout_alignLeft="@+id/check_in_time"
+                            android:layout_marginTop="1dp"
+                            android:paddingBottom="2dp"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/checkout_text_size"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                        android:id="@+id/_underscore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/start_time"
+                        android:text=" - "
+                        android:textColor="@android:color/black" />
+
+                    <RelativeLayout
+                        android:id="@+id/checkOutTimeLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                            android:id="@+id/check_out_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <View
+                            android:id="@+id/under_line_view2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="1px"
+                            android:layout_below="@+id/check_out_time"
+                            android:layout_alignLeft="@+id/check_out_time"
+                            android:layout_alignRight="@+id/check_out_time"
+                            android:background="#d26658"
+                            android:visibility="invisible" />
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                            android:id="@+id/checkOutDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/under_line_view2"
+                            android:layout_alignLeft="@+id/under_line_view2"
+                            android:layout_marginTop="1dp"
+                            android:paddingBottom="2dp"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/checkout_text_size"
+                            android:visibility="gone" />
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/employee_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/checkout_details"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/employee_profile_pic"
+                        android:layout_width="@dimen/profile_image_h"
+                        android:layout_height="@dimen/profile_image_h"
+                        android:layout_gravity="center"
+                        android:src="@drawable/user" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <FrameLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.9">
+
+                                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                                    android:id="@+id/employee_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:gravity="center_vertical"
+                                    android:singleLine="true"
+                                    android:maxLines="1"
+                                    android:textColor="#666666"
+                                    android:textSize="@dimen/normal_text"
+                                    android:visibility="visible" />
+                               <!-- <HorizontalScrollView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.8"
+                                    android:scrollbars="none">
+
+
+                                </HorizontalScrollView>-->
+
+                            </FrameLayout>
+
+
+                            <ImageView
+                                android:id="@+id/redpinImage"
+                                android:layout_width="@dimen/pinned_img_size"
+                                android:layout_height="@dimen/pinned_img_size"
+                                android:layout_marginLeft="@dimen/very_small_margin"
+                                android:gravity="center_vertical"
+                                android:src="@drawable/redpin"
+                                android:visibility="invisible" />
+
+                            <ImageView
+                                android:id="@+id/greypinImage"
+                                android:layout_width="@dimen/pinned_img_size"
+                                android:layout_height="@dimen/pinned_img_size"
+                                android:layout_marginLeft="@dimen/very_small_margin"
+                                android:gravity="center_vertical"
+                                android:src="@drawable/greypin"
+                                android:visibility="invisible" />
+
+                        </LinearLayout>
+
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                            android:id="@+id/employee_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:textColor="#666666"
+                            android:textSize="@dimen/normal_text"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                        android:id="@+id/work_time"
+                        android:layout_width="@dimen/textview_max_width"
+                        android:layout_height="wrap_content"
+                        android:background="#ebebeb"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:textColor="#555555"
+                        android:textSize="@dimen/small_text" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/wrapper_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/employee_details"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:visibility="invisible"
+                    android:paddingLeft="@dimen/large_padding"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/locationImage"
+                        android:layout_width="?actionBarSize"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:src="@drawable/ic_location"/>
+
+                    <ImageView
+                        android:id="@+id/historyImage"
+                        android:layout_width="?actionBarSize"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:src="@drawable/ic_history_clock"/>
+
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:scrollbars="none">
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                            android:id="@+id/status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:paddingBottom="2dp"
+                            android:textColor="#46be7a"
+                            android:textSize="@dimen/small_text" />
+                    </HorizontalScrollView>
+
+                    <ImageView
+                        android:id="@+id/checked_image"
+                        android:layout_width="@dimen/checkin_image_size"
+                        android:layout_height="@dimen/checkin_image_size"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/ic_checked"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/under_line_item"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@+id/wrapper_layout"
+                android:background="#e1e0e0"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</com.daimajia.swipe.SwipeLayout>

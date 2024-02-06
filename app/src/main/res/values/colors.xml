@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#262a36</color>
+    <color name="colorPrimaryDark">#262a36</color>
+    <color name="colorAccent">#ec2b47</color>
+    <color name="filter_bg_color">#ec2b47</color>
+    <color name="sky_blue_color">#3ea6db</color>
+    <color name="exception_reason_bg_color">#6a7185</color>
+    <color name="exception_reason_color">#b4b5bb</color>
+    <color name="action_bar_color">#3a5077</color>
+    <color name="progress_bar_color">#3a5077</color>
+
+    <color name="nav_top_bg">#7384b2</color>
+    <color name="textDefultColor">#666666</color>
+
+
+    <!--<color name="first_item_col">#f4f3f3</color>-->
+
+    <color name="first_item_col">#f4f2f3</color>
+    <color name="second_item_col">#faf9f9</color>
+    <color name="text_color_team">#aaa8a8</color>
+    <color name="profile_name_email">#edd04e</color>
+    <color name="select_text">#262626</color>
+
+    <color name="filter_devider_col">#e2e1e1</color>
+    <color name="sat_sun_col">#84bb42</color>
+
+    <color name="next_bt_color">#51c282</color>
+
+
+    <color name="light_text_color">#555555</color>
+
+    <color name="text_team_notselected">#d1d2d4</color>
+    <color name="text_team_selected">#ec2b47</color>
+
+
+    <!--notifications-->
+    <color name="notification_page_bg">#102a43</color>
+    <color name="notification_bg">#cc6b7b8b</color>
+    <color name="notification_bg2">#556371</color>
+    <color name="notification_left_line_color">#e5e5e5</color>
+    <color name="notification_title_color">#40454a</color>
+    <color name="notification_time_color">#cccccc</color>
+
+    <color name="message_text_color">#262626</color>
+    <color name="self_employee_name_color">#414141</color>
+    <color name="line_color">#f0efef</color>
+    <color name="red_color">#ec2b47</color>
+    <color name="ping_history_title_color">#4d4d4d</color>
+    <color name="green_color">#3abd4f</color>
+    <color name="yellow_color">#eda24d</color>
+    <color name="black_color">#000000</color>
+    <color name="white_color">#ffffff</color>
+    <color name="date_color">#bdbdc1</color>
+    <color name="blue_bg_color">#252a36</color>
+    <color name="light_white_color">#cbcbcb</color>
+    <color name="break_total_time_bg_color">#c3c5d9</color>
+    <color name="attendance_blue_color">#286cb8</color>
+    <color name="request_green_color">#3cbab5</color>
+    <color name="breaks_light_grey_color">#888888</color>
+    <color name="breaks_dark_grey_color">#555555</color>
+    <color name="breaks_line_color">#ededed</color>
+    <color name="permission_btn_bg_color">#aae2fd</color>
+    <color name="request_lineColor">#e5e5e5</color>
+    <color name="home_sky_blue_color">#2fa1e2</color>
+    <color name="home_orange_color">#f89602</color>
+    <color name="home_green_color">#46cd1c</color>
+    <color name="btn_inactive_bg_color">#d1d2d4</color>
+    <color name="btn_active_bg_color">#ec2b47</color>
+    <color name="tab_inactive_color">#555555</color>
+    <color name="tab_active_color">#ec2b47</color>
+
+    <color name="text_notselected">#7e7d7e</color>
+    <color name="text_sleceted">@android:color/white</color>
+    <color name="pending_color">#c29313</color>
+    <color name="accepted_color">#53d12a</color>
+    <color name="rejected_color">#fb6652</color>
+    <color name="menu_bg_color">#262a36</color>
+    <color name="menu_line_color">#ffffff</color>
+    <color name="login_grey_color">#b6b6b5</color>
+    <color name="request_grey_color">#656667</color>
+    <color name="request_dark_grey_color">#232322</color>
+    <color name="request_light_grey_color">#8d8d8d</color>
+
+    <color name="approve_bg_color">#85d25a</color>
+    <color name="rejected_bg_color">#7c7c7c</color>
+    <color name="events_holidays_name_color">#3a5077</color>
+    <color name="events_holidays_date_color">#656667</color>
+    <color name="home_request_type_color">#222530</color>
+    <color name="request_message_color">#4d4f54</color>
+    <color name="req_text_color">#666666</color>
+    <color name="login_hint_text_color">#c0c0c0</color>
+    <color name="req_line_color">#c3c2c2</color>
+    <color name="work_color">#adf880</color>
+    <color name="break_color">#63cfff</color>
+    <color name="late_color">#f43b3b</color>
+    <color name="ot_color">#f7d120</color>
+    <color name="req_light_yellow_color">#fefdf7</color>
+    <color name="profile_dark_grey_color">#525354</color>
+    <color name="profile_light_grey_color">#8d8d8d</color>
+
+    <color name="small_tab_inactive_text_color">#646262</color>
+    <color name="small_tab_active_text_color">#ffffff</color>
+    <color name="small_tab_inactive_background_color">#e9e9ea</color>
+    <color name="small_tab_active_background_color">#ec2b47</color>
+    <color name="name_of_month_text_color">#3a3d47</color>
+    <color name="attendance_history_light_grey_color">#555555</color>
+    <color name="home_request_attendance_color">#2C2F3D</color>
+    <color name="attendance_history_dark_grey_color">#333333</color>
+    <color name="attendance_time_color">#777777</color>
+    <color name="light_grey_color">#777777</color>
+    <color name="dark_grey_color">#333333</color>
+    <color name="attendance_am_pm_color">#8d8d8d</color>
+    <color name="attendance_working_hours_color">#444444</color>
+    <color name="attendance_working_hour_min_color">#212121</color>
+
+    <color name="profile_menubar_color">#3b3e49</color>
+    <color name="profile_save_color">#23314c</color>
+    <color name="profile_light_blue_color">#2c3f5d</color>
+    <color name="profile_dark_blue_color">#283b5a</color>
+
+    <!-- new added -->
+    <color name="range_dark_gray">#cccccc</color>
+
+
+
+
+
+
+
+
+
+</resources>

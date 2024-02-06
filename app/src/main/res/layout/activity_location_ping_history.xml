@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.activity.activities.LocationPingHistoryActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/new_actionbar" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/menu_bg_color"
+            android:orientation="horizontal"
+            android:padding="@dimen/margins"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:id="@+id/dateLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                        android:id="@+id/history_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:text="Location Ping History"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/small_text" />
+
+                    <View
+                        android:id="@+id/underline_view"
+                        android:layout_width="60dp"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/history_tv"
+                        android:background="@color/filter_bg_color"
+                        android:visibility="visible" />
+
+                </RelativeLayout>
+
+
+                <View
+                    android:id="@+id/underline_view2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/filter_bg_color"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                        android:id="@+id/month_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/filter_bg_color"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/small_padding"
+                        android:paddingRight="@dimen/small_padding"
+                        android:text="NOV,2019"
+                        android:layout_marginRight="@dimen/padding"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/small_text" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+
+
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tvisha.trooptime.activity.activity.PermissionRequestActivity">
+
+    <include layout="@layout/common_action_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/actionBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/req_shadow_bg"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                        style="@style/requestFormLable"
+                        android:text="Permission Date" />
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PopinMediumEditTextView
+                        android:id="@+id/permisionDate"
+                        style="@style/requestFormEditText"
+                        android:clickable="false"
+                        android:editable="false" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                        style="@style/requestFormLable"
+                        android:text="@string/to" />
+                    <!--  <com.tvisha.trooptime.Activity.Activity.customViews.ContactsCompletionView
+                          android:id="@+id/toAddress"
+                          style="@style/requestFormEditText"
+                          android:layout_height="wrap_content" />-->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/to_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="@dimen/small_margin"
+                        android:scrollbars="vertical"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/toUserName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/to_recycler_view"
+                        android:layout_gravity="center"
+                        android:completionThreshold="2"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:visibility="gone" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:background="#666666" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                        style="@style/requestFormLable"
+                        android:text="@string/cc" />
+
+                    <!-- <com.tvisha.trooptime.Activity.Activity.customViews.ContactsCompletionView
+                         android:id="@+id/ccAddress"
+                         style="@style/requestFormEditText"
+                         android:layout_height="wrap_content" />-->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/cc_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="@dimen/small_margin"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:layout_marginRight="@dimen/small_margin"
+                        android:scrollbars="vertical"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+                        />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/ccUserName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/cc_recycler_view"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:completionThreshold="2"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:singleLine="true" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:background="#666666" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:id="@+id/dayWorkedLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                            style="@style/requestFormLable"
+                            android:text="DAY WORKED" />
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                            android:id="@+id/dayWorkedDate"
+                            style="@style/requestFormEditText"
+                            android:layout_gravity="center_vertical"
+                            android:drawableRight="@drawable/ic_calendars"
+
+                            android:editable="false"
+                            android:gravity="center_vertical" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#666666" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/compOffLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/small_margin"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                            style="@style/requestFormLable"
+                            android:text="COMP OFF" />
+
+                        <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                            android:id="@+id/compOffDate"
+                            style="@style/requestFormEditText"
+                            android:drawableRight="@drawable/ic_calendars"
+                            android:editable="false"
+                            android:gravity="center_vertical" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#666666" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                        style="@style/requestFormLable"
+                        android:text="Reason" />
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PopinMediumEditTextView
+                        android:id="@+id/resonForPermission"
+                        style="@style/requestFormEditText"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:maxHeight="@dimen/reason_et_max_height"
+                        android:minHeight="@dimen/reason_et_min_height"
+                        android:scrollbars="vertical" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/very_small_margin"
+                        android:layout_marginBottom="@dimen/small_margin"
+                        android:background="#666666" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsBoldButton
+                android:id="@+id/submitForm"
+                android:layout_width="@dimen/requestFormButtonWidth"
+                android:layout_height="@dimen/requestFormButtonHeight"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/defult_spacing"
+                android:background="@color/red_color"
+                android:onClick="onClick"
+                android:text="@string/request"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

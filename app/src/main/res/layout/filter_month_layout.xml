@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding"
+        android:layout_marginTop="@dimen/large_margin"
+        android:layout_marginRight="@dimen/padding"
+        android:layout_weight="3"
+        android:orientation="horizontal">
+
+        <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+            android:id="@+id/lastThirtyDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/request_title_bg"
+            android:gravity="center"
+            android:padding="@dimen/very_small_padding"
+            android:tag="0"
+            android:textColor="@color/light_text_color"
+            android:text="Last 30 days" />
+
+        <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+            android:id="@+id/thisMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/very_small_margin"
+            android:layout_weight="1"
+            android:background="@drawable/request_title_bg"
+            android:gravity="center"
+            android:padding="@dimen/very_small_padding"
+            android:tag="0"
+            android:textColor="@color/light_text_color"
+            android:text="This Month" />
+
+        <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+            android:id="@+id/lastMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/very_small_margin"
+            android:layout_weight="1"
+            android:background="@drawable/request_title_bg"
+            android:gravity="center"
+            android:padding="@dimen/very_small_padding"
+            android:tag="0"
+            android:textColor="@color/light_text_color"
+            android:text="Last Month" />
+
+
+    </LinearLayout>
+

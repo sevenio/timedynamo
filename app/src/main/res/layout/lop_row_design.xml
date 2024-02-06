@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/small_padding"
+        android:paddingRight="@dimen/small_padding"
+        android:weightSum="3">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+                    android:id="@+id/date_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="25 Jun' 2018"
+                    android:textColor="@color/attendance_history_light_grey_color"
+                    android:textSize="@dimen/least_small_text" />
+
+                <ImageView
+                    android:id="@+id/exceptionCheckOutImage1"
+                    android:layout_width="@dimen/auto_checkout__status_image_size"
+                    android:layout_height="@dimen/auto_checkout__status_image_size"
+                    android:layout_marginLeft="@dimen/very_small_margin"
+                    android:src="@drawable/exception"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                android:id="@+id/day_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/attendance_history_light_grey_color"
+                android:textSize="@dimen/least_small_text" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                        android:id="@+id/check_in_hours_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10:"
+                        android:textColor="@color/attendance_history_light_grey_color"
+                        android:textSize="@dimen/small_text" />
+
+                    <View
+                        android:id="@+id/check_in_line"
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/check_in_hours_tv"
+                        android:layout_alignLeft="@+id/check_in_hours_tv"
+                        android:layout_alignRight="@+id/check_in_hours_tv"
+                        android:background="@color/red_color"
+                        android:visibility="invisible" />
+
+
+                </RelativeLayout>
+
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                    android:id="@+id/check_in_mins_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":00 "
+                    android:textColor="@color/attendance_history_light_grey_color"
+                    android:textSize="@dimen/small_text" />
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                    android:id="@+id/check_in_am_pm_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="am"
+                    android:textColor="@color/attendance_history_light_grey_color"
+                    android:textSize="@dimen/least_small_text" />
+
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="@dimen/arrow_size"
+                        android:layout_height="@dimen/arrow_size"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/very_small_margin"
+                        android:layout_marginRight="@dimen/very_small_margin"
+                        android:background="@drawable/arrow" />
+
+                </FrameLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                        android:id="@+id/check_out_hours_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="N/A"
+                        android:textColor="@color/attendance_history_light_grey_color"
+                        android:textSize="@dimen/small_text" />
+
+                    <View
+                        android:id="@+id/check_out_line"
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/check_out_hours_tv"
+                        android:layout_alignLeft="@+id/check_out_hours_tv"
+                        android:layout_alignRight="@+id/check_out_hours_tv"
+                        android:background="@color/red_color"
+                        android:visibility="invisible" />
+
+
+                </RelativeLayout>
+
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                    android:id="@+id/check_out_mins_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/attendance_history_light_grey_color"
+                    android:textSize="@dimen/small_text" />
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                    android:id="@+id/check_out_am_pm_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/attendance_history_light_grey_color"
+                    android:textSize="@dimen/least_small_text" />
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                    android:id="@+id/checkOutDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/attendance_history_light_grey_color"
+                    android:textSize="@dimen/least_small_text" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/workHoursLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity=" "
+                android:layout_weight="1"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+
+                <!--     <LinearLayout
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent"
+                         android:layout_gravity="end"
+                         android:layout_weight="1"
+                         android:gravity="end"
+                         android:orientation="horizontal">-->
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsBoldTextView
+                    android:id="@+id/hours_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/attendance_working_hours_color"
+                    android:textSize="@dimen/small_text"
+                    android:visibility="visible" />
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                    android:id="@+id/hours_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text=" hrs "
+                    android:textColor="@color/attendance_working_hour_min_color"
+                    android:textSize="@dimen/least_small_text"
+                    android:visibility="visible" />
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsBoldTextView
+                    android:id="@+id/mins_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/attendance_working_hours_color"
+                    android:textSize="@dimen/small_text"
+                    android:visibility="visible" />
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsRegularTextView
+                    android:id="@+id/mins_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text=" mins"
+                    android:textColor="@color/attendance_working_hour_min_color"
+                    android:textSize="@dimen/least_small_text"
+                    android:visibility="visible" />
+
+
+                <com.tvisha.trooptime.activity.activity.customViews.PoppinsBoldTextView
+                    android:id="@+id/no_work_hours_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="N/A"
+                    android:textColor="@color/attendance_working_hour_min_color"
+                    android:textSize="@dimen/small_text"
+                    android:visibility="gone" />
+
+
+                <ImageView
+                    android:id="@+id/statusImage"
+                    android:layout_width="@dimen/checkin_image_size"
+                    android:layout_height="@dimen/checkin_image_size"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/very_small_margin"
+                    android:src="@drawable/ic_checked"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/autoCheckOutLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:orientation="horizontal"
+                android:paddingTop="3dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/autoCheckoutImage"
+                    android:layout_width="@dimen/auto_checkout__status_image_size"
+                    android:layout_height="@dimen/auto_checkout__status_image_size"
+                    android:src="@drawable/autocheckout" />
+
+                <ImageView
+                    android:id="@+id/arrow"
+                    android:layout_width="@dimen/arrow_size"
+                    android:layout_height="@dimen/auto_checkout__status_image_size"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:src="@drawable/arrow" />
+
+                <ImageView
+                    android:id="@+id/autoCheckoutStatusImage"
+                    android:layout_width="@dimen/auto_checkout__status_image_size"
+                    android:layout_height="@dimen/auto_checkout__status_image_size"
+                    android:src="@drawable/pending" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/exceptionCheckInLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:orientation="horizontal"
+                android:paddingTop="3dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/exceptionCheckInImage"
+                    android:layout_width="@dimen/auto_checkout__status_image_size"
+                    android:layout_height="@dimen/auto_checkout__status_image_size"
+                    android:src="@drawable/exception" />
+
+                <ImageView
+                    android:id="@+id/arrow1"
+                    android:layout_width="@dimen/arrow_size"
+                    android:layout_height="@dimen/auto_checkout__status_image_size"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:src="@drawable/arrow" />
+
+                <ImageView
+                    android:id="@+id/exceptionCheckInStatusImage"
+                    android:layout_width="@dimen/auto_checkout__status_image_size"
+                    android:layout_height="@dimen/auto_checkout__status_image_size"
+                    android:src="@drawable/pending" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/exceptionCheckOutLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:orientation="horizontal"
+                android:paddingTop="3dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/exceptionCheckOutImage"
+                    android:layout_width="@dimen/auto_checkout__status_image_size"
+                    android:layout_height="@dimen/auto_checkout__status_image_size"
+                    android:src="@drawable/exception" />
+
+                <ImageView
+                    android:id="@+id/arrow2"
+                    android:layout_width="@dimen/arrow_size"
+                    android:layout_height="@dimen/auto_checkout__status_image_size"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:src="@drawable/arrow" />
+
+                <ImageView
+                    android:id="@+id/exceptionCheckOutStatusImage"
+                    android:layout_width="@dimen/auto_checkout__status_image_size"
+                    android:layout_height="@dimen/auto_checkout__status_image_size"
+                    android:src="@drawable/pending" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/line_color" />
+
+
+</LinearLayout>

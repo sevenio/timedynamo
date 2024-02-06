@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/month_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/filter_lineaar_padding"
+    android:layout_marginRight="2dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/margins"
+    android:paddingRight="@dimen/margins">
+
+    <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+        android:id="@+id/day_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textColor="@color/text_color_team"
+        android:textSize="@dimen/normal_text" />
+
+    <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+        android:id="@+id/day_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/text_color_team"
+        android:textSize="@dimen/normal_text" />
+
+    <View
+        android:id="@+id/under_line_month"
+        android:layout_width="30dp"
+        android:layout_height="1dp"
+        android:background="#f06b7c"
+        android:visibility="gone" />
+</LinearLayout>

@@ -1,0 +1,140 @@
+<resources>
+
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+
+    <dimen name="padding" >12dp</dimen>
+
+
+
+    <dimen name="spinner_height">90dp</dimen>
+    <dimen name="textview_max_width">150dp</dimen>
+    <dimen name="textview_width">100dp</dimen>
+    <dimen name="margins">20dp</dimen>
+    <dimen name="image_size">44dp</dimen>
+    <dimen name="image_h_w">100dp</dimen>
+    <dimen name="linear_h_w">26dp</dimen>
+
+
+
+    <dimen name="nav_header_width">180dp</dimen>
+    <dimen name="nav_header_height">320dp</dimen>
+    <dimen name="nav_menu_size">130dp</dimen>
+    <dimen name="nav_menu_icon_size">40dp</dimen>
+    <dimen name="nav_menu_lable_size">16sp</dimen>
+    <dimen name="nav_defult_padding">8dp</dimen>
+    <dimen name="profile_image_h">70dp</dimen>
+
+    <dimen name="large_text">12sp</dimen>
+    <dimen name="normal_text">20sp</dimen>
+    <dimen name="small_text">18sp</dimen>
+    <dimen name="very_small_text">16sp</dimen>
+    <dimen name="least_small_text">15sp</dimen>
+    <dimen name="head_text">40sp</dimen>
+
+
+    <!--mounika-->
+    <dimen name="medium_text">19sp</dimen>
+    <dimen name="very_large_text">28sp</dimen>
+    <dimen name="very_small_margin">10dp</dimen>
+    <dimen name="small_margin">18dp</dimen>
+    <dimen name="medium_margin">25dp</dimen>
+    <dimen name="large_margin">30dp</dimen>
+    <dimen name="very_large_margin">40dp</dimen>
+    <dimen name="big_large_margin">40dp</dimen>
+    <dimen name="very_small_padding">10dp</dimen>
+    <dimen name="small_padding">18dp</dimen>
+    <dimen name="medium_padding">25dp</dimen>
+    <dimen name="large_padding">35dp</dimen>
+
+    <dimen name="nav_icon_size">30dp</dimen>
+    <dimen name="permission_tick_image_size">30dp</dimen>
+
+
+    <dimen name="back_image_size">35dp</dimen>
+    <dimen name="profile_image_size">90dp</dimen>
+    <dimen name="arrow_size">18dp</dimen>
+    <dimen name="comment_layout_height">150dp</dimen>
+    <dimen name="comment_rectangle_height">120dp</dimen>
+    <dimen name="send_comment_image_size">45dp</dimen>
+    <dimen name="approve_or_reject_layout_height">80dp</dimen>
+    <dimen name="approve_or_reject_layout_width">120dp</dimen>
+    <dimen name="approve_or_reject_image_size">30dp</dimen>
+    <dimen name="remove_image_size">20dp</dimen>
+    <dimen name="event_image_size">20dp</dimen>
+    <dimen name="team_request_row_height">100dp</dimen>
+    <dimen name="checkin_image_size">20dp</dimen>
+    <dimen name="menu_image_size">35dp</dimen>
+    <dimen name="logo_image_width">220dp</dimen>
+    <dimen name="logo_image_height">45dp</dimen>
+    <dimen name="fab_margin">18dp</dimen>
+    <dimen name="home_blue_bg_height">220dp</dimen>
+
+    <dimen name="request_layout_size">200dp</dimen>
+    <dimen name="request_img_height">90dp</dimen>
+    <dimen name="request_img_width">80dp</dimen>
+    <dimen name="filter_img_size">60dp</dimen>
+    <dimen name="attendance_row_height">180dp</dimen>
+    <dimen name="pin_unpin_img_size">55dp</dimen>
+    <dimen name="pinned_img_size">30dp</dimen>
+    <dimen name="attendance_emp_name_width">220dp</dimen>
+    <dimen name="home_negative_top_margin">-75dp</dimen>
+    <dimen name="total_break_time_width">90dp</dimen>
+    <dimen name="total_break_time_height">30dp</dimen>
+    <dimen name="more_requests_width">130dp</dimen>
+    <dimen name="home_line_height">90dp</dimen>
+    <dimen name="home_req_bottom_line_height">15dp</dimen>
+    <dimen name="request_type_height">30dp</dimen>
+    <dimen name="close_image_size">23dp</dimen>
+    <dimen name="addrequest_layout_size">75dp</dimen>
+    <dimen name="addrequest_plus_size">32dp</dimen>
+    <dimen name="nodata_img_size">160dp</dimen>
+    <dimen name="search_image_size">40dp</dimen>
+    <dimen name="login_btn_width">160dp</dimen>
+    <dimen name="to_and_cc_layout_height">30dp</dimen>
+    <dimen name="request_filter_image_size">40dp</dimen>
+    <dimen name="checkout_text_size">10sp</dimen>
+    <dimen name="break_name_width">70dp</dimen>
+    <dimen name="login_top_img_size">150dp</dimen>
+    <dimen name="login_bottom_img_size">150dp</dimen>
+
+    <dimen name="widget_margin">10dp</dimen>
+    <dimen name="tab_max_width">120dp</dimen>
+    <dimen name="tab_text">10sp</dimen>
+    <dimen name="tab_layout_height">120dp</dimen>
+    <dimen name="small_tab_layout_height">40dp</dimen>
+    <dimen name="small_tab_text">8sp</dimen>
+    <dimen name="cancel_image_size">40dp</dimen>
+    <dimen name="attendance_profile_image_size">50dp</dimen>
+    <dimen name="stack_chart_width">320dp</dimen>
+    <dimen name="stack_chart_height">500dp</dimen>
+    <dimen name="home_request_attendance_img_size">50dp</dimen>
+
+    <dimen name="camera_image_size">40dp</dimen>
+    <dimen name="profile_icon_image_size">25dp</dimen>
+    <dimen name="edit_profile_image_size">380dp</dimen>
+
+    <dimen name="attendane_date_month_top_margin">17dp</dimen>
+    <dimen name="bottom_arrow_image_size">15dp</dimen>
+    <dimen name="image_request_layout_size">50dp</dimen>
+    <dimen name="image_request_pluse_size">20dp</dimen>
+    <dimen name="reason_et_min_height">16dp</dimen>
+    <dimen name="reason_et_max_height">160dp</dimen>
+    <dimen name="total_days_height">60dp</dimen>
+    <dimen name="menu_back_image_size">28dp</dimen>
+    <dimen name="check_in_details_height">190dp</dimen>
+    <dimen name="time_min_height">10dp</dimen>
+    <dimen name="request_type_min_width">30dp</dimen>
+    <dimen name="request_type_min_height">20dp</dimen>
+    <dimen name="request_status_image_size">20dp</dimen>
+    <dimen name="reply_image_size">25dp</dimen>
+    <dimen name="notification_image_size">40dp</dimen>
+    <dimen name="notification_count_size">20dp</dimen>
+    <dimen name="spinner_item_size">40dp</dimen>
+    <dimen name="comment_min_height">60dp</dimen>
+    <dimen name="auto_checkout__status_image_size">25dp</dimen>
+    <dimen name="blue_dot_size">12dp</dimen>
+    <dimen name="events_profile_image_size">60dp</dimen>
+    <dimen name="progress_bar_size">50dp</dimen>
+    <dimen name="homeListSize">200dp</dimen>
+
+</resources>

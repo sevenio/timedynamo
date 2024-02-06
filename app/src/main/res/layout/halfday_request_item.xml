@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="2">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumTextView
+            android:id="@+id/leave_date"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/requestFormEditTextHeight"
+            android:layout_marginLeft="@dimen/very_small_margin"
+            android:layout_marginRight="@dimen/defult_spacing"
+            android:drawableRight="@drawable/ic_calendars"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/small_text" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@+id/leave_date"
+            android:background="@color/req_line_color" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/very_small_margin"
+        android:layout_weight="1">
+        <!--  <Spinner
+              android:id="@+id/reuest_spinner"
+              android:layout_weight="1"
+              android:dropDownVerticalOffset="35dp"
+              style="@style/requestFormEditText"/>-->
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/reuest_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/requestFormEditTextHeight"
+            android:layout_marginRight="@dimen/very_small_margin"
+            android:textColor="@color/req_text_color"
+            android:textSize="@dimen/small_text"
+            app:ms_dropdown_height="wrap_content"
+            app:ms_dropdown_max_height="350dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@+id/reuest_spinner"
+            android:background="@color/req_line_color" />
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Drop Shadow Stack -->
+    <item>
+        <shape>
+
+            <padding  android:top="2dp"  android:right="2dp" android:bottom="2dp" android:left="2dp" />
+            <solid android:color="#02222530" />
+            <corners android:topLeftRadius="5dp" android:topRightRadius="5dp"
+                android:bottomLeftRadius="0.1dp" android:bottomRightRadius="0.1dp"/>
+
+        </shape>
+    </item>
+    <item>
+        <shape>
+
+            <padding  android:top="2dp"  android:right="2dp" android:bottom="2dp" android:left="2dp" />
+            <solid android:color="#03222530" />
+            <corners android:topLeftRadius="5dp" android:topRightRadius="5dp"
+                android:bottomLeftRadius="0.1dp" android:bottomRightRadius="0.1dp"/>
+        </shape>
+    </item>
+    <!--<item>
+        <shape>
+
+            <padding  android:top="2dp"  android:right="2dp" android:bottom="2dp" android:left="2dp" />
+            <solid android:color="#05222530" />
+            <corners android:topLeftRadius="5dp" android:topRightRadius="5dp"
+                android:bottomLeftRadius="0.1dp" android:bottomRightRadius="0.1dp"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+
+            <padding  android:top="2dp"  android:right="2dp" android:bottom="2dp" android:left="2dp" />
+            <solid android:color="#07222530" />
+            <corners android:topLeftRadius="5dp" android:topRightRadius="5dp"
+                android:bottomLeftRadius="0.1dp" android:bottomRightRadius="0.1dp"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+
+            <padding  android:top="2dp"  android:right="2dp" android:bottom="2dp" android:left="2dp" />
+            <solid android:color="#08222530" />
+            <corners android:topLeftRadius="5dp" android:topRightRadius="5dp"
+                android:bottomLeftRadius="0.1dp" android:bottomRightRadius="0.1dp"/>
+        </shape>
+    </item>-->
+
+    <item>
+        <shape>
+
+            <padding  android:top="2dp"  android:right="2dp" android:bottom="2dp" android:left="2dp" />
+            <solid android:color="#08222530" />
+            <corners android:topLeftRadius="5dp" android:topRightRadius="5dp"
+                android:bottomLeftRadius="0.1dp" android:bottomRightRadius="0.1dp"/>
+        </shape>
+    </item>
+    <!-- Background -->
+    <item>
+        <shape>
+
+            <solid android:color="#ffffff" />
+            <corners android:topLeftRadius="5dp" android:topRightRadius="5dp"
+                android:bottomLeftRadius="0.1dp" android:bottomRightRadius="0.1dp"/>
+        </shape>
+    </item>
+</layer-list>
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    &lt;!&ndash; Drop Shadow Stack &ndash;&gt;
+    <item>
+        <shape>
+            <corners android:radius="5dp"/>
+            <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+            <solid android:color="#02000000" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="5dp"/>
+            <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+            <solid android:color="#03000000" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="5dp"/>
+            <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+            <solid android:color="#05000000" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="5dp"/>
+            <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+            <solid android:color="#07000000" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="5dp"/>
+            <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+            <solid android:color="#08000000" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <corners android:radius="5dp"/>
+            <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+            <solid android:color="#08000000" />
+        </shape>
+    </item>
+    &lt;!&ndash; Background &ndash;&gt;
+    <item>
+        <shape>
+           &lt;!&ndash; <corners android:radius="5dp"/>&ndash;&gt;
+            <corners android:topLeftRadius="6dp" android:topRightRadius="6dp"
+                android:bottomLeftRadius="0.1dp" android:bottomRightRadius="0.1dp"/>
+            <solid android:color="#ffffff" />
+        </shape>
+    </item>
+</layer-list>
+-->
+
+
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" >
+        <shape android:shape="rectangle"  >
+          &lt;!&ndash;  <corners android:radius="10dip" />&ndash;&gt;
+            <corners android:topLeftRadius="6dp" android:topRightRadius="6dp"
+                android:bottomLeftRadius="0.1dp" android:bottomRightRadius="0.1dp"/>
+            <gradient android:angle="0" android:startColor="#ffffff" android:endColor="#ffffff"  />
+        </shape>
+    </item>
+    <item android:state_focused="true">
+        <shape android:shape="rectangle"  >
+            <corners android:radius="10dip" />
+            <solid android:color="#fdaf17"/>
+        </shape>
+    </item>
+    <item >
+        <shape android:shape="rectangle"  >
+           &lt;!&ndash; <corners android:radius="10dip" />&ndash;&gt;
+            <corners android:topLeftRadius="6dp" android:topRightRadius="6dp"
+                android:bottomLeftRadius="0.1dp" android:bottomRightRadius="0.1dp"/>
+            <gradient android:angle="0" android:startColor="#ffffff" android:endColor="#ffffff" />
+        </shape>
+    </item>
+</selector>-->
