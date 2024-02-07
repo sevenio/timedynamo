@@ -1,15 +1,19 @@
 package com.tvisha.trooptime.activity.activity.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.tvisha.trooptime.activity.activity.Adapter.NotificationsNewAdapter
 import com.tvisha.trooptime.activity.activity.Dialog.CustomProgressBar
 import com.tvisha.trooptime.activity.activity.Model.Notification
+import com.tvisha.trooptime.activity.activity.viewmodels.NotificationViewmodel
 import com.tvisha.trooptime.databinding.NotificationListLayoutBinding
 
 class TeamNotificationFrgment : Fragment() {
@@ -20,11 +24,14 @@ class TeamNotificationFrgment : Fragment() {
     var isLoading:Boolean = false
     var noMoreData:Boolean = false
     var customProgressBar: CustomProgressBar? = null
+
+    val viewModel: NotificationViewmodel by viewModels(ownerProducer ={ requireParentFragment()})
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = NotificationListLayoutBinding.inflate(inflater, container,false)
         return binding.root
@@ -32,6 +39,9 @@ class TeamNotificationFrgment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.notificationUiModel.observe(viewLifecycleOwner){
+            Log.d("mod", "TeamNotificationFrgment ${Gson().toJson(it)}")
+        }
         linearLayoutManager = LinearLayoutManager(requireActivity())
         binding.rlNotificationList.layoutManager = linearLayoutManager
         binding.rlNotificationList.addOnScrollListener(object : RecyclerView.OnScrollListener(){

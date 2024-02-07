@@ -9,7 +9,7 @@
         android:id="@+id/notificationsFragment"
         android:name="com.tvisha.trooptime.activity.activity.fragment.NotificationsFragment"
         tools:layout="@layout/fragment_notifications"
-        android:label="NotificationsFragment" >
+        android:label="Notifications" >
         <action
             android:id="@+id/action_notificationsFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
@@ -18,5 +18,14 @@
         tools:layout="@layout/fragment_settings"
         android:id="@+id/settingsFragment"
         android:name="com.tvisha.trooptime.activity.activity.fragment.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="Settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_selectEmployeeSettingsFragment"
+            app:destination="@id/selectEmployeeSettingsFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_select_employee_settings"
+        android:id="@+id/selectEmployeeSettingsFragment"
+        android:name="com.tvisha.trooptime.activity.activity.fragment.SelectEmployeeSettingsFragment"
+        android:label="Select Employee" />
 </navigation>
