@@ -172,8 +172,7 @@
     <dimen name="events_profile_image_size">50dp</dimen>
     <dimen name="progress_bar_size">40dp</dimen>
     <dimen name="homeListSize">200dp</dimen>
-
-
+    <dimen name="notification_settings_item_padding">20dp</dimen>
 
 
 </resources>

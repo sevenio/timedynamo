@@ -56,7 +56,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
             if (model.getNotificationType() == 0) {
                 holder.userPic.setImageResource(R.drawable.ic_late_login_list_icon);
             } else {
-                Picasso.with(context)
+                Picasso.get()
                         .load(R.drawable.test_img)
                         .transform(new CircleTransform())
                         .into(holder.userPic);

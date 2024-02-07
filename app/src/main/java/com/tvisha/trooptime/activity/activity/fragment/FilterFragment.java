@@ -1,4 +1,4 @@
-package com.tvisha.trooptime.activity.activity.Fragment;
+package com.tvisha.trooptime.activity.activity.fragment;
 
 import android.app.DatePickerDialog;
 import android.app.Fragment;

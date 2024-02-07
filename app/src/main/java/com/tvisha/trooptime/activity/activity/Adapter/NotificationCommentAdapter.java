@@ -28,7 +28,7 @@ public class NotificationCommentAdapter extends RecyclerView.Adapter<Notificatio
     public void onBindViewHolder(ViewHolder holder, int position) {
         try {
             holder.comment.setText(msgs[position]);
-            Picasso.with(context)
+            Picasso.get()
                     .load(R.drawable.test_img)
                     .transform(new CircleTransform())
                     .into(holder.userPic);

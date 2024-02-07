@@ -135,7 +135,6 @@ public class SocketIo {
         socket.on(Socket.EVENT_CONNECT, onConnect);
         socket.on(Socket.EVENT_DISCONNECT, onDisconnect);
         socket.on(Socket.EVENT_CONNECT_ERROR, onConnectError);
-        socket.on(Socket.EVENT_CONNECT_TIMEOUT, onConnectError);
         socket.on(SocketConstants.EVENT_SYNC_USER, syncUser);
         socket.on(SocketConstants.EVENT_SYNC_DATA, syncData);
         socket.on(SocketConstants.EVENT_SYNC_ATTENDANCE, syncAttendance);
@@ -146,7 +145,6 @@ public class SocketIo {
         socket.off(Socket.EVENT_CONNECT, onConnect);
         socket.off(Socket.EVENT_DISCONNECT, onDisconnect);
         socket.off(Socket.EVENT_CONNECT_ERROR, onConnectError);
-        socket.off(Socket.EVENT_CONNECT_TIMEOUT, onConnectError);
         socket.off(SocketConstants.EVENT_SYNC_USER, syncUser);
         socket.off(SocketConstants.EVENT_SYNC_DATA, syncData);
         socket.off(SocketConstants.EVENT_SYNC_ATTENDANCE, syncAttendance);
