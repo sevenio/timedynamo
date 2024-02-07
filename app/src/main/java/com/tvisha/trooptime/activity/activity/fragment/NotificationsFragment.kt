@@ -10,7 +10,7 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
-//import androidx.navigation.Navigation
+import androidx.navigation.Navigation
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
 import com.tvisha.trooptime.R
@@ -84,8 +84,8 @@ class NotificationsFragment : Fragment() {
                 return when (menuItem.itemId) {
                     R.id.settings -> {
                         Log.d("ganga", "settings")
-//                        val navController = view.let { Navigation.findNavController(it) }
-//                        navController.navigate(NotificationsFragmentDirections.actionNotificationsFragmentToSettingsFragment())
+                        val navController = view.let { Navigation.findNavController(it) }
+                        navController.navigate(NotificationsFragmentDirections.actionNotificationsFragmentToSettingsFragment())
                         true
                     }
                     R.id.volume -> {
