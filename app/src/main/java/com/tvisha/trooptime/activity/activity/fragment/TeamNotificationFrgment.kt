@@ -14,6 +14,8 @@ import com.tvisha.trooptime.activity.activity.Adapter.NotificationsNewAdapter
 import com.tvisha.trooptime.activity.activity.Dialog.CustomProgressBar
 import com.tvisha.trooptime.activity.activity.Model.Notification
 import com.tvisha.trooptime.activity.activity.viewmodels.NotificationViewmodel
+import com.tvisha.trooptime.databinding.ItemSelfNotificationBinding
+import com.tvisha.trooptime.databinding.ItemTeamNotificationBinding
 import com.tvisha.trooptime.databinding.NotificationListLayoutBinding
 
 class TeamNotificationFrgment : Fragment() {
@@ -39,7 +41,7 @@ class TeamNotificationFrgment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.notificationUiModel.observe(viewLifecycleOwner){
+        viewModel.notificationCalendars.observe(viewLifecycleOwner){
             Log.d("mod", "TeamNotificationFrgment ${Gson().toJson(it)}")
         }
         linearLayoutManager = LinearLayoutManager(requireActivity())
@@ -82,4 +84,46 @@ class TeamNotificationFrgment : Fragment() {
             }
         }
     }
+}
+
+class TeamNotificationRecyclerViewAdapter(
+    val date: List<CalendarDate>,
+    private var selectedDate: Int,
+    val callback: (CalendarDate) -> Unit
+) :
+    RecyclerView.Adapter<TeamNotificationRecyclerViewAdapter.TeamNotificationViewHolder>() {
+
+    class TeamNotificationViewHolder(val binding: ItemTeamNotificationBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamNotificationViewHolder {
+        return TeamNotificationViewHolder(
+            ItemTeamNotificationBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun getItemCount(): Int {
+        return date.size
+    }
+
+    override fun onBindViewHolder(holder: TeamNotificationViewHolder, position: Int) {
+        holder.apply {
+//            val item = date[bindingAdapterPosition]
+//            binding.tvDate.text = item.dateOfMonth.toString()
+//            binding.tvDay.text = item.dayOfWeek
+//            binding.redView.isVisible = item.dateOfMonth == selectedDate
+//            binding.root.setOnClickListener {
+//                selectedDate = item.dateOfMonth
+//                notifyDataSetChanged()
+//                callback(item)
+//            }
+        }
+    }
+
 }

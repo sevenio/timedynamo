@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,8 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.tvisha.trooptime.activity.activity.Adapter.NotificationsNewAdapter
 import com.tvisha.trooptime.activity.activity.Model.Notification
-import com.tvisha.trooptime.activity.activity.NotificationActivityNew
 import com.tvisha.trooptime.activity.activity.viewmodels.NotificationViewmodel
+import com.tvisha.trooptime.databinding.ItemCalendarDateBinding
+import com.tvisha.trooptime.databinding.ItemSelfNotificationBinding
 import com.tvisha.trooptime.databinding.NotificationListLayoutBinding
 
 class SelfNotificationFragment : Fragment() {
@@ -36,7 +38,7 @@ class SelfNotificationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.notificationUiModel.observe(viewLifecycleOwner){
+        viewModel.notificationCalendars.observe(viewLifecycleOwner){
             Log.d("mod", "SelfNotificationFragment ${Gson().toJson(it)}")
         }
         linearLayoutManager = LinearLayoutManager(requireActivity())
@@ -94,4 +96,46 @@ class SelfNotificationFragment : Fragment() {
 //            }
 //        }
 //    }
+}
+
+class SelfNotificationRecyclerViewAdapter(
+    val date: List<CalendarDate>,
+    private var selectedDate: Int,
+    val callback: (CalendarDate) -> Unit
+) :
+    RecyclerView.Adapter<SelfNotificationRecyclerViewAdapter.SelfNotificationViewHolder>() {
+
+    class SelfNotificationViewHolder(val binding: ItemSelfNotificationBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelfNotificationViewHolder {
+        return SelfNotificationViewHolder(
+            ItemSelfNotificationBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun getItemCount(): Int {
+        return date.size
+    }
+
+    override fun onBindViewHolder(holder: SelfNotificationViewHolder, position: Int) {
+        holder.apply {
+//            val item = date[bindingAdapterPosition]
+//            binding.tvDate.text = item.dateOfMonth.toString()
+//            binding.tvDay.text = item.dayOfWeek
+//            binding.redView.isVisible = item.dateOfMonth == selectedDate
+//            binding.root.setOnClickListener {
+//                selectedDate = item.dateOfMonth
+//                notifyDataSetChanged()
+//                callback(item)
+//            }
+        }
+    }
+
 }

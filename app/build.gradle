@@ -166,4 +166,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
 
     implementation "com.splitwise:tokenautocomplete:3.0.1@aar"
+
+    implementation 'com.whiteelephant:monthandyearpicker:1.3.0'
+
 }
