@@ -14,7 +14,6 @@ import com.tvisha.trooptime.activity.activity.Adapter.NotificationsNewAdapter
 import com.tvisha.trooptime.activity.activity.Dialog.CustomProgressBar
 import com.tvisha.trooptime.activity.activity.Model.Notification
 import com.tvisha.trooptime.activity.activity.viewmodels.NotificationViewmodel
-import com.tvisha.trooptime.databinding.ItemSelfNotificationBinding
 import com.tvisha.trooptime.databinding.ItemTeamNotificationBinding
 import com.tvisha.trooptime.databinding.NotificationListLayoutBinding
 
@@ -25,7 +24,6 @@ class TeamNotificationFrgment : Fragment() {
     var teamNotificationList:ArrayList<Notification> = ArrayList()
     var isLoading:Boolean = false
     var noMoreData:Boolean = false
-    var customProgressBar: CustomProgressBar? = null
 
     val viewModel: NotificationViewmodel by viewModels(ownerProducer ={ requireParentFragment()})
 
@@ -38,6 +36,7 @@ class TeamNotificationFrgment : Fragment() {
         binding = NotificationListLayoutBinding.inflate(inflater, container,false)
         return binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -20,6 +20,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.tvisha.trooptime.R
+import com.tvisha.trooptime.activity.activity.Dialog.CustomProgressBar
 import com.tvisha.trooptime.activity.activity.viewmodels.NotificationFragmentType
 import com.tvisha.trooptime.activity.activity.viewmodels.NotificationViewmodel
 import com.tvisha.trooptime.databinding.FragmentNotificationsBinding
@@ -36,6 +37,7 @@ class NotificationsFragment : Fragment() {
     private val tabNames = arrayOf("Self", "Team")
 
     private val viewModel: NotificationViewmodel by viewModels()
+    private lateinit var customProgressBar: CustomProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,18 +45,27 @@ class NotificationsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        customProgressBar = CustomProgressBar(requireContext())
         setupViewPager()
         setupTabs()
         setupDates(Calendar.getInstance())
         viewModel.fragmentType.observe(viewLifecycleOwner) { notificationFragmentType ->
             when (notificationFragmentType) {
-                NotificationFragmentType.SELF -> viewModel.notificationCalendars.value?.selfCalendar?.let { setupDates(it) }
-                NotificationFragmentType.TEAM -> viewModel.notificationCalendars.value?.teamCalendar?.let { setupDates(it) }
-                else ->{}
+                NotificationFragmentType.SELF -> viewModel.notificationCalendars.value?.selfCalendar?.let {
+                    setupDates(
+                        it
+                    )
+                }
+                NotificationFragmentType.TEAM -> viewModel.notificationCalendars.value?.teamCalendar?.let {
+                    setupDates(
+                        it
+                    )
+                }
+                else -> {}
             }
         }
-        viewModel.notificationCalendars.observe(viewLifecycleOwner){
-            when(viewModel.fragmentType.value){
+        viewModel.notificationCalendars.observe(viewLifecycleOwner) {
+            when (viewModel.fragmentType.value) {
                 NotificationFragmentType.SELF -> setupDates(it.selfCalendar)
                 NotificationFragmentType.TEAM -> setupDates(it.teamCalendar)
                 null -> {}
@@ -78,9 +89,9 @@ class NotificationsFragment : Fragment() {
                 val tabName: TextView? = tabView?.findViewById(R.id.tv_tab_name)
                 tabName?.setTextColor(ContextCompat.getColor(requireContext(), R.color.white_color))
                 binding.viewPager.currentItem = tab.position
-                when(tab.position){
-                    0-> viewModel.updateType(NotificationFragmentType.SELF)
-                    1-> viewModel.updateType(NotificationFragmentType.TEAM)
+                when (tab.position) {
+                    0 -> viewModel.updateType(NotificationFragmentType.SELF)
+                    1 -> viewModel.updateType(NotificationFragmentType.TEAM)
                 }
             }
 
@@ -215,7 +226,7 @@ class NotificationsFragment : Fragment() {
             currentCalendar.get(Calendar.DAY_OF_MONTH)
         ) { calendarDate ->
 
-            val calendar = when(viewModel.fragmentType.value){
+            val calendar = when (viewModel.fragmentType.value) {
                 NotificationFragmentType.SELF -> viewModel.notificationCalendars.value?.selfCalendar
                 NotificationFragmentType.TEAM -> viewModel.notificationCalendars.value?.teamCalendar
                 null -> null
@@ -254,6 +265,7 @@ class NotificationsFragment : Fragment() {
         return list
 
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // The usage of an interface lets you inject your own implementation
@@ -300,6 +312,23 @@ class NotificationsFragment : Fragment() {
         )
         binding.viewPager.adapter = viewPagerAdapter
     }
+
+    fun openProgress() {
+        lifecycleScope.launch {
+            if (!customProgressBar.isShowing) {
+                customProgressBar.show()
+            }
+        }
+    }
+
+    fun closeProgress() {
+        lifecycleScope.launch {
+            if (customProgressBar.isShowing) {
+                customProgressBar.dismiss()
+            }
+        }
+    }
+
 
 }
 
