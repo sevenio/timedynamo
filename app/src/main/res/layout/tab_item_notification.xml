@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="7dp"
+    android:id="@+id/ll_root"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp"
+    android:paddingStart="4dp"
+    android:paddingEnd="4dp"
     android:layout_width="65dp"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg_tab_item">
+    android:background="@drawable/bg_tab_main"
+    android:layout_height="match_parent"
+   >
 
     <TextView
+        android:layout_gravity="center"
+        android:background="@drawable/bg_tab_item"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
         android:fontFamily="@font/dm_sans"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:textSize="12sp"
         android:id="@+id/tv_tab_name"
         android:gravity="center"

@@ -20,13 +20,16 @@
                 android:id="@+id/tv_year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
+                android:layout_marginStart="20dp"
                 android:background="@drawable/attendance_date_bg"
                 android:backgroundTint="@color/white_color"
                 android:drawableEnd="@drawable/ic_down_arrow"
                 android:drawablePadding="5dp"
                 android:drawableTint="@color/red_color"
-                android:padding="10dp"
+                android:padding="5dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:textAppearance="@style/text_notification_settings"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -34,16 +37,19 @@
                 tools:text="2024" />
 
             <TextView
+                android:layout_marginEnd="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:id="@+id/tv_month"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
                 android:background="@drawable/attendance_date_bg"
                 android:backgroundTint="@color/white_color"
                 android:drawableEnd="@drawable/ic_down_arrow"
                 android:drawablePadding="5dp"
                 android:drawableTint="@color/red_color"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:textAppearance="@style/text_notification_settings"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_year"
@@ -51,14 +57,11 @@
                 tools:text="2024" />
 
             <com.google.android.material.tabs.TabLayout
-
+                android:layout_margin="5dp"
                 android:id="@+id/tl_settings"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_height="0dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_tab_main"
                 android:clipToPadding="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,23 +70,23 @@
                 app:tabIndicatorFullWidth="false"
                 app:tabIndicatorHeight="0dp"
                 app:tabMode="fixed"
-                app:tabPaddingBottom="0dp"
-                app:tabPaddingEnd="5dp"
-                app:tabPaddingStart="5dp"
-                app:tabPaddingTop="0dp"
+                app:tabPaddingBottom="-1dp"
+                app:tabPaddingEnd="-1dp"
+                app:tabPaddingStart="-1dp"
+                app:tabPaddingTop="-1dp"
                 app:tabSelectedTextColor="@color/white_color"
                 app:tabTextColor="@color/color_notification_text">
 
                 <com.google.android.material.tabs.TabItem
                     android:id="@+id/tab_tab1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout="@layout/tab_item_notification" />
 
                 <com.google.android.material.tabs.TabItem
                     android:id="@+id/tab_tab2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout="@layout/tab_item_notification" />
             </com.google.android.material.tabs.TabLayout>
 

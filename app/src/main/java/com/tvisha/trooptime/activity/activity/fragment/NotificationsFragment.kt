@@ -1,8 +1,10 @@
 package com.tvisha.trooptime.activity.activity.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.MenuHost
@@ -21,6 +23,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
 import com.tvisha.trooptime.R
 import com.tvisha.trooptime.activity.activity.Dialog.CustomProgressBar
+import com.tvisha.trooptime.activity.activity.Helper.SharePreferenceKeys
 import com.tvisha.trooptime.activity.activity.viewmodels.NotificationFragmentType
 import com.tvisha.trooptime.activity.activity.viewmodels.NotificationViewmodel
 import com.tvisha.trooptime.databinding.FragmentNotificationsBinding
@@ -71,20 +74,45 @@ class NotificationsFragment : Fragment() {
                 null -> {}
             }
         }
+        binding.tlSettings.getTabAt(viewModel.selectedTab)?.select()
+
+
 
         return binding.root
     }
 
     private fun setupTabs() {
+        val sharedPreferences =
+            requireActivity().getSharedPreferences(
+                SharePreferenceKeys.SP_NAME,
+                Context.MODE_PRIVATE
+            )
+        val teamLead = sharedPreferences.getBoolean(SharePreferenceKeys.TEAM_LEAD, false)
+        if (!teamLead) {
+            binding.tlSettings.removeTabAt(1)
+        }
         for (i in 0..binding.tlSettings.tabCount) {
             val tab: TabLayout.Tab? = binding.tlSettings.getTabAt(i)
             val tabView = tab?.customView
+            val rootView: LinearLayout? = tabView?.findViewById(R.id.ll_root)
             val tabName: TextView? = tabView?.findViewById(R.id.tv_tab_name)
+            when (i) {
+                0 -> {
+                    if (!teamLead) {
+                        rootView?.setBackgroundResource(R.drawable.bg_tab_main)
+                    } else {
+                        rootView?.setBackgroundResource(R.drawable.bg_tab_item_left)
+                    }
+                }
+                else -> rootView?.setBackgroundResource(R.drawable.bg_tab_item_right)
+            }
+
             tabName?.text = tabNames[i];
             tab?.customView = tabView
         }
         binding.tlSettings.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
+                viewModel.selectedTab = tab.position
                 val tabView = tab.customView
                 val tabName: TextView? = tabView?.findViewById(R.id.tv_tab_name)
                 tabName?.setTextColor(ContextCompat.getColor(requireContext(), R.color.white_color))
@@ -112,7 +140,6 @@ class NotificationsFragment : Fragment() {
                 tabName?.setTextColor(ContextCompat.getColor(requireContext(), R.color.white_color))
             }
         })
-        binding.tlSettings.getTabAt(0)?.select()
     }
 
     private fun setupDates(calendar: Calendar) {
@@ -311,6 +338,7 @@ class NotificationsFragment : Fragment() {
             viewLifecycleOwner.lifecycle
         )
         binding.viewPager.adapter = viewPagerAdapter
+
     }
 
     fun openProgress() {

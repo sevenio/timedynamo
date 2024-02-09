@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class SettingsViewmodel : ViewModel() {
+    var selectedTab: Int = 0
+
+
 
     val isMuteSelfNotifications: MutableLiveData<Boolean> = MutableLiveData()
     val isMuteSelfCheckinNotifications: MutableLiveData<Boolean> = MutableLiveData()

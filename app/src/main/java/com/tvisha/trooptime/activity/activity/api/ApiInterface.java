@@ -411,4 +411,17 @@ public interface ApiInterface {
                                                    @Field("version") String version
     );
 
+    //todo remove
+    @FormUrlEncoded
+    @POST("user-notifications-list")
+    Call<UserRequestListResponse> getNotifications(@Field("token") String token,
+                                                     @Field("user_id") String userId,
+                                                     @Field("from_date") String fromDate,
+                                                     @Field("to_date") String toDate,
+                                                     @Field("request_type") String requestType,
+                                                     @Field("request_status") String requestStatus,
+                                                     @Field("limit") int limit,
+                                                     @Field("offset") int offset);
+
+
 }

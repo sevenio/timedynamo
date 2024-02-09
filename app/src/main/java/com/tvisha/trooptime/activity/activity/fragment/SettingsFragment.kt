@@ -1,10 +1,12 @@
 package com.tvisha.trooptime.activity.activity.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -17,6 +19,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.tvisha.trooptime.R
+import com.tvisha.trooptime.activity.activity.Helper.SharePreferenceKeys
 import com.tvisha.trooptime.activity.activity.viewmodels.NotificationViewmodel
 import com.tvisha.trooptime.activity.activity.viewmodels.SettingsViewmodel
 import com.tvisha.trooptime.databinding.FragmentSettingsBinding
@@ -33,90 +36,134 @@ class SettingsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        if (!this::binding.isInitialized) {
 
-            binding = FragmentSettingsBinding.inflate(inflater, container, false)
-            for (i in 0..binding.tlSettings.tabCount) {
-                val tab: TabLayout.Tab? = binding.tlSettings.getTabAt(i)
-                val tabView = tab?.customView
+        Log.d("sett", "onCreateView")
 
-                val tabName: TextView? = tabView?.findViewById(R.id.tv_tab_name)
+        binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
-                tabName?.text = tabNames[i];
 
-                tab?.customView = tabView
-//            binding.contacsTabsView.addTab(tab)
-            }
-            setupViewPager()
-
-            binding.tlSettings.addOnTabSelectedListener(object : OnTabSelectedListener {
-                override fun onTabSelected(tab: TabLayout.Tab) {
-                    binding.tvSelfSettings.isVisible = tab.position == 0
-                    binding.ivAllEmployees.isVisible = tab.position == 1
-                    val tabView = tab.customView
-                    val tabName: TextView? = tabView?.findViewById(R.id.tv_tab_name)
-                    tabName?.setTextColor(
-                        ContextCompat.getColor(
-                            requireContext(),
-                            R.color.white_color
-                        )
-                    )
-                    binding.viewPager.currentItem = tab.position
-                }
-
-                override fun onTabUnselected(tab: TabLayout.Tab) {
-                    val tabView = tab.customView
-                    val tabName: TextView? = tabView?.findViewById(R.id.tv_tab_name)
-                    tabName?.setTextColor(
-                        ContextCompat.getColor(
-                            requireContext(),
-                            R.color.color_notification_text
-                        )
-                    )
-                }
-
-                override fun onTabReselected(tab: TabLayout.Tab) {
-                    val tabView = tab.customView
-                    val tabName: TextView? = tabView?.findViewById(R.id.tv_tab_name)
-                    tabName?.setTextColor(
-                        ContextCompat.getColor(
-                            requireContext(),
-                            R.color.white_color
-                        )
-                    )
-                }
-            })
-            binding.tlSettings.getTabAt(0)?.select()
-            binding.ivAllEmployees.setOnClickListener {
-                val navController = view?.let { Navigation.findNavController(it) }
-                navController?.navigate(SettingsFragmentDirections.actionSettingsFragmentToSelectEmployeeSettingsFragment())
-            }
-            binding.btnSave.setOnClickListener {
-                Log.d(
-                    "sav",
-                    "${viewModel.isMuteSelfNotifications.value}, ${viewModel.isMuteSelfCheckinNotifications.value} , ${viewModel.isMuteSelfCheckoutNotifications}, ${viewModel.isMuteTeamNotifications}, ${viewModel.isMuteTeamCheckoutNotifications}"
-                )
-            }
-        }
 
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+            setupViewPager()
+            setupTabs()
+            setupClickListeners()
+            binding.tlSettings.getTabAt(viewModel.selectedTab)?.select()
 
 
-    private fun setupViewPager(){
-        val viewPagerAdapter = ViewPagerAdapter(listOf(SelfSettingsFragment(), AllEmployeeSettingsFragment()), childFragmentManager, viewLifecycleOwner.lifecycle)
+    }
+
+    private fun setupClickListeners() {
+        binding.ivAllEmployees.setOnClickListener {
+            val navController = view?.let { Navigation.findNavController(it) }
+            navController?.navigate(SettingsFragmentDirections.actionSettingsFragmentToSelectEmployeeSettingsFragment())
+        }
+        binding.btnSave.setOnClickListener {
+            Log.d(
+                "sav",
+                "${viewModel.isMuteSelfNotifications.value}, ${viewModel.isMuteSelfCheckinNotifications.value} , ${viewModel.isMuteSelfCheckoutNotifications}, ${viewModel.isMuteTeamNotifications}, ${viewModel.isMuteTeamCheckoutNotifications}"
+            )
+        }
+    }
+
+    private fun setupTabs() {
+        val sharedPreferences =
+            requireActivity().getSharedPreferences(
+                SharePreferenceKeys.SP_NAME,
+                Context.MODE_PRIVATE
+            )
+        val teamLead = sharedPreferences.getBoolean(SharePreferenceKeys.TEAM_LEAD, false)
+        if (!teamLead) {
+            binding.tlSettings.removeTabAt(1)
+        }
+        for (i in 0..binding.tlSettings.tabCount) {
+            val tab: TabLayout.Tab? = binding.tlSettings.getTabAt(i)
+            val tabView = tab?.customView
+            val rootView: LinearLayout? = tabView?.findViewById(R.id.ll_root)
+
+            when (i) {
+                0 -> {
+                    if(!teamLead) {
+                        rootView?.setBackgroundResource(R.drawable.bg_tab_main)
+                    }else {
+                        rootView?.setBackgroundResource(R.drawable.bg_tab_item_left)
+                    }
+                }
+                else -> rootView?.setBackgroundResource(R.drawable.bg_tab_item_right)
+            }
+
+            val tabName: TextView? = tabView?.findViewById(R.id.tv_tab_name)
+
+            tabName?.text = tabNames[i];
+
+            tab?.customView = tabView
+//            binding.contacsTabsView.addTab(tab)
+        }
+        binding.tlSettings.addOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                viewModel.selectedTab = tab.position
+                binding.tvSelfSettings.isVisible = tab.position == 0
+                binding.ivAllEmployees.isVisible = tab.position == 1
+                val tabView = tab.customView
+                val tabName: TextView? = tabView?.findViewById(R.id.tv_tab_name)
+                tabName?.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.white_color
+                    )
+                )
+                binding.viewPager.currentItem = tab.position
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                val tabView = tab.customView
+                val tabName: TextView? = tabView?.findViewById(R.id.tv_tab_name)
+                tabName?.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.color_notification_text
+                    )
+                )
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+                val tabView = tab.customView
+                val tabName: TextView? = tabView?.findViewById(R.id.tv_tab_name)
+                tabName?.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.white_color
+                    )
+                )
+            }
+        })
+    }
+
+
+    private fun setupViewPager() {
+        val viewPagerAdapter = SettingsViewPagerAdapter(
+            listOf(SelfSettingsFragment(), AllEmployeeSettingsFragment()),
+            childFragmentManager,
+            viewLifecycleOwner.lifecycle
+        )
         binding.viewPager.adapter = viewPagerAdapter
-        binding.viewPager.isSaveEnabled = false
-    }
-
-    class ViewPagerAdapter(private val fragments: List<Fragment>, fragmentManager: FragmentManager,lifecycle: Lifecycle ) :
-        FragmentStateAdapter( fragmentManager, lifecycle) {
-
-        override fun getItemCount(): Int = fragments.size
-
-        override fun createFragment(position: Int): Fragment = fragments[position]
     }
 
 
+}
+
+class SettingsViewPagerAdapter(
+    private val fragments: List<Fragment>,
+    fragmentManager: FragmentManager,
+    lifecycle: Lifecycle
+) :
+    FragmentStateAdapter(fragmentManager, lifecycle) {
+
+    override fun getItemCount(): Int = fragments.size
+
+    override fun createFragment(position: Int): Fragment = fragments[position]
 }

@@ -5,22 +5,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll_top_bar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="#D9D9D9"
-            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <FrameLayout
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tl_settings"
+                app:layout_constraintBottom_toBottomOf="@id/tl_settings"
                 android:id="@+id/fl_top"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
                 android:layout_width="0dp"
@@ -28,8 +27,9 @@
                 <TextView
                     android:id="@+id/tv_self_settings"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+
                     android:text="Self Settings"
                     android:textAppearance="@style/text_notification_settings" />
 
@@ -39,47 +39,46 @@
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/settings_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="match_parent"/>
             </FrameLayout>
 
 
             <com.google.android.material.tabs.TabLayout
+                android:layout_margin="5dp"
                 android:id="@+id/tl_settings"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_height="30dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_tab_main"
                 android:clipToPadding="true"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tabIndicatorColor="@android:color/transparent"
                 app:tabIndicatorFullWidth="false"
                 app:tabIndicatorHeight="0dp"
                 app:tabMode="fixed"
-                app:tabPaddingBottom="0dp"
-                app:tabPaddingEnd="5dp"
-                app:tabPaddingStart="5dp"
-                app:tabPaddingTop="0dp"
+                app:tabPaddingBottom="-1dp"
+                app:tabPaddingEnd="-1dp"
+                app:tabPaddingStart="-1dp"
+                app:tabPaddingTop="-1dp"
                 app:tabSelectedTextColor="@color/white_color"
                 app:tabTextColor="@color/color_notification_text">
 
                 <com.google.android.material.tabs.TabItem
                     android:id="@+id/tab_tab1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout="@layout/tab_item_notification" />
 
                 <com.google.android.material.tabs.TabItem
                     android:id="@+id/tab_tab2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout="@layout/tab_item_notification" />
             </com.google.android.material.tabs.TabLayout>
 
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <androidx.viewpager2.widget.ViewPager2

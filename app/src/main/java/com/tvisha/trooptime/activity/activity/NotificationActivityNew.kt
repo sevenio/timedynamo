@@ -26,7 +26,6 @@ class NotificationActivityNew : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         setupToolbar()
-//        initview()
     }
 
     private fun setupToolbar() {
