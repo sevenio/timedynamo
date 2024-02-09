@@ -14,21 +14,31 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.tvisha.trooptime.R
+import com.tvisha.trooptime.activity.activity.Dialog.CustomProgressBar
 import com.tvisha.trooptime.activity.activity.Helper.SharePreferenceKeys
-import com.tvisha.trooptime.activity.activity.viewmodels.NotificationViewmodel
 import com.tvisha.trooptime.activity.activity.viewmodels.SettingsViewmodel
 import com.tvisha.trooptime.databinding.FragmentSettingsBinding
+import kotlinx.coroutines.launch
 
 
 class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
     private val tabNames = arrayOf("Self", "Team")
     private val viewModel: SettingsViewmodel by viewModels()
+    private lateinit var customProgressBar: CustomProgressBar
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d("sett", "onCreate")
+        viewModel.getSettings()
+
+    }
 
 
     override fun onCreateView(
@@ -40,11 +50,14 @@ class SettingsFragment : Fragment() {
         Log.d("sett", "onCreateView")
 
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        customProgressBar = CustomProgressBar(requireContext())
 
 
 
         return binding.root
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,9 +65,19 @@ class SettingsFragment : Fragment() {
             setupViewPager()
             setupTabs()
             setupClickListeners()
+            setupObservers()
             binding.tlSettings.getTabAt(viewModel.selectedTab)?.select()
 
 
+    }
+    private fun setupObservers(){
+        viewModel.showProgress.observe(viewLifecycleOwner){
+            if(it){
+                openProgress()
+            }else {
+                closeProgress()
+            }
+        }
     }
 
     private fun setupClickListeners() {
@@ -151,6 +174,22 @@ class SettingsFragment : Fragment() {
             viewLifecycleOwner.lifecycle
         )
         binding.viewPager.adapter = viewPagerAdapter
+    }
+
+    fun openProgress() {
+        lifecycleScope.launch {
+            if (!customProgressBar.isShowing) {
+                customProgressBar.show()
+            }
+        }
+    }
+
+    fun closeProgress() {
+        lifecycleScope.launch {
+            if (customProgressBar.isShowing) {
+                customProgressBar.dismiss()
+            }
+        }
     }
 
 

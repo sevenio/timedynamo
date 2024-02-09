@@ -42,11 +42,20 @@ class NotificationsFragment : Fragment() {
     private val viewModel: NotificationViewmodel by viewModels()
     private lateinit var customProgressBar: CustomProgressBar
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d("sett", "onCreate")
+
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.d("sett", "onCreateView")
+
         binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         customProgressBar = CustomProgressBar(requireContext())
         setupViewPager()
@@ -326,9 +335,7 @@ class NotificationsFragment : Fragment() {
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        viewModel.notificationCalendars.observe(viewLifecycleOwner) {
-            Log.d("mod", Gson().toJson(it))
-        }
+
     }
 
     private fun setupViewPager() {

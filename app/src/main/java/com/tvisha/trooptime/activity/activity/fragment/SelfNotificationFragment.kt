@@ -5,126 +5,142 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
-import com.tvisha.trooptime.activity.activity.Adapter.NotificationsNewAdapter
-import com.tvisha.trooptime.activity.activity.Model.Notification
 import com.tvisha.trooptime.activity.activity.viewmodels.NotificationViewmodel
-import com.tvisha.trooptime.databinding.ItemCalendarDateBinding
-import com.tvisha.trooptime.databinding.ItemSelfNotificationBinding
-import com.tvisha.trooptime.databinding.NotificationListLayoutBinding
+import com.tvisha.trooptime.databinding.*
+import java.util.*
 
 class SelfNotificationFragment : Fragment() {
     private lateinit var binding: NotificationListLayoutBinding
-    var linearLayoutManager : LinearLayoutManager? = null
-    var notificationAdapter: NotificationsNewAdapter?= null
-    var isLoading:Boolean = false
-    var noMoreData:Boolean = false
-    var selfNotificationList:ArrayList<Notification> =  ArrayList()
-    val viewModel: NotificationViewmodel by viewModels(ownerProducer ={ requireParentFragment()})
+    var linearLayoutManager: LinearLayoutManager? = null
+    var notificationAdapter: SelfNotificationRecyclerViewAdapter? = null
+    val viewModel: NotificationViewmodel by viewModels(ownerProducer = { requireParentFragment() })
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = NotificationListLayoutBinding.inflate(inflater, container,false)
+        binding = NotificationListLayoutBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.notificationCalendars.observe(viewLifecycleOwner){
-            Log.d("mod", "SelfNotificationFragment ${Gson().toJson(it)}")
-        }
-        linearLayoutManager = LinearLayoutManager(requireActivity())
-        binding.rlNotificationList.layoutManager = linearLayoutManager
-        binding.rlNotificationList.addOnScrollListener(object :RecyclerView.OnScrollListener(){
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                val totalItemCount: Int = linearLayoutManager!!.itemCount
-                val pastVisiblesItems: Int = linearLayoutManager!!.findLastCompletelyVisibleItemPosition()
-                //val scrollPosition: Int = linearLayoutManager!!.findLastVisibleItemPosition()
-                if (!noMoreData && !isLoading &&  totalItemCount-1<=pastVisiblesItems && selfNotificationList.size>50) {
-//                    fetchList()
-                }
-            }
-        })
 
-//        fetchList()
-
-        /*for (i in 0 until 5){
-            var notification = Notification()
-            notification.created_at = "2023-10-16 0"+i+":00:00"
-            notification.notificationtype = i
-            notification.notificationdata = "{\"title\": \"Leave request\",\"description\": \"Need leave on monday due to some work\",\"leave_start_date\": \"2023-10-16\",\"leave_end_date\": \"2023-10-16\",\"no_of_days\": \"1 day\"}"
-            NotificationActivityNew.selfNotificationList.add(notification)
-        }
-        notificationAdapter = NotificationsNewAdapter(requireActivity(),NotificationActivityNew.selfNotificationList,0)
-        rlNotificationList.adapter = notificationAdapter*/
-
+        Log.d("ganga", "SelfNotificationFragment onViewCreated")
     }
 
-//    private fun fetchList() {
-//        isLoading = true
-//        Thread{
-//            var list =  NotificationActivityNew.notificationTable.getNotifications(0,selfNotificationList.size)
-//            selfNotificationList.addAll(list)
-//            isLoading = false
-//            if (selfNotificationList!=null && selfNotificationList.size>0){
-//                setAdapter()
-//            }else{
-//                noMoreData = true
-//                requireActivity().runOnUiThread {
-//                    binding.noNotifications.visibility = View.VISIBLE
-//                }
-//            }
-//        }.start()
-//    }
-//    fun setAdapter(){
-//        requireActivity().runOnUiThread {
-//            binding.noNotifications.visibility = View.GONE
-//            if (notificationAdapter==null){
-//                notificationAdapter = NotificationsNewAdapter(requireActivity(),selfNotificationList,0)
-//                binding.rlNotificationList.adapter = notificationAdapter
-//            }else{
-//                notificationAdapter!!.notifyDataSetChanged()
-//            }
-//        }
-//    }
+    private fun allNotifications() {
+        notificationAdapter?.clearData()
+        linearLayoutManager?.scrollToPosition(0)
+
+        viewModel.selfOffset = 0
+        viewModel.selfIsLastPage = false
+        viewModel.selfIsLoading.postValue(false)
+        viewModel.selfIsLoadingBool = false
+        viewModel.getTeamNotifications(false)
+    }
+
+
+
+
 }
 
 class SelfNotificationRecyclerViewAdapter(
-    val date: List<CalendarDate>,
-    private var selectedDate: Int,
-    val callback: (CalendarDate) -> Unit
-) :
-    RecyclerView.Adapter<SelfNotificationRecyclerViewAdapter.SelfNotificationViewHolder>() {
+    val callback: (String) -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    class SelfNotificationViewHolder(val binding: ItemSelfNotificationBinding) :
+    private val ITEM = 0
+    private val LOADING = 1
+    private var isLoadingAdded = false
+    var list = ArrayList<CalendarDate>()
+
+
+    class SelfNotificationViewHolder(val binding: ItemTeamNotificationBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelfNotificationViewHolder {
-        return SelfNotificationViewHolder(
-            ItemSelfNotificationBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+    fun clearData() {
+        list.clear()
+        notifyDataSetChanged()
+    }
+
+    fun setData(data: ArrayList<CalendarDate>) {
+
+        for (post in data) {
+            addPost(post)
+        }
+    }
+
+    fun addFooter() {
+        isLoadingAdded = true
+        addPost(CalendarDate(Calendar.getInstance(), 1, ""))
+    }
+
+    fun getItem(position: Int): CalendarDate {
+        return list[position]
+    }
+
+    private fun addPost(postData: CalendarDate) {
+        if (!list.contains(postData)) {
+            list.add(postData)
+            notifyItemInserted(list.size - 1)
+        }
+    }
+
+    fun removeFooter() {
+        if (list.size != 0 && isLoadingAdded) {
+            isLoadingAdded = false
+            val position: Int = list.size - 1
+            val result = getItem(position)
+            if (result != null) {
+                list.removeAt(position)
+                notifyItemRemoved(position)
+                notifyItemRangeChanged(position, itemCount)
+            }
+        }
+    }
+
+
+    class MyFooterHolder(val binding: ItemNotificationFooterBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun onBind(item: CalendarDate) {
+            binding.executePendingBindings()
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (position == list.size - 1 && isLoadingAdded) LOADING else ITEM
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == ITEM) {
+            SelfNotificationViewHolder(
+                ItemTeamNotificationBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false
+                )
+            )
+        } else MyFooterHolder(
+            ItemNotificationFooterBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
             )
         )
+
     }
 
     override fun getItemCount(): Int {
-        return date.size
+        return list.size
     }
 
-    override fun onBindViewHolder(holder: SelfNotificationViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.apply {
 //            val item = date[bindingAdapterPosition]
 //            binding.tvDate.text = item.dateOfMonth.toString()

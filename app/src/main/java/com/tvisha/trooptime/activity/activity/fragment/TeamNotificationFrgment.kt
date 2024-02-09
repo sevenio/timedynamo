@@ -1,6 +1,7 @@
 package com.tvisha.trooptime.activity.activity.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,12 @@ class TeamNotificationFrgment : Fragment() {
 
     val viewModel: NotificationViewmodel by viewModels(ownerProducer = { requireParentFragment() })
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d("sett", "onCreate TeamNotificationFrgment")
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,6 +38,7 @@ class TeamNotificationFrgment : Fragment() {
         setup()
         return binding.root
     }
+
 
     private fun allNotifications() {
         notificationAdapter?.clearData()
@@ -52,11 +60,17 @@ class TeamNotificationFrgment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.notificationCalendars.observe(viewLifecycleOwner){
+            Log.d("ganga", "TeamNotificationFrgment observe")
+
+        }
+        Log.d("ganga", "TeamNotificationFrgment onViewCreated")
+
     }
 }
 
 class TeamNotificationRecyclerViewAdapter(
-    val callback: (CalendarDate) -> Unit
+    val callback: (String) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -85,7 +99,7 @@ class TeamNotificationRecyclerViewAdapter(
 
     fun addFooter() {
         isLoadingAdded = true
-        addPost(CalendarDate(Calendar.getInstance(),1,"" ))
+        addPost(CalendarDate(Calendar.getInstance(), 1, ""))
     }
 
     fun getItem(position: Int): CalendarDate {
@@ -134,7 +148,11 @@ class TeamNotificationRecyclerViewAdapter(
                 )
             )
         } else MyFooterHolder(
-            ItemNotificationFooterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemNotificationFooterBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
 
     }

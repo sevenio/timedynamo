@@ -1,9 +1,7 @@
 package com.tvisha.trooptime.activity.activity.viewmodels
 
-import android.content.Context
 import androidx.lifecycle.*
 import com.tvisha.trooptime.activity.activity.ApiPostModels.ForgotPasswordResponce
-import com.tvisha.trooptime.activity.activity.Helper.SharePreferenceKeys
 import com.tvisha.trooptime.activity.activity.api.ApiClient
 import com.tvisha.trooptime.activity.activity.api.ApiInterface
 import kotlinx.coroutines.launch
@@ -24,6 +22,8 @@ class NotificationViewmodel : ViewModel() {
     val showProgress: MutableLiveData<Boolean> = MutableLiveData(false)
 
     var selectedTab = 0
+
+    val notificationsList = MutableLiveData<ArrayList<String>?>()
 
 
     var teamTotalCount = 0
@@ -49,7 +49,6 @@ class NotificationViewmodel : ViewModel() {
 
 
     init {
-
         _notificationCalendars.postValue(
             NotificationCalendars(
                 Calendar.getInstance(),
@@ -78,6 +77,39 @@ class NotificationViewmodel : ViewModel() {
             _fragmentType.postValue(type)
         }
     }
+
+    fun getSelfNotifications(isLoading: Boolean) {
+        viewModelScope.launch {
+            showProgress.postValue(true)
+
+            val call: Call<ForgotPasswordResponce> = apiService.getOtp("number")
+            call.enqueue(object : Callback<ForgotPasswordResponce> {
+                override fun onResponse(
+                    call: Call<ForgotPasswordResponce>,
+                    response: Response<ForgotPasswordResponce>
+                ) {
+                    showProgress.postValue(true)
+
+                    if (response.isSuccessful) {
+                        if (isLoading) {
+                            teamIsLoading.postValue(false)
+                        }
+
+                    } else {
+
+                    }
+                }
+
+                override fun onFailure(call: Call<ForgotPasswordResponce>, t: Throwable) {
+                    showProgress.postValue(true)
+
+                }
+            })
+
+        }
+    }
+
+
 
     fun getTeamNotifications(isLoading: Boolean) {
         viewModelScope.launch {
