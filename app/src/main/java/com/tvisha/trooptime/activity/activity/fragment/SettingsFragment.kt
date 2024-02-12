@@ -51,45 +51,40 @@ class SettingsFragment : Fragment() {
 
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
         customProgressBar = CustomProgressBar(requireContext())
-
-
-
         return binding.root
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-            setupViewPager()
-            setupTabs()
-            setupClickListeners()
-            setupObservers()
-            binding.tlSettings.getTabAt(viewModel.selectedTab)?.select()
+        setupViewPager()
+        setupTabs()
+        setupClickListeners()
+        setupObservers()
+        binding.tlSettings.getTabAt(viewModel.selectedTab)?.select()
 
 
     }
-    private fun setupObservers(){
-        viewModel.showProgress.observe(viewLifecycleOwner){
-            if(it){
+
+    private fun setupObservers() {
+        viewModel.showProgress.observe(viewLifecycleOwner) {
+            if (it) {
                 openProgress()
-            }else {
+            } else {
                 closeProgress()
             }
         }
     }
 
     private fun setupClickListeners() {
+
         binding.ivAllEmployees.setOnClickListener {
             val navController = view?.let { Navigation.findNavController(it) }
             navController?.navigate(SettingsFragmentDirections.actionSettingsFragmentToSelectEmployeeSettingsFragment())
         }
         binding.btnSave.setOnClickListener {
-            Log.d(
-                "sav",
-                "${viewModel.isMuteSelfNotifications.value}, ${viewModel.isMuteSelfCheckinNotifications.value} , ${viewModel.isMuteSelfCheckoutNotifications}, ${viewModel.isMuteTeamNotifications}, ${viewModel.isMuteTeamCheckoutNotifications}"
-            )
+            viewModel.saveSettings()
         }
     }
 
@@ -110,9 +105,9 @@ class SettingsFragment : Fragment() {
 
             when (i) {
                 0 -> {
-                    if(!teamLead) {
+                    if (!teamLead) {
                         rootView?.setBackgroundResource(R.drawable.bg_tab_main)
-                    }else {
+                    } else {
                         rootView?.setBackgroundResource(R.drawable.bg_tab_item_left)
                     }
                 }

@@ -15,27 +15,31 @@ class SettingsViewmodel : ViewModel() {
     var selectedTab: Int = 0
 
 
-    val isMuteSelfNotifications: MutableLiveData<Boolean> = MutableLiveData()
-    val isMuteSelfCheckinNotifications: MutableLiveData<Boolean> = MutableLiveData()
-    val isMuteSelfCheckoutNotifications: MutableLiveData<Boolean> = MutableLiveData()
-    val isMuteSelfBreakNotifications: MutableLiveData<Boolean> = MutableLiveData()
-    val isMuteLeaveApprovalNotifications: MutableLiveData<Boolean> = MutableLiveData()
+    val isMuteSelfNotifications: MutableLiveData<Boolean> = MutableLiveData(true)
+    val isMuteSelfCheckinNotifications: MutableLiveData<Boolean> = MutableLiveData(true)
+    val isMuteSelfCheckoutNotifications: MutableLiveData<Boolean> = MutableLiveData(true)
+    val isMuteSelfBreakNotifications: MutableLiveData<Boolean> = MutableLiveData(true)
+    val isMuteLeaveApprovalNotifications: MutableLiveData<Boolean> = MutableLiveData(true)
 
-    val isMuteTeamNotifications: MutableLiveData<Boolean> = MutableLiveData()
-    val isMuteTeamCheckinNotifications: MutableLiveData<Boolean> = MutableLiveData()
-    val isMuteTeamCheckoutNotifications: MutableLiveData<Boolean> = MutableLiveData()
-    val isMuteTeamBreakNotifications: MutableLiveData<Boolean> = MutableLiveData()
-    val isMuteTeamClientVisitNotifications: MutableLiveData<Boolean> = MutableLiveData()
-    val isMuteTeamLeaveApprovalNotifications: MutableLiveData<Boolean> = MutableLiveData()
+    val isMuteTeamNotifications: MutableLiveData<Boolean> = MutableLiveData(true)
+    val isMuteTeamCheckinNotifications: MutableLiveData<Boolean> = MutableLiveData(true)
+    val isMuteTeamCheckoutNotifications: MutableLiveData<Boolean> = MutableLiveData(true)
+    val isMuteTeamBreakNotifications: MutableLiveData<Boolean> = MutableLiveData(true)
+    val isMuteTeamClientVisitNotifications: MutableLiveData<Boolean> = MutableLiveData(true)
+    val isMuteTeamLeaveApprovalNotifications: MutableLiveData<Boolean> = MutableLiveData(true)
 
     private val apiService: ApiInterface by lazy {
         ApiClient.getClient().create<ApiInterface>(
             ApiInterface::class.java
         )
     }
+
     val showProgress: MutableLiveData<Boolean> = MutableLiveData(false)
     val responseSuccess: MutableLiveData<String> = MutableLiveData()
     val responceFailure: MutableLiveData<String> = MutableLiveData()
+
+    val saveSettingsSuccess : MutableLiveData<String> = MutableLiveData()
+    val saveSettingsFailure: MutableLiveData<String> = MutableLiveData()
 
     fun getSettings() {
         viewModelScope.launch {
@@ -59,6 +63,35 @@ class SettingsViewmodel : ViewModel() {
                 override fun onFailure(call: Call<ForgotPasswordResponce>, t: Throwable) {
                     showProgress.postValue(true)
                     responceFailure.postValue("")
+
+                }
+            })
+
+        }
+    }
+
+    fun saveSettings() {
+        viewModelScope.launch {
+            showProgress.postValue(true)
+
+            val call: Call<ForgotPasswordResponce> = apiService.getOtp("number")
+            call.enqueue(object : Callback<ForgotPasswordResponce> {
+                override fun onResponse(
+                    call: Call<ForgotPasswordResponce>,
+                    response: Response<ForgotPasswordResponce>
+                ) {
+                    showProgress.postValue(false)
+
+                    if (response.isSuccessful) {
+                        saveSettingsSuccess.postValue("")
+                    } else {
+                        saveSettingsFailure.postValue("")
+                    }
+                }
+
+                override fun onFailure(call: Call<ForgotPasswordResponce>, t: Throwable) {
+                    showProgress.postValue(true)
+                    saveSettingsFailure.postValue("")
 
                 }
             })

@@ -1,5 +1,7 @@
 package com.tvisha.trooptime.activity.activity.viewmodels
 
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.*
 import com.tvisha.trooptime.activity.activity.ApiPostModels.ForgotPasswordResponce
 import com.tvisha.trooptime.activity.activity.api.ApiClient
@@ -15,7 +17,7 @@ class NotificationViewmodel : ViewModel() {
 
     val notificationCalendars: LiveData<NotificationCalendars> = _notificationCalendars
 
-    val _fragmentType: MutableLiveData<NotificationFragmentType> = MutableLiveData()
+    private val _fragmentType: MutableLiveData<NotificationFragmentType> = MutableLiveData()
 
     val fragmentType: LiveData<NotificationFragmentType> = _fragmentType
 
@@ -23,9 +25,9 @@ class NotificationViewmodel : ViewModel() {
 
     var selectedTab = 0
 
-    val notificationsList = MutableLiveData<ArrayList<String>?>()
 
-
+    val teamNoData = MutableLiveData<Boolean>(false)
+    val teamNotificationsList = MutableLiveData<ArrayList<String>?>()
     var teamTotalCount = 0
     var teamOffset = 0
     var teamLimit = 10
@@ -34,6 +36,8 @@ class NotificationViewmodel : ViewModel() {
     val teamIsLoading = MutableLiveData<Boolean>(false)
 
 
+    val selfNoData = MutableLiveData<Boolean>(false)
+    val selfNotificationsList = MutableLiveData<ArrayList<String>?>()
     var selfTotalCount = 0
     var selfOffset = 0
     var selfLimit = 10
@@ -73,6 +77,7 @@ class NotificationViewmodel : ViewModel() {
     }
 
     fun updateType(type: NotificationFragmentType) {
+
         viewModelScope.launch {
             _fragmentType.postValue(type)
         }
@@ -92,7 +97,18 @@ class NotificationViewmodel : ViewModel() {
 
                     if (response.isSuccessful) {
                         if (isLoading) {
-                            teamIsLoading.postValue(false)
+                            selfIsLoading.postValue(false)
+                        }
+                        selfNotificationsList.postValue(arrayListOf())
+                        selfTotalCount += 0 //data size or 0
+                        selfOffset += 0 //data size or 0
+                        if(true /* data is empty*/){
+                            selfIsLastPage = true
+                        }
+                        if(selfTotalCount == 0){
+                            selfNoData.postValue(true)
+                        }else {
+                            selfNoData.postValue(false)
                         }
 
                     } else {
@@ -126,6 +142,17 @@ class NotificationViewmodel : ViewModel() {
                     if (response.isSuccessful) {
                         if (isLoading) {
                             teamIsLoading.postValue(false)
+                        }
+                        teamNotificationsList.postValue(arrayListOf())
+                        teamTotalCount += 0 //data size or 0
+                        teamOffset += 0 //data size or 0
+                        if(true /* data is empty*/){
+                            teamIsLastPage = true
+                        }
+                        if(teamTotalCount == 0){
+                            teamNoData.postValue(true)
+                        }else {
+                            teamNoData.postValue(false)
                         }
 
                     } else {
