@@ -8,7 +8,7 @@
     android:background="@drawable/attendance_row_bg"
     android:layout_height="wrap_content">
 <TextView
-    android:fontFamily="@font/poppins_regular"
+    android:fontFamily="@font/dm_sans"
     android:id="@+id/tvTeamMemberName"
     android:textSize="@dimen/medium_text"
     android:textColor="@color/colorPrimary"
@@ -17,7 +17,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
     <TextView
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/dm_sans"
         android:layout_marginStart="@dimen/defult_spacing"
         android:layout_marginLeft="@dimen/defult_spacing"
         android:layout_marginEnd="@dimen/defult_spacing"
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/dm_sans"
         android:layout_marginStart="@dimen/defult_spacing"
         android:layout_marginLeft="@dimen/defult_spacing"
         android:layout_marginEnd="@dimen/defult_spacing"
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/dm_sans"
         app:layout_constraintTop_toBottomOf="@+id/tvNotificationData"
         android:id="@+id/tvNotificationTime"
         android:textSize="@dimen/small_text"

@@ -5,11 +5,14 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
+
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.core.view.GravityCompat;
@@ -17,6 +20,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +69,7 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
 
     SharedPreferences sharedPreferences;
     Calendar myCalendar;
+    DrawerLayout drawer;
 
     String dateFormat = "dd-MM-yyyy";
     String dateFormat1 = "yyyy-MM-dd";
@@ -81,9 +91,9 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
 
     String userId = "", email, name, user_avatar;
     int notification_num, servicecount;
-    ImageView profile_pic, filterImage;
+    ImageView profile_pic, filterImage, drawerImage;
 
-    TextView employeeName, employeeEmail, time, dynamo;
+    TextView employeeName, employeeEmail, time, dynamo, tv_privacy_policy;
     String requestType = "", fromDate = "", toDate = "", users = "", type;
 
     boolean filter = false;
@@ -154,6 +164,51 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
 
         processActivity();
 
+
+    }
+
+    private void openLink(String url){
+        Uri uri = Uri.parse(url);
+        CustomTabsIntent.Builder intentBuilder =
+                new CustomTabsIntent.Builder();
+        CustomTabsIntent customTabsIntent = intentBuilder.build();
+        customTabsIntent.launchUrl(this, uri);
+
+    }
+
+    private void setupPrivacyPolicy(){
+        tv_privacy_policy = (TextView) findViewById(R.id.tv_privacy_policy);
+        SpannableString ss = new SpannableString("Please read our Privacy policy");
+//        ClickableSpan clickableSpanTerms = new ClickableSpan() {
+//            @Override
+//            public void onClick(View textView) {
+//                drawableClose();
+//                openLink("https://www.timedynamo.com/terms");
+//            }
+//            @Override
+//            public void updateDrawState(TextPaint ds) {
+//                super.updateDrawState(ds);
+//                ds.setUnderlineText(false);
+//            }
+//        };
+        ClickableSpan clickableSpanPrivacy = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+                drawableClose();
+                openLink("https://www.timedynamo.com/privacy");
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+            }
+        };
+//        ss.setSpan(clickableSpanTerms, 16, 34, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(clickableSpanPrivacy, 16, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        tv_privacy_policy.setText(ss);
+        tv_privacy_policy.setMovementMethod(LinkMovementMethod.getInstance());
+        tv_privacy_policy.setHighlightColor(Color.TRANSPARENT);
 
     }
 
@@ -250,7 +305,14 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
             @Override
             public void onClick(View view) {
                 drawableClose();
-                Navigation.getInstance().openAttendance(RequestActivity.this, "2");
+//                Navigation.getInstance().openAttendance(RequestActivity.this, "2");
+                try {
+                    Intent intent = new Intent(RequestActivity.this, NewAttendanceActivity.class);
+                    intent.putExtra("type", "0");
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
 
             }
@@ -260,7 +322,15 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (MyApplication.homePageResponse != null) {
+                    MyApplication.homePageResponse = null;
+                }
+                if (MyApplication.UserRequestListResponse != null) {
+                    MyApplication.UserRequestListResponse = null;
+                }
+                if (MyApplication.selfAttendenceApiResponce != null) {
+                    MyApplication.selfAttendenceApiResponce = null;
+                }
 
                 sharedPreferences = getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE);
                 sharedPreferences.edit().putBoolean(SharePreferenceKeys.SP_LOGOUT_STATUS, true).apply();
@@ -275,6 +345,7 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
         dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                drawableClose();
                 callHomePage();
             }
         });
@@ -288,25 +359,25 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
 
                 drawableClose();
 
-                requestType = intent.getStringExtra("requestType");
-                fromDate = intent.getStringExtra("fromDate");
-                toDate = intent.getStringExtra("toDate");
-                users = intent.getStringExtra("users");
-
-                fragment = new SelfRequestFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("type", "1");
-                bundle.putString("requestType", requestType);
-                bundle.putString("fromDate", fromDate);
-                bundle.putString("toDate", toDate);
-                bundle.putString("users", "");
-                bundle.putBoolean("filter", false);
-
-                fragment.setArguments(bundle);
-                if (fragment != null) {
-                    fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.content_main, fragment).commit();
-                }
+//                requestType = intent.getStringExtra("requestType");
+//                fromDate = intent.getStringExtra("fromDate");
+//                toDate = intent.getStringExtra("toDate");
+//                users = intent.getStringExtra("users");
+//
+//                fragment = new SelfRequestFragment();
+//                Bundle bundle = new Bundle();
+//                bundle.putString("type", "1");
+//                bundle.putString("requestType", requestType);
+//                bundle.putString("fromDate", fromDate);
+//                bundle.putString("toDate", toDate);
+//                bundle.putString("users", "");
+//                bundle.putBoolean("filter", false);
+//
+//                fragment.setArguments(bundle);
+//                if (fragment != null) {
+//                    fragmentManager = getSupportFragmentManager();
+//                    fragmentManager.beginTransaction().replace(R.id.content_main, fragment).commit();
+//                }
 
             }
         });
@@ -406,11 +477,15 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
 
     private void initViews() {
         try {
+            drawer = findViewById(R.id.drawer_layout);
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             apiService = ApiClient.getClient().create(ApiInterface.class);
             time = findViewById(R.id.time);
             dynamo = findViewById(R.id.dynamo);
             navigation = findViewById(R.id.navigation);
             filterImage = findViewById(R.id.filterImage);
+            drawerImage = findViewById(R.id.drawerImage);
+
             profile_pic = findViewById(R.id.profileImage);
             employeeName = findViewById(R.id.employeeName);
         } catch (Exception e) {
@@ -419,7 +494,9 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
     }
 
     private void initListeners() {
+        setupPrivacyPolicy();
         filterImage.setOnClickListener(this);
+        drawerImage.setOnClickListener(this);
     }
 
     @Override
@@ -428,6 +505,9 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
             switch (v.getId()) {
                 case R.id.filterImage:
                     setFilterData();
+                    break;
+                case R.id.drawerImage:
+                    drawer.openDrawer(GravityCompat.START);
                     break;
             }
         } catch (Exception e) {

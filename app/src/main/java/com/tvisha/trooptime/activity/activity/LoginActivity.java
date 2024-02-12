@@ -6,15 +6,23 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.provider.Settings;
 import androidx.annotation.NonNull;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -54,7 +62,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends Activity implements View.OnClickListener {
     EditText et_email, et_password;
-    TextView tv_forget, bt_login, button_signin;
+    TextView tv_forget, bt_login, button_signin, tv_privacy_policy;
     String email, password, check_email, check_password, refreshedToken, deviceId = "";
 
     SharedPreferences sharedPreferences;
@@ -203,9 +211,53 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     }
 
+    private void openLink(String url){
+        Uri uri = Uri.parse(url);
+        CustomTabsIntent.Builder intentBuilder =
+                new CustomTabsIntent.Builder();
+        CustomTabsIntent customTabsIntent = intentBuilder.build();
+        customTabsIntent.launchUrl(this, uri);
+
+    }
+
+    private void setupPrivacyPolicy(){
+        tv_privacy_policy = (TextView) findViewById(R.id.tv_privacy_policy);
+        SpannableString ss = new SpannableString("Please read our Privacy policy");
+//        ClickableSpan clickableSpanTerms = new ClickableSpan() {
+//            @Override
+//            public void onClick(View textView) {
+//                openLink("https://www.timedynamo.com/terms");
+//            }
+//            @Override
+//            public void updateDrawState(TextPaint ds) {
+//                super.updateDrawState(ds);
+//                ds.setUnderlineText(false);
+//            }
+//        };
+        ClickableSpan clickableSpanPrivacy = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+                openLink("https://www.timedynamo.com/privacy");
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+            }
+        };
+//        ss.setSpan(clickableSpanTerms, 16, 34, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(clickableSpanPrivacy, 16, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        tv_privacy_policy.setText(ss);
+        tv_privacy_policy.setMovementMethod(LinkMovementMethod.getInstance());
+        tv_privacy_policy.setHighlightColor(Color.TRANSPARENT);
+
+    }
+
     private void initializeWidgets() {
         try {
             dbHelper = new DbHelper(LoginActivity.this);
+            setupPrivacyPolicy();
             et_email = (EditText) findViewById(R.id.et_email);
             et_password = (EditText) findViewById(R.id.et_password);
             bt_login = (TextView) findViewById(R.id.bt_login);

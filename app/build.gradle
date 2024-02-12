@@ -6,16 +6,40 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
 
 }
+
+// Create a variable called keystorePropertiesFile, and initialize it to your
+// keystore.properties file, in the rootProject folder.
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+
+// Initialize a new Properties() object called keystoreProperties.
+def keystoreProperties = new Properties()
+
+// Load your keystore.properties file into the keystoreProperties object.
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+
 android {
+    namespace 'com.tvisha.trooptime'
+
     compileSdk 33
-    //buildToolsVersion = "30.0.3"
+
+     //buildToolsVersion = "30.0.3"
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storePassword keystoreProperties['storePassword']
+            storeFile file(keystoreProperties['storeFile'])
+        }
+    }
     defaultConfig {
         applicationId "com.tvisha.trooptime"
         minSdkVersion 28
         targetSdk 33
-        versionCode 12
-        versionName "1.2.2"
+        versionCode 15
+        versionName "1.2.5"
         multiDexEnabled true
+        archivesBaseName = "$applicationId-v$versionCode($versionName)"
         vectorDrawables.useSupportLibrary = "true"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
@@ -25,6 +49,8 @@ android {
             manifestPlaceholders = [usesCleartextTraffic: "false"]
             minifyEnabled false
             debuggable false
+            signingConfig signingConfigs.release
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
            // multiDexKeepFile file('multidex-config.txt')
         }
@@ -41,7 +67,6 @@ android {
             resValue("string", "PORT_NUMBER", "8081")
         }
 
-
     }
     buildFeatures {
         dataBinding true
@@ -50,7 +75,7 @@ android {
         jvmTarget = '1.8'
     }
     sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
-    namespace 'com.tvisha.trooptime'
+
 }
 repositories {
     jcenter()
@@ -63,6 +88,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.10.0'
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.browser:browser:1.0.0"
 
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'

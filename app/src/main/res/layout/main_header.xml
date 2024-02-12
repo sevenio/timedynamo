@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white_color">
 
 
@@ -71,6 +72,7 @@
                 android:gravity="center"
                >
                 <ImageView
+                    android:visibility="gone"
                     android:padding="@dimen/activity_horizontal_margin"
                     android:id="@+id/notificationImage"
                     android:layout_width="?actionBarSize"
@@ -87,6 +89,16 @@
                     android:layout_gravity="center"
                     android:clickable="false"
                     android:src="@drawable/settings" />
+
+                <ImageView
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:id="@+id/drawerImage"
+                    android:layout_width="?actionBarSize"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:clickable="false"
+                    android:src="@drawable/baseline_menu_24"
+                    app:tint="#888888" />
 
             </LinearLayout>
 

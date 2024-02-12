@@ -3,14 +3,14 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rr_navigate"
-    android:layout_width="@dimen/nav_header_width"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/menu_bg_color">
 
 
     <LinearLayout
         android:id="@+id/ll_navigate"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="@dimen/very_large_margin"
@@ -61,6 +61,7 @@
             android:background="@color/white_color" />
 
         <LinearLayout
+            android:layout_gravity="center"
             android:id="@+id/dashBoardLayout"
             style="@style/navMenuItem">
 
@@ -84,6 +85,8 @@
             android:background="@color/white_color" />
 
         <LinearLayout
+            android:layout_gravity="center"
+
             android:id="@+id/attendanceLayout"
             style="@style/navMenuItem">
 
@@ -107,6 +110,8 @@
             android:background="@color/white_color" />
 
         <LinearLayout
+            android:layout_gravity="center"
+
             android:id="@+id/requestLayout"
             style="@style/navMenuItem">
 
@@ -120,19 +125,30 @@
                 style="@style/navMenuItemLable"
                 android:text="Requests" />
 
-            <View
-                android:id="@+id/logoutLine"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/white_color" />
-
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white_color" />
 
     </LinearLayout>
 
 
+
+
+    <TextView
+        android:id="@+id/tv_privacy_policy"
+        android:padding="@dimen/padding"
+        style="@style/navMenuItemLable"
+        android:layout_above="@id/line"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <View
+        android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_above="@+id/logoutLayout"

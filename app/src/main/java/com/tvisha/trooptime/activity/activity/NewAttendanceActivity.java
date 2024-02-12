@@ -5,12 +5,14 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.core.view.GravityCompat;
@@ -18,6 +20,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -61,8 +69,8 @@ public class NewAttendanceActivity extends AppCompatActivity implements TabLayou
     SharedPreferences sharedPreferences;
     String userId, email, name, user_avatar;
     int notification_num, servicecount;
-    ImageView profile_pic, settingsImage,notificationImage;
-    TextView employeeName, time, dynamo;
+    ImageView profile_pic, settingsImage,notificationImage, drawerImage;
+    TextView employeeName, time, dynamo, tv_privacy_policy;
     TabLayout navigation;
 
     Typeface poppins_bold, poppins_regular;
@@ -316,6 +324,7 @@ public class NewAttendanceActivity extends AppCompatActivity implements TabLayou
             profile_pic = findViewById(R.id.profileImage);
             employeeName = findViewById(R.id.employeeName);
             settingsImage = findViewById(R.id.settingsImage);
+            drawerImage = findViewById(R.id.drawerImage);
             notificationImage = findViewById(R.id.notificationImage);
             //settingsLayout = findViewById(R.id.settingsLayout);
 
@@ -333,11 +342,13 @@ public class NewAttendanceActivity extends AppCompatActivity implements TabLayou
     private void initListeners() {
         try {
 
+            setupPrivacyPolicy();
+
             attendance.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     drawableClose();
-                    attendance();
+//                    attendance();
                 }
             });
 
@@ -365,6 +376,7 @@ public class NewAttendanceActivity extends AppCompatActivity implements TabLayou
             });
             notificationImage.setOnClickListener(this);
             settingsImage.setOnClickListener(this);
+            drawerImage.setOnClickListener(this);
             //  settingsImage.setOnClickListener(this);
             //settingsLayout.setOnClickListener(this);
         } catch (Exception e) {
@@ -401,6 +413,9 @@ public class NewAttendanceActivity extends AppCompatActivity implements TabLayou
                     break;
                 case R.id.settingsImage:
                     Navigation.getInstance().openProfilePage(NewAttendanceActivity.this);
+                    break;
+                case R.id.drawerImage:
+                    drawer.openDrawer(GravityCompat.START);
                     break;
                 case R.id.notificationImage:
                     Navigation.getInstance().openNotification(NewAttendanceActivity.this);
@@ -440,6 +455,16 @@ public class NewAttendanceActivity extends AppCompatActivity implements TabLayou
     private void logout() {
 
         try {
+
+            if (MyApplication.homePageResponse != null) {
+                MyApplication.homePageResponse = null;
+            }
+            if (MyApplication.UserRequestListResponse != null) {
+                MyApplication.UserRequestListResponse = null;
+            }
+            if (MyApplication.selfAttendenceApiResponce != null) {
+                MyApplication.selfAttendenceApiResponce = null;
+            }
 
             sharedPreferences = getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE);
             sharedPreferences.edit().putBoolean(SharePreferenceKeys.SP_LOGOUT_STATUS, true).apply();
@@ -511,6 +536,51 @@ public class NewAttendanceActivity extends AppCompatActivity implements TabLayou
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void openLink(String url){
+        Uri uri = Uri.parse(url);
+        CustomTabsIntent.Builder intentBuilder =
+                new CustomTabsIntent.Builder();
+        CustomTabsIntent customTabsIntent = intentBuilder.build();
+        customTabsIntent.launchUrl(this, uri);
+
+    }
+
+    private void setupPrivacyPolicy(){
+        tv_privacy_policy = (TextView) findViewById(R.id.tv_privacy_policy);
+        SpannableString ss = new SpannableString("Please read our Privacy policy");
+//        ClickableSpan clickableSpanTerms = new ClickableSpan() {
+//            @Override
+//            public void onClick(View textView) {
+//                drawableClose();
+//                openLink("https://www.timedynamo.com/terms");
+//            }
+//            @Override
+//            public void updateDrawState(TextPaint ds) {
+//                super.updateDrawState(ds);
+//                ds.setUnderlineText(false);
+//            }
+//        };
+        ClickableSpan clickableSpanPrivacy = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+                drawableClose();
+                openLink("https://www.timedynamo.com/privacy");
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+            }
+        };
+//        ss.setSpan(clickableSpanTerms, 16, 34, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(clickableSpanPrivacy, 16, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        tv_privacy_policy.setText(ss);
+        tv_privacy_policy.setMovementMethod(LinkMovementMethod.getInstance());
+        tv_privacy_policy.setHighlightColor(Color.TRANSPARENT);
+
     }
 
     private void drawableClose() {

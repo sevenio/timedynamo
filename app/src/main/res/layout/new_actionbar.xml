@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/action_bar_holder_menu"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
@@ -87,6 +88,16 @@
             android:gravity="center"
             android:padding="5dp"
             android:src="@drawable/filter" />
+
+        <ImageView
+            android:padding="@dimen/activity_horizontal_margin"
+            android:id="@+id/drawerImage"
+            android:layout_width="?actionBarSize"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:src="@drawable/baseline_menu_24"
+            app:tint="#888888" />
 
         <ImageView
             android:id="@+id/reset_data"

@@ -166,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <com.tvisha.trooptime.activity.activity.helper.progressButton.ProgressButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/next"
                         android:layout_width="@dimen/login_btn_width"
                         android:layout_height="wrap_content"

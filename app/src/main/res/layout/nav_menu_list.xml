@@ -89,7 +89,7 @@
     <LinearLayout
         android:id="@+id/logout"
         style="@style/navMenuItem"
-        android:layout_width="@dimen/nav_header_width"
+        android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
