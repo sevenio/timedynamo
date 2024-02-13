@@ -32,18 +32,20 @@ android {
             storeFile file(keystoreProperties['storeFile'])
         }
     }
+
     defaultConfig {
         applicationId "com.tvisha.trooptime"
-        minSdkVersion 28
+        minSdkVersion 21
         targetSdk 33
-        versionCode 15
-        versionName "1.2.5"
+        versionCode 18
+        versionName "1.2.8"
         multiDexEnabled true
         archivesBaseName = "$applicationId-v$versionCode($versionName)"
         vectorDrawables.useSupportLibrary = "true"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
     }
+
     buildTypes {
         release {
             manifestPlaceholders = [usesCleartextTraffic: "false"]
@@ -84,7 +86,7 @@ repositories {
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'androidx.core:core-ktx:1.10.0'
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
@@ -100,11 +102,13 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.bumptech.glide:glide:4.16.0'
 
-    implementation 'com.google.firebase:firebase-core:21.1.1'
-    implementation 'com.google.firebase:firebase-messaging:23.4.0'
-    implementation 'com.google.firebase:firebase-config:21.6.0'
-    implementation 'com.google.firebase:firebase-messaging-directboot:23.4.0'
-    implementation 'com.google.firebase:firebase-appindexing:20.0.0'
+
+    implementation platform('com.google.firebase:firebase-bom:26.0.0')
+    implementation 'com.google.firebase:firebase-core'
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-config'
+    implementation 'com.google.firebase:firebase-messaging-directboot'
+    implementation 'com.google.firebase:firebase-appindexing'
 
 
     implementation "com.splitwise:tokenautocomplete:3.0.1@aar"
@@ -157,10 +161,10 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
     //google charts
-    implementation 'com.jakewharton:butterknife:8.0.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.0.0'
-    implementation 'com.google.dagger:dagger:2.28.3'
-    annotationProcessor "com.google.dagger:dagger-compiler:2.6"
+//    implementation 'com.jakewharton:butterknife:8.0.0'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.0.0'
+//    implementation 'com.google.dagger:dagger:2.28.3'
+//    annotationProcessor "com.google.dagger:dagger-compiler:2.6"
 
     // Mp android charts
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
