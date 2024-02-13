@@ -223,17 +223,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private void setupPrivacyPolicy(){
         tv_privacy_policy = (TextView) findViewById(R.id.tv_privacy_policy);
         SpannableString ss = new SpannableString("Please read our Privacy policy");
-//        ClickableSpan clickableSpanTerms = new ClickableSpan() {
-//            @Override
-//            public void onClick(View textView) {
-//                openLink("https://www.timedynamo.com/terms");
-//            }
-//            @Override
-//            public void updateDrawState(TextPaint ds) {
-//                super.updateDrawState(ds);
-//                ds.setUnderlineText(false);
-//            }
-//        };
+
         ClickableSpan clickableSpanPrivacy = new ClickableSpan() {
             @Override
             public void onClick(View textView) {
@@ -245,7 +235,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 ds.setUnderlineText(false);
             }
         };
-//        ss.setSpan(clickableSpanTerms, 16, 34, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         ss.setSpan(clickableSpanPrivacy, 16, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         tv_privacy_policy.setText(ss);

@@ -291,10 +291,12 @@ public class SelfRequestFragment extends Fragment implements DatePickerDialog.On
                 }
             });
 
-            if ((sharedPreferences.getInt(SharePreferenceKeys.USER_ROLE, 0) == Constants.UserRole.ADMIN && request_all_tab)|| (is_full_access && request_all_tab) || request_all_tab) {
+
+            if ((sharedPreferences.getInt(SharePreferenceKeys.USER_ROLE, 0) == Constants.UserRole.ADMIN && request_all_tab)|| (is_full_access && request_all_tab) || request_all_tab) {//expression value equal to request all tab value
                 adminRole = true;
                 team_all.setVisibility(View.VISIBLE);
-                if ((sharedPreferences.getBoolean(SharePreferenceKeys.TEAM_LEAD, false) && request_team_tab) || request_team_tab) {
+
+                if ((sharedPreferences.getBoolean(SharePreferenceKeys.TEAM_LEAD, false) && request_team_tab) || request_team_tab) {//expression value equal to request team tab value
                     text_team.setVisibility(View.VISIBLE);
                 } else {
                     text_team.setVisibility(View.GONE);
@@ -308,7 +310,9 @@ public class SelfRequestFragment extends Fragment implements DatePickerDialog.On
                     text_cc.setVisibility(View.GONE);
                 }*/
                 swipe_refresh.setEnabled(false);
-            } else if ((sharedPreferences.getBoolean(SharePreferenceKeys.TEAM_LEAD, false) && request_team_tab) || request_team_tab || sharedPreferences.getBoolean(SharePreferenceKeys.TEAM_LEAD, false)) {
+
+
+            } else if ((sharedPreferences.getBoolean(SharePreferenceKeys.TEAM_LEAD, false) && request_team_tab) || request_team_tab || sharedPreferences.getBoolean(SharePreferenceKeys.TEAM_LEAD, false)) {// expression value is equal to either teamlead or request team tab must be true
                 teamLead = true;
                 team_all.setVisibility(View.GONE);
                 text_team.setVisibility(View.VISIBLE);
