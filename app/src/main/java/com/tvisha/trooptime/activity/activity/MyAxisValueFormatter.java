@@ -2,10 +2,11 @@ package com.tvisha.trooptime.activity.activity;
 
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.text.DecimalFormat;
 
-public class MyAxisValueFormatter implements IAxisValueFormatter {
+public class MyAxisValueFormatter extends ValueFormatter {
 
     String temp = "";
     private DecimalFormat mFormat;

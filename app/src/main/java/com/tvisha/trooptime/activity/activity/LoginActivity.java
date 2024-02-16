@@ -558,7 +558,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     }
 
-    private void getDeviceId() {
+    private void getDeviceID() {
 
         if (ActivityCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.READ_PHONE_STATE)
                 != PackageManager.PERMISSION_GRANTED) {

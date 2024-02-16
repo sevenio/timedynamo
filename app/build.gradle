@@ -21,7 +21,7 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 android {
     namespace 'com.tvisha.trooptime'
 
-    compileSdk 33
+    compileSdk 34
 
      //buildToolsVersion = "30.0.3"
     signingConfigs {
@@ -36,7 +36,7 @@ android {
     defaultConfig {
         applicationId "com.tvisha.trooptime"
         minSdkVersion 21
-        targetSdk 33
+        targetSdk 34
         versionCode 18
         versionName "1.2.8"
         multiDexEnabled true
@@ -56,10 +56,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
            // multiDexKeepFile file('multidex-config.txt')
         }
-        compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
-        }
+
         lintOptions {
             checkReleaseBuilds false
         }
@@ -70,6 +67,10 @@ android {
         }
 
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildFeatures {
         dataBinding true
     }
@@ -79,25 +80,24 @@ android {
     sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
 
 }
-repositories {
-    jcenter()
-}
+
 
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
-    implementation 'androidx.core:core-ktx:1.10.0'
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-    implementation "androidx.browser:browser:1.0.0"
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation "androidx.navigation:navigation-fragment-ktx:2.7.7"
+    implementation "androidx.navigation:navigation-ui-ktx:2.7.7"
+    implementation "androidx.browser:browser:1.7.0"
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.recyclerview:recyclerview:1.3.2'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.bumptech.glide:glide:4.16.0'
@@ -111,7 +111,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-appindexing'
 
 
-    implementation "com.splitwise:tokenautocomplete:3.0.1@aar"
     implementation 'androidx.cardview:cardview:1.0.0'
 
 
@@ -122,14 +121,15 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
-    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     //swipe layout
+    //requires jetifier
     implementation "com.daimajia.swipelayout:library:1.2.0"
 
     //debug db
 
-
+    //requires jetifier
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 
 
@@ -155,19 +155,19 @@ dependencies {
         exclude group: 'org.json', module: 'json'
     }
 //viewmodel
-    implementation "androidx.lifecycle:lifecycle-viewmodel:2.6.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.7.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
 
     implementation 'androidx.cardview:cardview:1.0.0'
 
     //google charts
-//    implementation 'com.jakewharton:butterknife:8.0.0'
-//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.0.0'
-//    implementation 'com.google.dagger:dagger:2.28.3'
-//    annotationProcessor "com.google.dagger:dagger-compiler:2.6"
+    implementation 'com.jakewharton:butterknife:8.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.0.0'
+    implementation 'com.google.dagger:dagger:2.28.3'
+    annotationProcessor "com.google.dagger:dagger-compiler:2.6"
 
     // Mp android charts
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation "me.leolin:ShortcutBadger:1.1.22@aar"
 
 
@@ -181,12 +181,14 @@ dependencies {
     implementation 'com.amazonaws:aws-android-sdk-cognito:2.18.0'
 
     //added by upendra hari missing in svn commits
+
+    //requires jetifier
     implementation 'com.ldoublem.loadingview:loadingviewlib:1.0'
     implementation 'com.borax12.materialdaterangepicker:library:2.0'
     implementation 'com.google.android.play:app-update:2.1.0'
 
-    implementation 'androidx.paging:paging-runtime-ktx:3.0.0'
-    implementation 'androidx.room:room-paging:2.5.1'
+    implementation 'androidx.paging:paging-runtime-ktx:3.2.1'
+    implementation 'androidx.room:room-paging:2.6.1'
 
     def rxPermissionsVersion = '0.9.4@aar'
     def rxJavaVersion = '2.2.9'
@@ -197,6 +199,7 @@ dependencies {
 
     implementation "com.splitwise:tokenautocomplete:3.0.1@aar"
 
+    //requires jetifier
     implementation 'com.whiteelephant:monthandyearpicker:1.3.0'
 
 }
