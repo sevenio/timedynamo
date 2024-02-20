@@ -1,6 +1,7 @@
 package com.tvisha.trooptime.activity.activity.api;
 
 
+import com.tvisha.trooptime.activity.activity.apiPostModels.AllAttendenceApiResponce;
 import com.tvisha.trooptime.activity.activity.apiPostModels.AttendanceReportResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.AutoCheckDetailsResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.CcEmpResponse;
@@ -12,21 +13,26 @@ import com.tvisha.trooptime.activity.activity.apiPostModels.EmployeeSummaryRespo
 import com.tvisha.trooptime.activity.activity.apiPostModels.ExceptionDetailsResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.ExceptionStatusResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.FcmUpdateResponce;
+import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAllAttendenceApiResponce;
+import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAttendenceApiResponce;
+import com.tvisha.trooptime.activity.activity.apiPostModels.ForgotApiResponce;
 import com.tvisha.trooptime.activity.activity.apiPostModels.ForgotPasswordResponce;
 import com.tvisha.trooptime.activity.activity.apiPostModels.GetAwsConfigResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.HomePageResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.LeaveReportResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.LeaveRequestResponse;
+import com.tvisha.trooptime.activity.activity.apiPostModels.LogoutApiResponce;
 import com.tvisha.trooptime.activity.activity.apiPostModels.PinUnpinResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.RequestCommentsResponse;
+import com.tvisha.trooptime.activity.activity.apiPostModels.SelfAttendenceApiResponce;
 import com.tvisha.trooptime.activity.activity.apiPostModels.SendCommentResponse;
+import com.tvisha.trooptime.activity.activity.apiPostModels.TeamAttendenceApiResponce;
 import com.tvisha.trooptime.activity.activity.apiPostModels.ToAndCcDetailsResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.UpdateProfileResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.UserRequestListResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.VerifyOtpResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.WeekOffsResponse;
 import com.tvisha.trooptime.activity.activity.helper.ServerUrls;
-import com.tvisha.trooptime.activity.activity.api.response.SelfAttendenceApiResponce;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -45,6 +51,67 @@ public interface ApiInterface {
     @GET("api/v2.1/search")
     Call<ApiResponse> getRestaurantsBySearch(@Query("entity_id") String entity_id, @Query("entity_type") String entity_type, @Query("q") String query);
 */
+
+    @FormUrlEncoded
+    @POST(ServerUrls.Loginurl)
+    Call<String> getLoginDetails(
+            @Field("username") String username,
+            @Field("password") String password,
+            @Field("token") String token
+    );
+
+    @FormUrlEncoded
+    @POST(ServerUrls.All_Attendence)
+    Call<AllAttendenceApiResponce> getAllAttendence(
+            @Field("user_id") String username,
+            @Field("token") String token,
+            @Field("date") String date
+    );
+
+    @FormUrlEncoded
+    @POST(ServerUrls.All_Attendence)
+    Call<FilterAllAttendenceApiResponce> getFilterAllAttendence(
+            @Field("user_id") String userId,
+            @Field("date") String select_date,
+            @Field("token") String token,
+            @Field("users") String emp_id,
+            @Field("attendance_filter") int attendance_filter,
+            @Field("working_hours") int filte_working_time);
+
+    @FormUrlEncoded
+    @POST(ServerUrls.Team_Attendence)
+    Call<FilterAttendenceApiResponce> getFilterAttendence(
+            @Field("user_id") String userId,
+            @Field("date") String select_date,
+            @Field("token") String token,
+            @Field("users") String emp_id,
+            @Field("attendance_filter") String attendance_filter,
+            @Field("working_hours") String filte_working_time);
+
+    @FormUrlEncoded
+    @POST(ServerUrls.Forgeturl)
+    Call<ForgotApiResponce> getForgotDetails(
+            @Field("emai") String username,
+            @Field("token") String token
+    );
+
+    @FormUrlEncoded
+    @POST(ServerUrls.Forgeturl)
+    Call<LogoutApiResponce> getLogoutDetails(
+            @Field("user_id") String username,
+            @Field("token") String token,
+            @Field("fcm_token") String fcm_token
+    );
+
+    @FormUrlEncoded
+    @POST(ServerUrls.Team_Attendence)
+    Call<TeamAttendenceApiResponce> getTeamfAttendence(
+            @Field("user_id") String username,
+            @Field("token") String token,
+            @Field("date") String date
+    );
+
+
     @FormUrlEncoded
     @POST("send-forgot-password")
     Call<ForgotPasswordResponce> getOtp(@Field("mobile") String email);

@@ -1,16 +1,11 @@
-package com.tvisha.trooptime.activity.activity.api.response;
+package com.tvisha.trooptime.activity.activity.apiPostModels;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.tvisha.trooptime.activity.activity.apiPostModels.Attendance;
 
 import java.util.List;
 
-/**
- * Created by tvisha on 26/9/18.
- */
-
-public class SelfAttendenceApiResponce {
+public class AllAttendenceApiResponce {
     @SerializedName("success")
     @Expose
     private Boolean success;

@@ -16,7 +16,6 @@ import com.tvisha.trooptime.activity.activity.helper.Navigation;
  * Created by tvisha on 25/2/17.
  */
 public class NotificationActivity extends Activity implements View.OnClickListener {
-    DbHelper dbHelper;
 
     // lock controles
     PowerManager pm;

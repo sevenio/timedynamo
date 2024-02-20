@@ -44,9 +44,7 @@ class NotificationViewmodel : ViewModel() {
     val selfIsLoading = MutableLiveData<Boolean>(false)
 
     private val apiService: ApiInterface by lazy {
-        ApiClient.getClient().create<ApiInterface>(
-            ApiInterface::class.java
-        )
+        ApiClient.getInstance()
     }
 
 

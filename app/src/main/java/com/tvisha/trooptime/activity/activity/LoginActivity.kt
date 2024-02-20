@@ -1,7 +1,6 @@
 package com.tvisha.trooptime.activity.activity
 
-import android.app.Activity
-import android.app.ProgressDialog
+
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.net.Uri
@@ -15,106 +14,69 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.lifecycle.lifecycleScope
 import com.google.gson.Gson
 import com.tvisha.trooptime.R
-import com.tvisha.trooptime.activity.activity.apiPostModels.LoginApi
+import com.tvisha.trooptime.activity.activity.api.ApiClient
+import com.tvisha.trooptime.activity.activity.api.ApiInterface
 import com.tvisha.trooptime.activity.activity.apiPostModels.User
 import com.tvisha.trooptime.activity.activity.dialog.CustomProgressBar
-import com.tvisha.trooptime.activity.activity.helper.*
-import com.tvisha.trooptime.activity.activity.model.PhoneNumberModel
 import com.tvisha.trooptime.activity.activity.handlers.HandlerHolder
-
-
+import com.tvisha.trooptime.activity.activity.helper.*
+import com.tvisha.trooptime.activity.activity.viewmodels.LoginViewModel
+import com.tvisha.trooptime.databinding.LoginLayoutBinding
+import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginActivity :  Activity(), View.OnClickListener {
-    var et_email: EditText? = null
-    var et_password: EditText? = null
-    var tv_forget: TextView? = null
-    var bt_login: TextView? = null
-    var button_signin: TextView? = null
-    var tv_privacy_policy: TextView? = null
-    var email: String? = null
-    var password: String? = null
-    var check_email: String? = null
-    var check_password: String? = null
-    var refreshedToken: String? = null
-    var deviceId = ""
+class LoginActivity : AppCompatActivity(), View.OnClickListener {
+
     private lateinit var sharedPreferences: SharedPreferences
-//    var editor: SharedPreferences.Editor? = null
-    var progressDialog: ProgressDialog? = null
-    var device_Id: String? = null
+
     var count = 1
-    var dbHelper: DbHelper? = null
-    var phone_set: List<PhoneNumberModel>? = null
-    var phonenumber_set: Set<String>? = null
-    var name_set: Set<String>? = null
-    var `val` = false
-    var scrollView: ScrollView? = null
-    var password_visible: ImageView? = null
-    var activity_login: LinearLayout? = null
-    var formLayout: RelativeLayout? = null
-    var customProgressBar: CustomProgressBar? = null
+
+    private lateinit var customProgressBar: CustomProgressBar
     var mLastClicked: Long = 0
+    private lateinit var binding: LoginLayoutBinding
+    private val viewModel: LoginViewModel by viewModels()
+
     fun openProgress() {
-        try {
-            runOnUiThread {
-                try {
-                    if (!this@LoginActivity.isFinishing) {
-                        if (customProgressBar != null && !customProgressBar!!.isShowing) {
-                            customProgressBar!!.show()
-                        }
-                    }
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+        lifecycleScope.launch {
+            if (!customProgressBar.isShowing) {
+                customProgressBar.show()
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
     }
 
     fun closeProgress() {
-        try {
-            runOnUiThread {
-                try {
-                    if (!this@LoginActivity.isFinishing) {
-                        if (customProgressBar != null && customProgressBar!!.isShowing) {
-                            customProgressBar!!.dismiss()
-                        }
-                    }
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+        lifecycleScope.launch {
+            if (customProgressBar.isShowing) {
+                customProgressBar.dismiss()
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
     }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_layout)
+        binding = LoginLayoutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         try {
             customProgressBar = CustomProgressBar(this@LoginActivity)
             sharedPreferences = getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE)
             clearTheData()
-            device_Id = Settings.System.getString(this.contentResolver, Settings.Secure.ANDROID_ID)
-            sharedPreferences.edit().putString(SharePreferenceKeys.DEVICE_ID, device_Id).apply()
+            sharedPreferences.edit().putString(SharePreferenceKeys.DEVICE_ID, Settings.System.getString(this.contentResolver, Settings.Secure.ANDROID_ID)).apply()
             initializeWidgets()
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    fun clearTheData() {
+    private fun clearTheData() {
         try {
             sharedPreferences = getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE)
             if (sharedPreferences.getBoolean(SharePreferenceKeys.SP_LOGOUT_STATUS, false)) {
@@ -138,9 +100,9 @@ class LoginActivity :  Activity(), View.OnClickListener {
 
     private fun eventHandlings() {
         try {
-            bt_login!!.setOnClickListener(this)
-            tv_forget!!.setOnClickListener(this)
-            password_visible!!.setOnClickListener(this)
+            binding.btLogin.setOnClickListener(this)
+            binding.tvForget.setOnClickListener(this)
+            binding.passwordVisible.setOnClickListener(this)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -154,7 +116,6 @@ class LoginActivity :  Activity(), View.OnClickListener {
     }
 
     private fun setupPrivacyPolicy() {
-        tv_privacy_policy = findViewById<View>(R.id.tv_privacy_policy) as TextView
         val ss = SpannableString("Please read our Privacy policy")
         val clickableSpanPrivacy: ClickableSpan = object : ClickableSpan() {
             override fun onClick(textView: View) {
@@ -167,24 +128,19 @@ class LoginActivity :  Activity(), View.OnClickListener {
             }
         }
         ss.setSpan(clickableSpanPrivacy, 16, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        tv_privacy_policy!!.text = ss
-        tv_privacy_policy!!.movementMethod = LinkMovementMethod.getInstance()
-        tv_privacy_policy!!.highlightColor = Color.TRANSPARENT
+        binding.tvPrivacyPolicy.run {
+            text = ss
+            movementMethod = LinkMovementMethod.getInstance()
+            highlightColor = Color.TRANSPARENT
+        }
+
     }
 
     private fun initializeWidgets() {
         try {
-            dbHelper = DbHelper(this@LoginActivity)
             setupPrivacyPolicy()
-            et_email = findViewById<View>(R.id.et_email) as EditText
-            et_password = findViewById<View>(R.id.et_password) as EditText
-            bt_login = findViewById<View>(R.id.bt_login) as TextView
-            tv_forget = findViewById<View>(R.id.tv_forget) as TextView
-            formLayout = findViewById(R.id.formLayout)
-            scrollView = findViewById(R.id.scrollView)
-            activity_login = findViewById<View>(R.id.activity_login) as LinearLayout
-            password_visible = findViewById<View>(R.id.password_visible) as ImageView
-            et_password!!.addTextChangedListener(object : TextWatcher {
+
+            binding.etPassword.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence,
                     start: Int,
@@ -194,35 +150,37 @@ class LoginActivity :  Activity(), View.OnClickListener {
                 }
 
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                    if (s.toString().trim { it <= ' ' }.length > 0) {
-                        password_visible!!.visibility = View.VISIBLE
+                    if (s.toString().trim { it <= ' ' }.isNotEmpty()) {
+                        binding.passwordVisible.visibility = View.VISIBLE
                     } else {
-                        password_visible!!.visibility = View.INVISIBLE
+                        binding.passwordVisible.visibility = View.INVISIBLE
                     }
                 }
 
                 override fun afterTextChanged(s: Editable) {}
             })
-            et_email!!.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            binding.etEmail.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
                 if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                    email = et_email!!.text.toString().trim { it <= ' ' }
-                    if (email!!.length == 0) {
-                        Utilities.showSnackBar(et_email, "Please enter Email/Mobile Number")
-                        Helper.getInstance().openKeyboard(this@LoginActivity, et_email)
-                        return@OnKeyListener true
-                    } else if (!Utilities.validEmail(email) && Utilities.isNumeric(email) && email!!.length < 10) {
-                        Utilities.showSnackBar(et_email, "Please enter valid Mobile Number")
-                        Helper.getInstance().openKeyboard(this@LoginActivity, et_email)
-                        return@OnKeyListener true
-                    } else if (!Utilities.validEmail(email) && !Utilities.isNumeric(email)) {
-                        Utilities.showSnackBar(et_email, "Please enter valid Email")
-                        Helper.getInstance().openKeyboard(this@LoginActivity, et_email)
-                        return@OnKeyListener true
+                    binding.etEmail.let {
+                        val email = it.text.toString().trim { it <= ' ' }
+                        if (email.isEmpty()) {
+                            Utilities.showSnackBar(it, "Please enter Email/Mobile Number")
+                            Helper.getInstance().openKeyboard(this@LoginActivity, it)
+                            return@OnKeyListener true
+                        } else if (!Utilities.validEmail(email) && Utilities.isNumeric(email) && email.length < 10) {
+                            Utilities.showSnackBar(it, "Please enter valid Mobile Number")
+                            Helper.getInstance().openKeyboard(this@LoginActivity, it)
+                            return@OnKeyListener true
+                        } else if (!Utilities.validEmail(email) && !Utilities.isNumeric(email)) {
+                            Utilities.showSnackBar(it, "Please enter valid Email")
+                            Helper.getInstance().openKeyboard(this@LoginActivity, it)
+                            return@OnKeyListener true
+                        }
                     }
                 }
                 false
             })
-            et_password!!.setOnKeyListener { v, keyCode, event ->
+            binding.etPassword.setOnKeyListener { v, keyCode, event ->
                 if (keyCode == KeyEvent.KEYCODE_ENTER) {
                     validateForm()
                 }
@@ -239,9 +197,9 @@ class LoginActivity :  Activity(), View.OnClickListener {
             when (v.id) {
                 R.id.bt_login -> validateForm()
                 R.id.tv_forget -> {
-                    tv_forget!!.isClickable = false
+                    binding.tvForget.isClickable = false
                     Navigation.getInstance().openForgotPasswordPage(this@LoginActivity)
-                    tv_forget!!.isClickable = true
+                    binding.tvForget.isClickable = true
                 }
                 R.id.password_visible -> togglePasswordVisiblity()
             }
@@ -257,30 +215,31 @@ class LoginActivity :  Activity(), View.OnClickListener {
             }
             mLastClicked = SystemClock.elapsedRealtime()
             try {
-                email = et_email!!.text.toString().trim { it <= ' ' }
-                password = et_password!!.text.toString().trim { it <= ' ' }
-                if (email!!.length == 0) {
-                    Utilities.showSnackBar(et_email, "Please enter Email/Mobile Number")
-                    Helper.getInstance().openKeyboard(this@LoginActivity, et_email)
-                } else if (!Utilities.validEmail(email) && Utilities.isNumeric(email) && email!!.length < 10) {
-                    Utilities.showSnackBar(et_email, "Please enter valid Mobile Number")
-                    Helper.getInstance().openKeyboard(this@LoginActivity, et_email)
+                val email = binding.etEmail.text.toString().trim { it <= ' ' }
+                val password = binding.etPassword.text.toString().trim { it <= ' ' }
+
+                if (email.isEmpty()) {
+                    Utilities.showSnackBar(binding.etEmail, "Please enter Email/Mobile Number")
+                    Helper.getInstance().openKeyboard(this@LoginActivity, binding.etEmail)
+                } else if (!Utilities.validEmail(email) && Utilities.isNumeric(email) && email.length < 10) {
+                    Utilities.showSnackBar(binding.etEmail, "Please enter valid Mobile Number")
+                    Helper.getInstance().openKeyboard(this@LoginActivity, binding.etEmail)
                 } else if (!Utilities.validEmail(email) && !Utilities.isNumeric(email)) {
-                    Utilities.showSnackBar(et_email, "Please enter valid Email")
-                    Helper.getInstance().openKeyboard(this@LoginActivity, et_email)
-                } else if (password == null || password!!.trim { it <= ' ' }
-                        .isEmpty() || password == "null" || password!!.length == 0) {
-                    Utilities.showSnackBar(et_password, "Please enter  Password")
-                    Helper.getInstance().openKeyboard(this@LoginActivity, et_password)
+                    Utilities.showSnackBar(binding.etEmail, "Please enter valid Email")
+                    Helper.getInstance().openKeyboard(this@LoginActivity, binding.etEmail)
+                } else if (password.trim { it <= ' ' }
+                        .isEmpty() || password == "null" || password.isEmpty()) {
+                    Utilities.showSnackBar(binding.etPassword, "Please enter  Password")
+                    Helper.getInstance().openKeyboard(this@LoginActivity, binding.etPassword)
                 } else {
                     closeKeyboard()
                     if (Utilities.getConnectivityStatus(this@LoginActivity) > 0) {
-                        bt_login!!.visibility = View.GONE
-                        tv_forget!!.visibility = View.GONE
+                        binding.btLogin.visibility = View.GONE
+                        binding.tvForget.visibility = View.GONE
                         callToLoginServer()
                     } else {
                         Utilities.showSnackBar(
-                            bt_login,
+                            binding.btLogin,
                             resources.getString(R.string.network_check)
                         )
                     }
@@ -304,9 +263,12 @@ class LoginActivity :  Activity(), View.OnClickListener {
     private fun callToLoginServer() {
         try {
             openProgress()
+
             try {
-                val call =
-                    LoginApi.getApiService().getLoginDetails(email, password, Constants.TOKEN)
+                val email = binding.etEmail.text.toString().trim { it <= ' ' }
+                val password = binding.etPassword.text.toString().trim { it <= ' ' }
+                val client = ApiClient.getInstance()
+                val call = client.getLoginDetails(email, password, Constants.TOKEN)
                 call.enqueue(object : Callback<String?> {
                     override fun onResponse(call: Call<String?>, response: Response<String?>) {
                         if (response.code() == Constants.RESPONCE_SUCCESSFUL) {
@@ -327,7 +289,7 @@ class LoginActivity :  Activity(), View.OnClickListener {
                                                 response.body()
                                             )
                                         )
-                                        val editor = sharedPreferences!!.edit()
+                                        val editor = sharedPreferences.edit()
                                         try {
                                             if (user != null) {
                                                 editor.putString(
@@ -394,9 +356,9 @@ class LoginActivity :  Activity(), View.OnClickListener {
                                                     SharePreferenceKeys.IS_CC_USER,
                                                     user.isIs_cc_exist
                                                 )
-                                                if (apiresponce.has("reportingUsers") && apiresponce.optJSONArray(
+                                                if (apiresponce.has("reportingUsers") && (apiresponce.optJSONArray(
                                                         "reportingUsers"
-                                                    ).length() > 0
+                                                    )?.length() ?: 0) > 0
                                                 ) {
                                                     editor.putBoolean(
                                                         SharePreferenceKeys.TEAM_LEAD,
@@ -471,19 +433,19 @@ class LoginActivity :  Activity(), View.OnClickListener {
                                         }
                                     } else {
                                         Utilities.showSnackBar(
-                                            bt_login,
+                                            binding.btLogin,
                                             apiresponce.optString("message")
                                         )
-                                        bt_login!!.visibility = View.VISIBLE
-                                        tv_forget!!.visibility = View.VISIBLE
+                                        binding.btLogin.visibility = View.VISIBLE
+                                        binding.tvForget.visibility = View.VISIBLE
                                     }
                                 } else {
                                     Utilities.showSnackBar(
-                                        bt_login,
+                                        binding.btLogin,
                                         resources.getString(R.string.somthing_went_wrong)
                                     )
-                                    bt_login!!.visibility = View.VISIBLE
-                                    tv_forget!!.visibility = View.VISIBLE
+                                    binding.btLogin.visibility = View.VISIBLE
+                                    binding.tvForget.visibility = View.VISIBLE
                                 }
                             } catch (e: Exception) {
                                 e.printStackTrace()
@@ -494,8 +456,8 @@ class LoginActivity :  Activity(), View.OnClickListener {
                     override fun onFailure(call: Call<String?>, t: Throwable) {
                         closeProgress()
                         Log.e("error==> ", "" + t.message)
-                        bt_login!!.visibility = View.VISIBLE
-                        tv_forget!!.visibility = View.VISIBLE
+                        binding.btLogin.visibility = View.VISIBLE
+                        binding.tvForget.visibility = View.VISIBLE
                     }
                 })
             } catch (e: Exception) {
@@ -509,22 +471,20 @@ class LoginActivity :  Activity(), View.OnClickListener {
 
     private fun togglePasswordVisiblity() {
         try {
-            if (et_password!!.text.toString().length > 0) {
-                if (et_password!!.inputType == 129) {
-                    et_password!!.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
-                    password_visible!!.setImageResource(R.drawable.ic_hide)
+            if (binding.etPassword.text.toString().isNotEmpty()) {
+                if (binding.etPassword.inputType == (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+                    binding.etPassword.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    binding.passwordVisible.setImageResource(R.drawable.ic_hide)
                 } else {
-                    password_visible!!.setImageResource(R.drawable.ic_view)
-                    et_password!!.inputType = 129
+                    binding.passwordVisible.setImageResource(R.drawable.ic_view)
+                    binding.etPassword.inputType = (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
                 }
-                et_password!!.setSelection(et_password!!.text.toString().length)
+                binding.etPassword.setSelection(binding.etPassword.text.toString().length)
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
-
-
 
 
 }

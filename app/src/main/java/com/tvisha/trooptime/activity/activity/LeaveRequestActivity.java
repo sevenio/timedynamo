@@ -286,7 +286,7 @@ public class LeaveRequestActivity extends AppCompatActivity implements View.OnCl
             spinnerLayout = findViewById(R.id.spinnerLayout);
 
 
-            apiService = ApiClient.getClient().create(ApiInterface.class);
+            apiService = ApiClient.getInstance();
             actionLable = (TextView) findViewById(R.id.actionLable);
             actionLable.setText("Request Leave");
             toUserName = findViewById(R.id.toUserName);

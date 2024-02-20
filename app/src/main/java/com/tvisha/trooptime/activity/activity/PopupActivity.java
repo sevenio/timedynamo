@@ -69,13 +69,11 @@ public class PopupActivity extends Activity implements View.OnClickListener, Ada
     Set<String> phone_set, name_set;
     List<String> stringList, namelist;
     SharedPreferences shared;
-    DbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferenceData();
-        dbHelper = new DbHelper(PopupActivity.this);
         setContentView(R.layout.simple_popup);
         /*if (reporting_boss.equals(userId))
         {

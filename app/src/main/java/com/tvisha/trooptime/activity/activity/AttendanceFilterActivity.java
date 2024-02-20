@@ -37,9 +37,9 @@ import android.widget.TextView;
 import com.tvisha.trooptime.activity.activity.apiPostModels.Attendance;
 import com.tvisha.trooptime.activity.activity.apiPostModels.CcEmpResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.EmployeeDetails;
-import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAllAttendanceApi;
-import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAttendanceApi;
-import com.tvisha.trooptime.activity.activity.apiPostModels.SelfAttendenceApi;
+import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAllAttendenceApiResponce;
+import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAttendenceApiResponce;
+import com.tvisha.trooptime.activity.activity.apiPostModels.SelfAttendenceApiResponce;
 import com.tvisha.trooptime.activity.activity.dialog.CustomProgressBar;
 import com.tvisha.trooptime.activity.activity.helper.Constants;
 import com.tvisha.trooptime.activity.activity.helper.Helper;
@@ -129,7 +129,7 @@ public class AttendanceFilterActivity extends Activity implements OnClickListene
         setContentView(R.layout.filter_layout);
         customProgressBar = new CustomProgressBar(AttendanceFilterActivity.this);
         sharedPreferences = getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE);
-        apiService = ApiClient.getClient().create(ApiInterface.class);
+        apiService = ApiClient.getInstance();
         teamLead = sharedPreferences.getBoolean(SharePreferenceKeys.TEAM_LEAD, false);
         userId = sharedPreferences.getString(SharePreferenceKeys.USER_ID, "");
         if (getIntent().getExtras() != null) {
@@ -813,18 +813,18 @@ public class AttendanceFilterActivity extends Activity implements OnClickListene
                 try {
 
                     openProgress();
-                    retrofit2.Call<FilterAllAttendanceApi.FilterAllAttendenceApiResponce> call = FilterAllAttendanceApi.getApiService()
+                    retrofit2.Call<FilterAllAttendenceApiResponce> call = ApiClient.getInstance()
                             .getFilterAllAttendence(userId, select_date, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""),
                                     mul_emp_ids.trim(), attendance_filter, filte_working_time);
 
-                    call.enqueue(new Callback<FilterAllAttendanceApi.FilterAllAttendenceApiResponce>() {
+                    call.enqueue(new Callback<FilterAllAttendenceApiResponce>() {
                         @Override
-                        public void onResponse(@NonNull Call<FilterAllAttendanceApi.FilterAllAttendenceApiResponce> call, @NonNull Response<FilterAllAttendanceApi.FilterAllAttendenceApiResponce> response) {
+                        public void onResponse(@NonNull Call<FilterAllAttendenceApiResponce> call, @NonNull Response<FilterAllAttendenceApiResponce> response) {
                             if (response.code() == Constants.RESPONCE_SUCCESSFUL) {
                                 tv_search.setClickable(true);
 
                                 closeProgress();
-                                FilterAllAttendanceApi.FilterAllAttendenceApiResponce apiResponce = response.body();
+                                FilterAllAttendenceApiResponce apiResponce = response.body();
                                 if (apiResponce != null) {
 
                                     if (apiResponce.getSuccess()) {
@@ -890,7 +890,7 @@ public class AttendanceFilterActivity extends Activity implements OnClickListene
                         }
 
                         @Override
-                        public void onFailure(@NonNull Call<FilterAllAttendanceApi.FilterAllAttendenceApiResponce> call, @NonNull Throwable t) {
+                        public void onFailure(@NonNull Call<FilterAllAttendenceApiResponce> call, @NonNull Throwable t) {
                             closeProgress();
 
                             tv_search.setClickable(true);
@@ -939,18 +939,18 @@ public class AttendanceFilterActivity extends Activity implements OnClickListene
 
                 openProgress();
 
-                retrofit2.Call<FilterAttendanceApi.FilterAttendenceApiResponce> call = FilterAttendanceApi.getApiService()
+                retrofit2.Call<FilterAttendenceApiResponce> call =  ApiClient.getInstance()
                         .getFilterAttendence(userId, select_date, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""),
                                 mul_emp_ids.trim(), attendance_filter + "", filte_working_time + "");
 
-                call.enqueue(new Callback<FilterAttendanceApi.FilterAttendenceApiResponce>() {
+                call.enqueue(new Callback<FilterAttendenceApiResponce>() {
                     @Override
-                    public void onResponse(@NonNull Call<FilterAttendanceApi.FilterAttendenceApiResponce> call, @NonNull Response<FilterAttendanceApi.FilterAttendenceApiResponce> response) {
+                    public void onResponse(@NonNull Call<FilterAttendenceApiResponce> call, @NonNull Response<FilterAttendenceApiResponce> response) {
                         if (response.code() == Constants.RESPONCE_SUCCESSFUL) {
                             tv_search.setClickable(true);
 
                             closeProgress();
-                            FilterAttendanceApi.FilterAttendenceApiResponce apiResponce = response.body();
+                            FilterAttendenceApiResponce apiResponce = response.body();
                             if (apiResponce != null) {
                                 if (apiResponce.getSuccess()) {
 
@@ -1023,7 +1023,7 @@ public class AttendanceFilterActivity extends Activity implements OnClickListene
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<FilterAttendanceApi.FilterAttendenceApiResponce> call, @NonNull Throwable t) {
+                    public void onFailure(@NonNull Call<FilterAttendenceApiResponce> call, @NonNull Throwable t) {
                         closeProgress();
 
                         tv_search.setClickable(true);
@@ -1059,19 +1059,19 @@ public class AttendanceFilterActivity extends Activity implements OnClickListene
         if (Utilities.getConnectivityStatus(AttendanceFilterActivity.this) > 0) {
             try {
                 openProgress();
-                retrofit2.Call<SelfAttendenceApi.SelfAttendenceApiResponce> call =
-                        SelfAttendenceApi.getApiService().getSelefAttendence(userId, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""),
+                retrofit2.Call<SelfAttendenceApiResponce> call =
+                        ApiClient.getInstance().getSelefAttendence(userId, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""),
                                 fromDate, toDate, String.valueOf(attendance_filter), String.valueOf(filte_working_time));
 
-                call.enqueue(new Callback<SelfAttendenceApi.SelfAttendenceApiResponce>() {
+                call.enqueue(new Callback<SelfAttendenceApiResponce>() {
                     @Override
-                    public void onResponse(@NonNull Call<SelfAttendenceApi.SelfAttendenceApiResponce> call, @NonNull Response<SelfAttendenceApi.SelfAttendenceApiResponce> response) {
+                    public void onResponse(@NonNull Call<SelfAttendenceApiResponce> call, @NonNull Response<SelfAttendenceApiResponce> response) {
                         if (response.code() == Constants.RESPONCE_SUCCESSFUL) {
                             tv_search.setClickable(true);
 
 
                             closeProgress();
-                            SelfAttendenceApi.SelfAttendenceApiResponce apiResponce = response.body();
+                            SelfAttendenceApiResponce apiResponce = response.body();
                             if (apiResponce != null) {
                                 if (apiResponce.getSuccess()) {
 
@@ -1134,7 +1134,7 @@ public class AttendanceFilterActivity extends Activity implements OnClickListene
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<SelfAttendenceApi.SelfAttendenceApiResponce> call, @NonNull Throwable t) {
+                    public void onFailure(@NonNull Call<SelfAttendenceApiResponce> call, @NonNull Throwable t) {
 
 
                         tv_search.setClickable(true);

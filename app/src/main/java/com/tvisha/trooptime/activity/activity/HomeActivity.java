@@ -68,7 +68,7 @@ import com.tvisha.trooptime.activity.activity.apiPostModels.Breaks_list;
 import com.tvisha.trooptime.activity.activity.apiPostModels.CheckUpdateResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.CommonResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.HomePageResponse;
-import com.tvisha.trooptime.activity.activity.apiPostModels.LogoutApi;
+import com.tvisha.trooptime.activity.activity.apiPostModels.LogoutApiResponce;
 import com.tvisha.trooptime.activity.activity.apiPostModels.SelfRequest;
 import com.tvisha.trooptime.activity.activity.apiPostModels.UpcomingEvent;
 import com.tvisha.trooptime.activity.activity.apiPostModels.UpcomingHolidy;
@@ -253,7 +253,7 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
             userId = sharedPreferences.getString(SharePreferenceKeys.USER_ID, "");
             deviceId = sharedPreferences.getString(SharePreferenceKeys.DEVICE_ID, "");
             token = sharedPreferences.getString(SharePreferenceKeys.API_KEY, "");
-            apiService = ApiClient.getClient().create(ApiInterface.class);
+            apiService = ApiClient.getInstance();
             if (isLogin) {
 
                 sendRegistrationToServer(refreshedToken);
@@ -607,7 +607,7 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
             logout = findViewById(R.id.logoutLayout);
             attendance = findViewById(R.id.attendanceLayout);
             navigation = findViewById(R.id.navigation);
-            apiService = ApiClient.getClient().create(ApiInterface.class);
+            apiService = ApiClient.getInstance();
             time = findViewById(R.id.time);
             dynamo = findViewById(R.id.dynamo);
             profile_pic = findViewById(R.id.profileImage);
@@ -875,12 +875,12 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void callToLogoutSrever() {
         try {
-            retrofit2.Call<LogoutApi.LogoutApiResponce> call = LogoutApi.getApiService().getLogoutDetails(sharedPreferences.getString(SharePreferenceKeys.USER_ID, ""), sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), sharedPreferences.getString(SharePreferenceKeys.FCM_TOKEN, ""));
-            call.enqueue(new retrofit2.Callback<LogoutApi.LogoutApiResponce>() {
+            retrofit2.Call<LogoutApiResponce> call = ApiClient.getInstance().getLogoutDetails(sharedPreferences.getString(SharePreferenceKeys.USER_ID, ""), sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), sharedPreferences.getString(SharePreferenceKeys.FCM_TOKEN, ""));
+            call.enqueue(new retrofit2.Callback<LogoutApiResponce>() {
                 @Override
-                public void onResponse(@NonNull Call<LogoutApi.LogoutApiResponce> call, @NonNull Response<LogoutApi.LogoutApiResponce> response) {
+                public void onResponse(@NonNull Call<LogoutApiResponce> call, @NonNull Response<LogoutApiResponce> response) {
                     if (response.code() == Constants.RESPONCE_SUCCESSFUL) {
-                        LogoutApi.LogoutApiResponce apiResponce = response.body();
+                        LogoutApiResponce apiResponce = response.body();
                         if (apiResponce != null) {
                             if (apiResponce.getSuccess()) {
                                 sharedPreferences.edit().clear().apply();
@@ -896,7 +896,7 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 }
 
                 @Override
-                public void onFailure(@NonNull Call<LogoutApi.LogoutApiResponce> call, @NonNull Throwable t) {
+                public void onFailure(@NonNull Call<LogoutApiResponce> call, @NonNull Throwable t) {
 
                 }
             });
@@ -969,7 +969,7 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
             selfAttendanceLayout = findViewById(R.id.selfAttendanceLayout);
             teamAttendanceLayout = findViewById(R.id.teamAttendanceLayout);
             teamRequestLayout = findViewById(R.id.teamRequestLayout);
-            apiService = ApiClient.getClient().create(ApiInterface.class);
+            apiService = ApiClient.getInstance();
             checkinTime = findViewById(R.id.checkinTime);
             totalHours = findViewById(R.id.totalHours);
             isHolidayStatus = findViewById(R.id.isHolidayStatus);

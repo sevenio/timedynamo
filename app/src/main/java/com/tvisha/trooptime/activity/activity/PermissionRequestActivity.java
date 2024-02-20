@@ -234,7 +234,7 @@ public class PermissionRequestActivity extends AppCompatActivity implements View
     private void initViews() {
         try {
             customProgressBar = new CustomProgressBar(PermissionRequestActivity.this);
-            apiService = ApiClient.getClient().create(ApiInterface.class);
+            apiService = ApiClient.getInstance();
             actionLable = (TextView) findViewById(R.id.actionLable);
             actionLable.setText("Request Permission");
             sendRequest = findViewById(R.id.submitForm);

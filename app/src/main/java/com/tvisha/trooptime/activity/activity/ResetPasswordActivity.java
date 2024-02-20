@@ -192,7 +192,7 @@ public class ResetPasswordActivity extends AppCompatActivity implements View.OnC
     private void initViews() {
         try {
             customProgressBar = new CustomProgressBar(ResetPasswordActivity.this);
-            apiService = ApiClient.getClient().create(ApiInterface.class);
+            apiService = ApiClient.getInstance();
             passwordEditText = findViewById(R.id.password);
             login = findViewById(R.id.tv_login);
             confirmPasswordEditText = findViewById(R.id.confirmPassword);

@@ -8,13 +8,6 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import com.google.android.material.navigation.NavigationView;
-import androidx.core.content.ContextCompat;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,11 +21,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.google.android.material.navigation.NavigationView;
+import com.tvisha.trooptime.R;
 import com.tvisha.trooptime.activity.activity.adapter.TroopTimeAdapter;
-import com.tvisha.trooptime.activity.activity.apiPostModels.AllAttendanceApi;
+import com.tvisha.trooptime.activity.activity.api.ApiClient;
+import com.tvisha.trooptime.activity.activity.api.ApiInterface;
+import com.tvisha.trooptime.activity.activity.apiPostModels.AllAttendenceApiResponce;
 import com.tvisha.trooptime.activity.activity.apiPostModels.Attendance;
-import com.tvisha.trooptime.activity.activity.apiPostModels.SelfAttendenceApi;
-import com.tvisha.trooptime.activity.activity.apiPostModels.TeamAttendanceApi;
+import com.tvisha.trooptime.activity.activity.apiPostModels.SelfAttendenceApiResponce;
+import com.tvisha.trooptime.activity.activity.apiPostModels.TeamAttendenceApiResponce;
 import com.tvisha.trooptime.activity.activity.helper.Constants;
 import com.tvisha.trooptime.activity.activity.helper.Navigation;
 import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys;
@@ -41,7 +45,6 @@ import com.tvisha.trooptime.activity.activity.model.CalenderModel;
 import com.tvisha.trooptime.activity.activity.model.SelfAttenedModel;
 import com.tvisha.trooptime.activity.activity.model.TeamAttenedModel;
 import com.tvisha.trooptime.activity.activity.model.TimeAndAttendenceModel;
-import com.tvisha.trooptime.R;
 
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
@@ -248,13 +251,13 @@ public class Employee_SelfAttendence extends Activity implements View.OnClickLis
 
     private void callToselfAttendence(String user_id, String f_date, String e_date) {
         try {
-            retrofit2.Call<SelfAttendenceApi.SelfAttendenceApiResponce> call = SelfAttendenceApi.getApiService()
+            retrofit2.Call<SelfAttendenceApiResponce> call = ApiClient.getInstance()
                     .getSelefAttendence(user_id, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), f_date, e_date, "", "");
-            call.enqueue(new retrofit2.Callback<SelfAttendenceApi.SelfAttendenceApiResponce>() {
+            call.enqueue(new retrofit2.Callback<SelfAttendenceApiResponce>() {
                 @Override
-                public void onResponse(@NonNull Call<SelfAttendenceApi.SelfAttendenceApiResponce> call, @NonNull Response<SelfAttendenceApi.SelfAttendenceApiResponce> response) {
+                public void onResponse(@NonNull Call<SelfAttendenceApiResponce> call, @NonNull Response<SelfAttendenceApiResponce> response) {
                     if (response.code() == Constants.RESPONCE_SUCCESSFUL) {
-                        SelfAttendenceApi.SelfAttendenceApiResponce attendenceApiResponce = response.body();
+                        SelfAttendenceApiResponce attendenceApiResponce = response.body();
                         if (attendenceApiResponce != null) {
                             if (attendenceApiResponce.getSuccess()) {
                                 if (attendence_arrayList != null && attendence_arrayList.size() > 0) {
@@ -271,7 +274,7 @@ public class Employee_SelfAttendence extends Activity implements View.OnClickLis
                 }
 
                 @Override
-                public void onFailure(@NonNull Call<SelfAttendenceApi.SelfAttendenceApiResponce> call, @NonNull Throwable t) {
+                public void onFailure(@NonNull Call<SelfAttendenceApiResponce> call, @NonNull Throwable t) {
                     swipe_refresh.setRefreshing(false);
 
                 }
@@ -879,13 +882,13 @@ public class Employee_SelfAttendence extends Activity implements View.OnClickLis
 
     private void callToserverToGetAllThedata(String userId, String date) {
         try {
-            retrofit2.Call<AllAttendanceApi.AllAttendenceApiResponce> call = AllAttendanceApi.getApiService()
+            retrofit2.Call<AllAttendenceApiResponce> call = ApiClient.getInstance()
                     .getAllAttendence(userId, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), date);
-            call.enqueue(new retrofit2.Callback<AllAttendanceApi.AllAttendenceApiResponce>() {
+            call.enqueue(new retrofit2.Callback<AllAttendenceApiResponce>() {
                 @Override
-                public void onResponse(@NonNull Call<AllAttendanceApi.AllAttendenceApiResponce> call, @NonNull Response<AllAttendanceApi.AllAttendenceApiResponce> response) {
+                public void onResponse(@NonNull Call<AllAttendenceApiResponce> call, @NonNull Response<AllAttendenceApiResponce> response) {
                     if (response.code() == Constants.RESPONCE_SUCCESSFUL) {
-                        AllAttendanceApi.AllAttendenceApiResponce attendenceApiResponce = response.body();
+                        AllAttendenceApiResponce attendenceApiResponce = response.body();
                         if (attendenceApiResponce != null) {
                             if (attendenceApiResponce.getSuccess()) {
                                 if (attendence_arrayList != null && attendence_arrayList.size() > 0) {
@@ -901,7 +904,7 @@ public class Employee_SelfAttendence extends Activity implements View.OnClickLis
                 }
 
                 @Override
-                public void onFailure(@NonNull Call<AllAttendanceApi.AllAttendenceApiResponce> call, @NonNull Throwable t) {
+                public void onFailure(@NonNull Call<AllAttendenceApiResponce> call, @NonNull Throwable t) {
                     swipe_refresh.setRefreshing(false);
                 }
             });
@@ -912,13 +915,13 @@ public class Employee_SelfAttendence extends Activity implements View.OnClickLis
 
     private void callToserverToGetThedata(String userId, String date) {
         try {
-            retrofit2.Call<TeamAttendanceApi.TeamAttendenceApiResponce> call = TeamAttendanceApi.getApiService()
+            retrofit2.Call<TeamAttendenceApiResponce> call = ApiClient.getInstance()
                     .getTeamfAttendence(userId, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), date);
-            call.enqueue(new retrofit2.Callback<TeamAttendanceApi.TeamAttendenceApiResponce>() {
+            call.enqueue(new retrofit2.Callback<TeamAttendenceApiResponce>() {
                 @Override
-                public void onResponse(@NonNull Call<TeamAttendanceApi.TeamAttendenceApiResponce> call, @NonNull Response<TeamAttendanceApi.TeamAttendenceApiResponce> response) {
+                public void onResponse(@NonNull Call<TeamAttendenceApiResponce> call, @NonNull Response<TeamAttendenceApiResponce> response) {
                     if (response.code() == Constants.RESPONCE_SUCCESSFUL) {
-                        TeamAttendanceApi.TeamAttendenceApiResponce attendenceApiResponce = response.body();
+                        TeamAttendenceApiResponce attendenceApiResponce = response.body();
                         if (attendenceApiResponce != null) {
                             if (attendenceApiResponce.getSuccess()) {
                                 if (attendence_arrayList != null && attendence_arrayList.size() > 0) {
@@ -934,7 +937,7 @@ public class Employee_SelfAttendence extends Activity implements View.OnClickLis
                 }
 
                 @Override
-                public void onFailure(@NonNull Call<TeamAttendanceApi.TeamAttendenceApiResponce> call, @NonNull Throwable t) {
+                public void onFailure(@NonNull Call<TeamAttendenceApiResponce> call, @NonNull Throwable t) {
                     swipe_refresh.setRefreshing(false);
                 }
             });

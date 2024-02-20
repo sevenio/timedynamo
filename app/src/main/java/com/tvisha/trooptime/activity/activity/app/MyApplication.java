@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.tvisha.trooptime.activity.activity.apiPostModels.GetAwsConfigResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.HomePageResponse;
+import com.tvisha.trooptime.activity.activity.apiPostModels.SelfAttendenceApiResponce;
 import com.tvisha.trooptime.activity.activity.apiPostModels.UserRequestListResponse;
 import com.tvisha.trooptime.activity.activity.helper.Constants;
 import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys;
@@ -27,7 +28,6 @@ import com.tvisha.trooptime.activity.activity.helper.SocketIo;
 import com.tvisha.trooptime.activity.activity.helper.UpdateHelper;
 import com.tvisha.trooptime.activity.activity.helper.Utilities;
 import com.tvisha.trooptime.activity.activity.api.ApiClient;
-import com.tvisha.trooptime.activity.activity.api.response.SelfAttendenceApiResponce;
 import com.tvisha.trooptime.activity.activity.handlers.HandlerHolder;
 
 import org.json.JSONArray;

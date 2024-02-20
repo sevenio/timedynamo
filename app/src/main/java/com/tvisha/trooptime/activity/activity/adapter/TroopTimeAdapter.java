@@ -89,7 +89,7 @@ public class TroopTimeAdapter extends RecyclerSwipeAdapter<TroopTimeAdapter.View
             is_self = true;
         }
         activity_class = employee;
-        apiService = ApiClient.getClient().create(ApiInterface.class);
+        apiService = ApiClient.getInstance();
         sharedPreferences = context.getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE);
         if (sharedPreferences.getBoolean(SharePreferenceKeys.SP_LOGIN_STATUS, false)) {
             shareprefernceData();

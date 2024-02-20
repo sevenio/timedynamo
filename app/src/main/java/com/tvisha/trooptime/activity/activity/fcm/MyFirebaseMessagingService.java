@@ -117,7 +117,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     public void callSaveFcmApi(String refreshedToken,String userId,String token,String deviceId) {
 
-        Call<CommonResponse> call = ApiClient.getClient().create(ApiInterface.class).saveFcmToken(token, userId, refreshedToken, "1", deviceId);
+        Call<CommonResponse> call = ApiClient.getInstance().saveFcmToken(token, userId, refreshedToken, "1", deviceId);
         call.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {

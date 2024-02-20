@@ -29,9 +29,7 @@ class SettingsViewmodel : ViewModel() {
     val isMuteTeamLeaveApprovalNotifications: MutableLiveData<Boolean> = MutableLiveData(true)
 
     private val apiService: ApiInterface by lazy {
-        ApiClient.getClient().create<ApiInterface>(
-            ApiInterface::class.java
-        )
+        ApiClient.getInstance()
     }
 
     val showProgress: MutableLiveData<Boolean> = MutableLiveData(false)

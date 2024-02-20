@@ -131,7 +131,7 @@ public class RequestCompoffActivity extends AppCompatActivity implements View.On
             compOffDate = findViewById(R.id.compOffDate);
             sendRequest = findViewById(R.id.submitForm);
             resonForPermission = (EditText) findViewById(R.id.resonForPermission);
-            apiService = ApiClient.getClient().create(ApiInterface.class);
+            apiService = ApiClient.getInstance();
             toUserName = findViewById(R.id.toUserName);
             ccUserName = findViewById(R.id.ccUserName);
 

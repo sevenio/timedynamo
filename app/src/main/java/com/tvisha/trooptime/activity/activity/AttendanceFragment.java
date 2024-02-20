@@ -74,6 +74,7 @@ import com.tvisha.trooptime.activity.activity.apiPostModels.LeaveReport;
 import com.tvisha.trooptime.activity.activity.apiPostModels.LeaveReportResponse;
 import com.tvisha.trooptime.activity.activity.apiPostModels.PermissionData;
 import com.tvisha.trooptime.activity.activity.apiPostModels.RequestCommentsResponse;
+import com.tvisha.trooptime.activity.activity.apiPostModels.SelfAttendenceApiResponce;
 import com.tvisha.trooptime.activity.activity.apiPostModels.SendCommentResponse;
 import com.tvisha.trooptime.activity.activity.dialog.CustomProgressBar;
 import com.tvisha.trooptime.activity.activity.helper.Constants;
@@ -82,7 +83,6 @@ import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys;
 import com.tvisha.trooptime.activity.activity.helper.Utilities;
 import com.tvisha.trooptime.activity.activity.api.ApiClient;
 import com.tvisha.trooptime.activity.activity.api.ApiInterface;
-import com.tvisha.trooptime.activity.activity.api.response.SelfAttendenceApiResponce;
 import com.tvisha.trooptime.activity.activity.app.MyApplication;
 import com.tvisha.trooptime.R;
 
@@ -600,7 +600,7 @@ public class AttendanceFragment extends Fragment implements TabLayout.OnTabSelec
             navigation = rootView.findViewById(R.id.navigation);
             attendanceTablayout = rootView.findViewById(R.id.attendanceTablayout);
             leaveTablayout = rootView.findViewById(R.id.leaveTablayout);
-            apiService = ApiClient.getClient().create(ApiInterface.class);
+            apiService = ApiClient.getInstance();
             customProgressBar = new CustomProgressBar(context);
 
 

@@ -37,7 +37,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.tvisha.trooptime.activity.activity.apiPostModels.LogoutApi;
+import com.tvisha.trooptime.activity.activity.apiPostModels.LogoutApiResponce;
 import com.tvisha.trooptime.activity.activity.helper.Constants;
 import com.tvisha.trooptime.activity.activity.helper.Navigation;
 import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys;
@@ -467,7 +467,7 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
         try {
             drawer = findViewById(R.id.drawer_layout);
             drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-            apiService = ApiClient.getClient().create(ApiInterface.class);
+            apiService = ApiClient.getInstance();
             time = findViewById(R.id.time);
             dynamo = findViewById(R.id.dynamo);
             navigation = findViewById(R.id.navigation);
@@ -615,12 +615,12 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
 
     private void callToLogoutSrever() {
         try {
-            retrofit2.Call<LogoutApi.LogoutApiResponce> call = LogoutApi.getApiService().getLogoutDetails(sharedPreferences.getString(SharePreferenceKeys.USER_ID, ""), sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), sharedPreferences.getString(SharePreferenceKeys.FCM_TOKEN, ""));
-            call.enqueue(new retrofit2.Callback<LogoutApi.LogoutApiResponce>() {
+            retrofit2.Call<LogoutApiResponce> call = ApiClient.getInstance().getLogoutDetails(sharedPreferences.getString(SharePreferenceKeys.USER_ID, ""), sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), sharedPreferences.getString(SharePreferenceKeys.FCM_TOKEN, ""));
+            call.enqueue(new retrofit2.Callback<LogoutApiResponce>() {
                 @Override
-                public void onResponse(@NonNull Call<LogoutApi.LogoutApiResponce> call, @NonNull Response<LogoutApi.LogoutApiResponce> response) {
+                public void onResponse(@NonNull Call<LogoutApiResponce> call, @NonNull Response<LogoutApiResponce> response) {
                     if (response.code() == Constants.RESPONCE_SUCCESSFUL) {
-                        LogoutApi.LogoutApiResponce apiResponce = response.body();
+                        LogoutApiResponce apiResponce = response.body();
                         if (apiResponce != null) {
                             if (apiResponce.getSuccess()) {
                                 sharedPreferences.edit().clear().apply();
@@ -634,7 +634,7 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
                 }
 
                 @Override
-                public void onFailure(@NonNull Call<LogoutApi.LogoutApiResponce> call, @NonNull Throwable t) {
+                public void onFailure(@NonNull Call<LogoutApiResponce> call, @NonNull Throwable t) {
 
                 }
             });

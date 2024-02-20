@@ -17,17 +17,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import androidx.annotation.NonNull;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.tabs.TabLayout;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -43,15 +32,32 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
+import com.tvisha.trooptime.R;
 import com.tvisha.trooptime.activity.activity.adapter.TroopTimeAdapter;
-import com.tvisha.trooptime.activity.activity.apiPostModels.AllAttendanceApi;
+import com.tvisha.trooptime.activity.activity.api.ApiClient;
+import com.tvisha.trooptime.activity.activity.api.ApiInterface;
+import com.tvisha.trooptime.activity.activity.apiPostModels.AllAttendenceApiResponce;
 import com.tvisha.trooptime.activity.activity.apiPostModels.Attendance;
 import com.tvisha.trooptime.activity.activity.apiPostModels.FcmUpdateResponce;
-import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAllAttendanceApi;
-import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAttendanceApi;
+import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAllAttendenceApiResponce;
+import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAttendenceApiResponce;
+import com.tvisha.trooptime.activity.activity.apiPostModels.SelfAttendenceApiResponce;
+import com.tvisha.trooptime.activity.activity.app.MyApplication;
 import com.tvisha.trooptime.activity.activity.dialog.CustomProgressBar;
 import com.tvisha.trooptime.activity.activity.dialog.RequestDialog;
 import com.tvisha.trooptime.activity.activity.helper.Constants;
@@ -60,11 +66,6 @@ import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys;
 import com.tvisha.trooptime.activity.activity.helper.Utilities;
 import com.tvisha.trooptime.activity.activity.model.CalenderModel;
 import com.tvisha.trooptime.activity.activity.model.SelfAttenedModel;
-import com.tvisha.trooptime.activity.activity.api.ApiClient;
-import com.tvisha.trooptime.activity.activity.api.ApiInterface;
-import com.tvisha.trooptime.activity.activity.api.response.SelfAttendenceApiResponce;
-import com.tvisha.trooptime.activity.activity.app.MyApplication;
-import com.tvisha.trooptime.R;
 
 import org.json.JSONObject;
 
@@ -1003,7 +1004,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
 
         try {
 
-            apiService = ApiClient.getClient().create(ApiInterface.class);
+            apiService = ApiClient.getInstance();
             customProgressBar = new CustomProgressBar(AttendanceActivity.this);
 
 
@@ -2012,13 +2013,13 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
             team = false;
             all = true;
             try {
-                retrofit2.Call<AllAttendanceApi.AllAttendenceApiResponce> call = AllAttendanceApi.getApiService().getAllAttendence(userId, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), date);
-                call.enqueue(new retrofit2.Callback<AllAttendanceApi.AllAttendenceApiResponce>() {
+                retrofit2.Call<AllAttendenceApiResponce> call = ApiClient.getInstance().getAllAttendence(userId, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), date);
+                call.enqueue(new retrofit2.Callback<AllAttendenceApiResponce>() {
                     @Override
-                    public void onResponse(@NonNull Call<AllAttendanceApi.AllAttendenceApiResponce> call, @NonNull Response<AllAttendanceApi.AllAttendenceApiResponce> response) {
+                    public void onResponse(@NonNull Call<AllAttendenceApiResponce> call, @NonNull Response<AllAttendenceApiResponce> response) {
                         if (response.code() == Constants.RESPONCE_SUCCESSFUL) {
                             closeProgress();
-                            AllAttendanceApi.AllAttendenceApiResponce attendenceApiResponce = response.body();
+                            AllAttendenceApiResponce attendenceApiResponce = response.body();
                             if (attendenceApiResponce != null) {
                                 if (attendenceApiResponce.getSuccess()) {
                                     if (attendence_arrayList != null && attendence_arrayList.size() > 0) {
@@ -2049,7 +2050,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<AllAttendanceApi.AllAttendenceApiResponce> call, @NonNull Throwable t) {
+                    public void onFailure(@NonNull Call<AllAttendenceApiResponce> call, @NonNull Throwable t) {
 
 
                         closeProgress();
@@ -2075,17 +2076,17 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
             //team attendance api
 
             try {
-                retrofit2.Call<FilterAttendanceApi.FilterAttendenceApiResponce> call = FilterAttendanceApi.getApiService()
+                retrofit2.Call<FilterAttendenceApiResponce> call =  ApiClient.getInstance()
                         .getFilterAttendence(userId, date, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""),
                                 employee_userid.trim(), attendance_filter, filte_working_time);
 
 
-                call.enqueue(new retrofit2.Callback<FilterAttendanceApi.FilterAttendenceApiResponce>() {
+                call.enqueue(new retrofit2.Callback<FilterAttendenceApiResponce>() {
                     @Override
-                    public void onResponse(@NonNull Call<FilterAttendanceApi.FilterAttendenceApiResponce> call, @NonNull Response<FilterAttendanceApi.FilterAttendenceApiResponce> response) {
+                    public void onResponse(@NonNull Call<FilterAttendenceApiResponce> call, @NonNull Response<FilterAttendenceApiResponce> response) {
 
 
-                        FilterAttendanceApi.FilterAttendenceApiResponce attendenceApiResponce = response.body();
+                        FilterAttendenceApiResponce attendenceApiResponce = response.body();
                         closeProgress();
                         if (attendenceApiResponce != null) {
                             if (attendenceApiResponce.getSuccess()) {
@@ -2117,7 +2118,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<FilterAttendanceApi.FilterAttendenceApiResponce> call, @NonNull Throwable t) {
+                    public void onFailure(@NonNull Call<FilterAttendenceApiResponce> call, @NonNull Throwable t) {
                         closeProgress();
                     }
                 });
@@ -2148,17 +2149,17 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
             openProgress();
 
 
-            retrofit2.Call<FilterAllAttendanceApi.FilterAllAttendenceApiResponce> call = FilterAllAttendanceApi.getApiService()
+            retrofit2.Call<FilterAllAttendenceApiResponce> call = ApiClient.getInstance()
                     .getFilterAllAttendence(userId, selected_date, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""),
                             employee_userid.trim(), Integer.parseInt(attendance_filter), Integer.parseInt(filte_working_time));
 
 
-            call.enqueue(new retrofit2.Callback<FilterAllAttendanceApi.FilterAllAttendenceApiResponce>() {
+            call.enqueue(new retrofit2.Callback<FilterAllAttendenceApiResponce>() {
                 @Override
-                public void onResponse(@NonNull Call<FilterAllAttendanceApi.FilterAllAttendenceApiResponce> call, @NonNull Response<FilterAllAttendanceApi.FilterAllAttendenceApiResponce> response) {
+                public void onResponse(@NonNull Call<FilterAllAttendenceApiResponce> call, @NonNull Response<FilterAllAttendenceApiResponce> response) {
                     if (response.code() == Constants.RESPONCE_SUCCESSFUL) {
                         closeProgress();
-                        FilterAllAttendanceApi.FilterAllAttendenceApiResponce attendenceApiResponce = response.body();
+                        FilterAllAttendenceApiResponce attendenceApiResponce = response.body();
 
                         if (attendenceApiResponce != null) {
                             if (attendenceApiResponce.getSuccess()) {
@@ -2188,7 +2189,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
                 }
 
                 @Override
-                public void onFailure(@NonNull Call<FilterAllAttendanceApi.FilterAllAttendenceApiResponce> call, @NonNull Throwable t) {
+                public void onFailure(@NonNull Call<FilterAllAttendenceApiResponce> call, @NonNull Throwable t) {
 
 
                     closeProgress();
@@ -2219,17 +2220,17 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
             openProgress();
 
 
-            retrofit2.Call<FilterAttendanceApi.FilterAttendenceApiResponce> call = FilterAttendanceApi.getApiService()
+            retrofit2.Call<FilterAttendenceApiResponce> call =  ApiClient.getInstance()
                     .getFilterAttendence(userId, selected_date, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""),
                             employee_userid.trim(), attendance_filter + "", filte_working_time + "");
 
 
-            call.enqueue(new retrofit2.Callback<FilterAttendanceApi.FilterAttendenceApiResponce>() {
+            call.enqueue(new retrofit2.Callback<FilterAttendenceApiResponce>() {
                 @Override
-                public void onResponse(@NonNull Call<FilterAttendanceApi.FilterAttendenceApiResponce> call, @NonNull Response<FilterAttendanceApi.FilterAttendenceApiResponce> response) {
+                public void onResponse(@NonNull Call<FilterAttendenceApiResponce> call, @NonNull Response<FilterAttendenceApiResponce> response) {
                     if (response.code() == Constants.RESPONCE_SUCCESSFUL) {
                         closeProgress();
-                        FilterAttendanceApi.FilterAttendenceApiResponce attendenceApiResponce = response.body();
+                        FilterAttendenceApiResponce attendenceApiResponce = response.body();
                         /*Log.e("response", attendenceApiResponce.toString());*/
                         if (attendenceApiResponce != null) {
                             if (attendenceApiResponce.getSuccess()) {
@@ -2263,7 +2264,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
                 }
 
                 @Override
-                public void onFailure(@NonNull Call<FilterAttendanceApi.FilterAttendenceApiResponce> call, @NonNull Throwable t) {
+                public void onFailure(@NonNull Call<FilterAttendenceApiResponce> call, @NonNull Throwable t) {
 
                     closeProgress();
                 }

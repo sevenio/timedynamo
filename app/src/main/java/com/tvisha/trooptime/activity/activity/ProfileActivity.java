@@ -184,7 +184,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             customProgressBar = new CustomProgressBar(ProfileActivity.this);
             sharedPreferences = getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE);
             shareprefernceData();
-            apiService = ApiClient.getClient().create(ApiInterface.class);
+            apiService = ApiClient.getInstance();
             setupUI(findViewById(R.id.ll_layout));
             backImage = findViewById(R.id.backImage);
             logoutImage = findViewById(R.id.logoutImage);

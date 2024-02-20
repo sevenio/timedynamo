@@ -353,7 +353,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         selfAttendanceLayout = rootView.findViewById(R.id.selfAttendanceLayout);
         teamAttendanceLayout = rootView.findViewById(R.id.teamAttendanceLayout);
         teamRequestLayout = rootView.findViewById(R.id.teamRequestLayout);
-        apiService = ApiClient.getClient().create(ApiInterface.class);
+        apiService = ApiClient.getInstance();
         checkinTime = rootView.findViewById(R.id.checkinTime);
         totalHours = rootView.findViewById(R.id.totalHours);
         isHolidayStatus = rootView.findViewById(R.id.isHolidayStatus);

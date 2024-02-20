@@ -115,7 +115,7 @@ public class RequestFilterActivity extends Activity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.filter_req_layout);
         customProgressBar = new CustomProgressBar(RequestFilterActivity.this);
-        apiService = ApiClient.getClient().create(ApiInterface.class);
+        apiService = ApiClient.getInstance();
         sharedPreferences = getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE);
         userId = sharedPreferences.getString(SharePreferenceKeys.USER_ID, "");
         if (getIntent().getExtras() != null) {

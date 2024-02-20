@@ -45,10 +45,12 @@ import java.util.Locale;
 
 import com.tvisha.trooptime.activity.activity.adapter.TroopTimeAdapter;
 
+import com.tvisha.trooptime.activity.activity.api.ApiClient;
+import com.tvisha.trooptime.activity.activity.api.ApiInterface;
 import com.tvisha.trooptime.activity.activity.apiPostModels.Attendance;
-import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAllAttendanceApi;
-import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAttendanceApi;
-import com.tvisha.trooptime.activity.activity.apiPostModels.SelfAttendenceApi;
+import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAllAttendenceApiResponce;
+import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAttendenceApiResponce;
+import com.tvisha.trooptime.activity.activity.apiPostModels.SelfAttendenceApiResponce;
 import com.tvisha.trooptime.activity.activity.helper.Constants;
 import com.tvisha.trooptime.activity.activity.helper.Navigation;
 import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys;
@@ -1046,14 +1048,14 @@ public  class FilterFragment extends Fragment implements View.OnClickListener, C
     }
     private void callToserverToGetThedata(String date) {
         try {
-            retrofit2.Call<FilterAttendanceApi.FilterAttendenceApiResponce> call = FilterAttendanceApi.getApiService()
+            retrofit2.Call<FilterAttendenceApiResponce> call =  ApiClient.getInstance()
                     .getFilterAttendence(userId,clciked_date,sharedPreferences.getString(SharePreferenceKeys.API_KEY,""),
                             emp_userId,attendance_filter+"",filte_working_time+"");
-            call.enqueue(new retrofit2.Callback<FilterAttendanceApi.FilterAttendenceApiResponce>() {
+            call.enqueue(new retrofit2.Callback<FilterAttendenceApiResponce>() {
                 @Override
-                public void onResponse(@NonNull Call<FilterAttendanceApi.FilterAttendenceApiResponce> call, @NonNull Response<FilterAttendanceApi.FilterAttendenceApiResponce> response) {
+                public void onResponse(@NonNull Call<FilterAttendenceApiResponce> call, @NonNull Response<FilterAttendenceApiResponce> response) {
                     if (response.code()== Constants.RESPONCE_SUCCESSFUL){
-                        FilterAttendanceApi.FilterAttendenceApiResponce attendenceApiResponce = response.body();
+                        FilterAttendenceApiResponce attendenceApiResponce = response.body();
                         if (attendenceApiResponce!=null){
                             if (attendenceApiResponce.getSuccess()){
                                 if (attendence_arrayList!=null && attendence_arrayList.size()>0){
@@ -1069,7 +1071,7 @@ public  class FilterFragment extends Fragment implements View.OnClickListener, C
                     }
                 }
                 @Override
-                public void onFailure(@NonNull Call<FilterAttendanceApi.FilterAttendenceApiResponce> call,@NonNull Throwable t) {
+                public void onFailure(@NonNull Call<FilterAttendenceApiResponce> call, @NonNull Throwable t) {
                     swipe_refresh.setRefreshing(false);
                 }
             });
@@ -1080,14 +1082,14 @@ public  class FilterFragment extends Fragment implements View.OnClickListener, C
 
     private void callToServerToGetSelfData(String date) {
         try {
-            retrofit2.Call<SelfAttendenceApi.SelfAttendenceApiResponce> call =
-                    SelfAttendenceApi.getApiService().getSelefAttendence(userId,sharedPreferences.getString(SharePreferenceKeys.API_KEY,""),
+            retrofit2.Call<SelfAttendenceApiResponce> call =
+                    ApiClient.getInstance().getSelefAttendence(userId,sharedPreferences.getString(SharePreferenceKeys.API_KEY,""),
                             fromDate,toDate,String.valueOf(attendance_filter),String .valueOf(filte_working_time));
-            call.enqueue(new retrofit2.Callback<SelfAttendenceApi.SelfAttendenceApiResponce>() {
+            call.enqueue(new retrofit2.Callback<SelfAttendenceApiResponce>() {
                 @Override
-                public void onResponse(@NonNull Call<SelfAttendenceApi.SelfAttendenceApiResponce> call, @NonNull Response<SelfAttendenceApi.SelfAttendenceApiResponce> response) {
+                public void onResponse(@NonNull Call<SelfAttendenceApiResponce> call, @NonNull Response<SelfAttendenceApiResponce> response) {
                     if (response.code()== Constants.RESPONCE_SUCCESSFUL){
-                        SelfAttendenceApi.SelfAttendenceApiResponce attendenceApiResponce = response.body();
+                        SelfAttendenceApiResponce attendenceApiResponce = response.body();
                         if (attendenceApiResponce!=null){
                             if (attendenceApiResponce.getSuccess()){
                                 if (attendence_arrayList!=null && attendence_arrayList.size()>0){
@@ -1116,7 +1118,7 @@ public  class FilterFragment extends Fragment implements View.OnClickListener, C
                     }
                 }
                 @Override
-                public void onFailure(@NonNull Call<SelfAttendenceApi.SelfAttendenceApiResponce> call,@NonNull Throwable t) {
+                public void onFailure(@NonNull Call<SelfAttendenceApiResponce> call,@NonNull Throwable t) {
                     swipe_refresh.setRefreshing(false);
                 }
             });
@@ -1127,14 +1129,14 @@ public  class FilterFragment extends Fragment implements View.OnClickListener, C
     private void callToserverToGetAllThedata(String date) {
         try {
 
-            retrofit2.Call<FilterAllAttendanceApi.FilterAllAttendenceApiResponce> call = FilterAllAttendanceApi.getApiService()
+            retrofit2.Call<FilterAllAttendenceApiResponce> call = ApiClient.getInstance()
                     .getFilterAllAttendence(userId,clciked_date,sharedPreferences.getString(SharePreferenceKeys.API_KEY,""),
                             emp_userId,attendance_filter,filte_working_time);
-            call.enqueue(new retrofit2.Callback<FilterAllAttendanceApi.FilterAllAttendenceApiResponce>() {
+            call.enqueue(new retrofit2.Callback<FilterAllAttendenceApiResponce>() {
                 @Override
-                public void onResponse(@NonNull Call<FilterAllAttendanceApi.FilterAllAttendenceApiResponce> call, @NonNull Response<FilterAllAttendanceApi.FilterAllAttendenceApiResponce> response) {
+                public void onResponse(@NonNull Call<FilterAllAttendenceApiResponce> call, @NonNull Response<FilterAllAttendenceApiResponce> response) {
                     if (response.code()== Constants.RESPONCE_SUCCESSFUL){
-                        FilterAllAttendanceApi.FilterAllAttendenceApiResponce attendenceApiResponce = response.body();
+                        FilterAllAttendenceApiResponce attendenceApiResponce = response.body();
                         if (attendenceApiResponce!=null){
                             if (attendenceApiResponce.getSuccess()){
                                 if (attendence_arrayList!=null && attendence_arrayList.size()>0){
@@ -1150,7 +1152,7 @@ public  class FilterFragment extends Fragment implements View.OnClickListener, C
                     }
                 }
                 @Override
-                public void onFailure(@NonNull Call<FilterAllAttendanceApi.FilterAllAttendenceApiResponce> call,@NonNull Throwable t) {
+                public void onFailure(@NonNull Call<FilterAllAttendenceApiResponce> call, @NonNull Throwable t) {
                     swipe_refresh.setRefreshing(false);
                 }
             });

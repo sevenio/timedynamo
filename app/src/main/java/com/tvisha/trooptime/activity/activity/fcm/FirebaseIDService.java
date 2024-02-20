@@ -73,7 +73,7 @@ public class FirebaseIDService extends FirebaseMessagingService {
             userId = sharedPreferences.getString(SharePreferenceKeys.USER_ID, "");
             deviceId = sharedPreferences.getString(SharePreferenceKeys.DEVICE_ID, "");
             token = sharedPreferences.getString(SharePreferenceKeys.API_KEY, "");
-            apiService = ApiClient.getClient().create(ApiInterface.class);
+            apiService = ApiClient.getInstance();
             if (isLogin) {
                 sendRegistrationToServer(refreshedToken);
             }
