@@ -8,19 +8,19 @@ public class PoppinsMediumRadioButton extends androidx.appcompat.widget.AppCompa
         super(context);
         //setTypeface(Utility.getTypefaceMedium(context), Typeface.NORMAL);
         //  this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Light.ttf"));
-        this.setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Light.ttf"));
+        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Light.ttf"));
     }
 
     public PoppinsMediumRadioButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         //setTypeface(Utility.getTypefaceMedium(context), Typeface.NORMAL);
         //  this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Light.ttf"));
-        this.setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Light.ttf"));
+        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Light.ttf"));
     }
 
     public PoppinsMediumRadioButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         // this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Light.ttf"));
-        this.setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Light.ttf"));
+        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Light.ttf"));
     }
 }

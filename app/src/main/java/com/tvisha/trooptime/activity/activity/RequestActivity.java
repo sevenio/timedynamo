@@ -37,11 +37,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.tvisha.trooptime.activity.activity.ApiPostModels.LogoutApi;
-import com.tvisha.trooptime.activity.activity.Helper.Constants;
-import com.tvisha.trooptime.activity.activity.Helper.Navigation;
-import com.tvisha.trooptime.activity.activity.Helper.SharePreferenceKeys;
-import com.tvisha.trooptime.activity.activity.Helper.ToastUtil;
+import com.tvisha.trooptime.activity.activity.apiPostModels.LogoutApi;
+import com.tvisha.trooptime.activity.activity.helper.Constants;
+import com.tvisha.trooptime.activity.activity.helper.Navigation;
+import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys;
+import com.tvisha.trooptime.activity.activity.helper.ToastUtil;
 import com.tvisha.trooptime.activity.activity.api.ApiClient;
 import com.tvisha.trooptime.activity.activity.api.ApiInterface;
 import com.tvisha.trooptime.activity.activity.app.MyApplication;

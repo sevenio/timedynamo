@@ -3,8 +3,8 @@ package com.tvisha.trooptime.activity.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.tvisha.trooptime.activity.activity.Helper.Navigation
-import com.tvisha.trooptime.activity.activity.Helper.SharePreferenceKeys
+import com.tvisha.trooptime.activity.activity.helper.Navigation
+import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys
 import com.tvisha.trooptime.databinding.ActivitySpalshBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

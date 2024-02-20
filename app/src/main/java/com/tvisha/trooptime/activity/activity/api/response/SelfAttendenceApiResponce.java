@@ -2,7 +2,7 @@ package com.tvisha.trooptime.activity.activity.api.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.tvisha.trooptime.activity.activity.ApiPostModels.Attendance;
+import com.tvisha.trooptime.activity.activity.apiPostModels.Attendance;
 
 import java.util.List;
 

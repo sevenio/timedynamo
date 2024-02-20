@@ -3,10 +3,7 @@ package com.tvisha.trooptime.activity.activity.viewmodels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tvisha.trooptime.activity.activity.ApiPostModels.Users
-import com.tvisha.trooptime.activity.activity.db.UserTable
 import com.tvisha.trooptime.activity.activity.db.UsersModel
 import com.tvisha.trooptime.activity.activity.db.UsersTable
 import kotlinx.coroutines.Dispatchers

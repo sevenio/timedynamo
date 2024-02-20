@@ -20,8 +20,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.tvisha.trooptime.R
-import com.tvisha.trooptime.activity.activity.Dialog.CustomProgressBar
-import com.tvisha.trooptime.activity.activity.Helper.SharePreferenceKeys
+import com.tvisha.trooptime.activity.activity.dialog.CustomProgressBar
+import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys
 import com.tvisha.trooptime.activity.activity.viewmodels.SettingsViewmodel
 import com.tvisha.trooptime.databinding.FragmentSettingsBinding
 import kotlinx.coroutines.launch

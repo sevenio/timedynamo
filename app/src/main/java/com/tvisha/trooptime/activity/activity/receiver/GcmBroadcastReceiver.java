@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.tvisha.trooptime.activity.activity.Helper.NotificationHelper;
+import com.tvisha.trooptime.activity.activity.helper.NotificationHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.tvisha.trooptime.activity.activity.Adapter.NotificationsAdapter;
-import com.tvisha.trooptime.activity.activity.Model.NotificationModel;
+import com.tvisha.trooptime.activity.activity.adapter.NotificationsAdapter;
+import com.tvisha.trooptime.activity.activity.model.NotificationModel;
 import com.tvisha.trooptime.R;
 
 import java.util.ArrayList;

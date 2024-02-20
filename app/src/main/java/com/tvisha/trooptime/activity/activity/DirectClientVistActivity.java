@@ -14,12 +14,12 @@ import android.widget.TextView;
 
 import com.tokenautocomplete.FilteredArrayAdapter;
 import com.tokenautocomplete.TokenCompleteTextView;
-import com.tvisha.trooptime.activity.activity.ApiHelper.ApiHelper;
-import com.tvisha.trooptime.activity.activity.Dialog.TimePicker;
-import com.tvisha.trooptime.activity.activity.Helper.Helper;
-import com.tvisha.trooptime.activity.activity.Helper.ServerUrls;
-import com.tvisha.trooptime.activity.activity.Helper.ToastUtil;
-import com.tvisha.trooptime.activity.activity.Model.Person;
+import com.tvisha.trooptime.activity.activity.apiHelper.ApiHelper;
+import com.tvisha.trooptime.activity.activity.dialog.TimePicker;
+import com.tvisha.trooptime.activity.activity.helper.Helper;
+import com.tvisha.trooptime.activity.activity.helper.ServerUrls;
+import com.tvisha.trooptime.activity.activity.helper.ToastUtil;
+import com.tvisha.trooptime.activity.activity.model.Person;
 import com.tvisha.trooptime.activity.activity.customViews.ContactsCompletionView;
 import com.tvisha.trooptime.R;
 

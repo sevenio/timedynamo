@@ -6,7 +6,7 @@ package com.tvisha.trooptime.activity.activity.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.tvisha.trooptime.activity.activity.Helper.ServerUrls;
+import com.tvisha.trooptime.activity.activity.helper.ServerUrls;
 
 import java.util.concurrent.TimeUnit;
 

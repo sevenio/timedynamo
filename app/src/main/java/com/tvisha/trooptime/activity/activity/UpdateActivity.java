@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.tvisha.trooptime.activity.activity.Helper.Navigation;
-import com.tvisha.trooptime.activity.activity.Helper.SharePreferenceKeys;
+import com.tvisha.trooptime.activity.activity.helper.Navigation;
+import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys;
 import com.tvisha.trooptime.R;
 
 public class UpdateActivity extends AppCompatActivity implements View.OnClickListener {

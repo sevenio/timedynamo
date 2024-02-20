@@ -3,7 +3,7 @@ package com.tvisha.trooptime.activity.activity.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tvisha.trooptime.activity.activity.ApiPostModels.ForgotPasswordResponce
+import com.tvisha.trooptime.activity.activity.apiPostModels.ForgotPasswordResponce
 import com.tvisha.trooptime.activity.activity.api.ApiClient
 import com.tvisha.trooptime.activity.activity.api.ApiInterface
 import kotlinx.coroutines.launch

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
 
-import com.tvisha.trooptime.activity.activity.Helper.ServerUrls;
+import com.tvisha.trooptime.activity.activity.helper.ServerUrls;
 
 import java.io.File;
 import java.io.FileOutputStream;

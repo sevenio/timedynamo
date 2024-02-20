@@ -9,14 +9,14 @@ public class PoppinsSemiBoldTextView extends androidx.appcompat.widget.AppCompat
         super(context);
         //setTypeface(Utility.getTypefaceBold(context));
         // this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-SemiBold.ttf"));
-        this.setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-SemiBold.ttf"));
+        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-SemiBold.ttf"));
     }
 
     public PoppinsSemiBoldTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         //setTypeface(Utility.getTypefaceBold(context));
         //  this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-SemiBold.ttf"));
-        this.setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-SemiBold.ttf"));
+        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-SemiBold.ttf"));
 
     }
 
@@ -24,6 +24,6 @@ public class PoppinsSemiBoldTextView extends androidx.appcompat.widget.AppCompat
         super(context, attrs, defStyleAttr);
         //setTypeface(Utility.getTypefaceBold(context));
         //  this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-SemiBold.ttf"));
-        this.setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-SemiBold.ttf"));
+        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-SemiBold.ttf"));
     }
 }

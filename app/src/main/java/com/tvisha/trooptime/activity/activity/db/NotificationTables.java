@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.lifecycle.LiveData;
 
-import com.tvisha.trooptime.activity.activity.Model.Notification;
+import com.tvisha.trooptime.activity.activity.model.Notification;
 
 import org.json.JSONObject;
 

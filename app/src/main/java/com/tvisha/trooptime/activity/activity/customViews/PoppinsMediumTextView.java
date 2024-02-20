@@ -8,18 +8,18 @@ public class PoppinsMediumTextView extends androidx.appcompat.widget.AppCompatTe
     public PoppinsMediumTextView(Context context) {
         super(context);
         //setTypeface(Utility.getTypefaceMedium(context), Typeface.NORMAL);
-        this.setTypeface(Typeface.createFromAsset(context.getAssets(), "font/poppins/Poppins-Medium.ttf"));
+        setTypeface(Typeface.createFromAsset(context.getAssets(), "font/poppins/Poppins-Medium.ttf"));
     }
 
     public PoppinsMediumTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         //setTypeface(Utility.getTypefaceMedium(context), Typeface.NORMAL);
-        this.setTypeface(Typeface.createFromAsset(context.getAssets(), "font/poppins/Poppins-Medium.ttf"));
+        setTypeface(Typeface.createFromAsset(context.getAssets(), "font/poppins/Poppins-Medium.ttf"));
     }
 
     public PoppinsMediumTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         //setTypeface(Utility.getTypefaceMedium(context), Typeface.NORMAL);
-        this.setTypeface(Typeface.createFromAsset(context.getAssets(), "font/poppins/Poppins-Medium.ttf"));
+        setTypeface(Typeface.createFromAsset(context.getAssets(), "font/poppins/Poppins-Medium.ttf"));
     }
 }

@@ -9,14 +9,14 @@ public class PoppinsBoldButton extends androidx.appcompat.widget.AppCompatButton
         super(context);
         //setTypeface(Utility.getTypefaceBold(context));
         //this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Bold.ttf"));
-        this.setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Bold.ttf"));
+        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Bold.ttf"));
     }
 
     public PoppinsBoldButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         //setTypeface(Utility.getTypefaceBold(context));
         //this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Bold.ttf"));
-        this.setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Bold.ttf"));
+        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Bold.ttf"));
 
     }
 
@@ -24,6 +24,6 @@ public class PoppinsBoldButton extends androidx.appcompat.widget.AppCompatButton
         super(context, attrs, defStyleAttr);
         //setTypeface(Utility.getTypefaceBold(context));
         //this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Bold.ttf"));
-        this.setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Bold.ttf"));
+        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Bold.ttf"));
     }
 }

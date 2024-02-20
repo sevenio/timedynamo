@@ -1,9 +1,7 @@
 package com.tvisha.trooptime.activity.activity.viewmodels
 
-import android.util.Log
-import android.view.View
 import androidx.lifecycle.*
-import com.tvisha.trooptime.activity.activity.ApiPostModels.ForgotPasswordResponce
+import com.tvisha.trooptime.activity.activity.apiPostModels.ForgotPasswordResponce
 import com.tvisha.trooptime.activity.activity.api.ApiClient
 import com.tvisha.trooptime.activity.activity.api.ApiInterface
 import kotlinx.coroutines.launch

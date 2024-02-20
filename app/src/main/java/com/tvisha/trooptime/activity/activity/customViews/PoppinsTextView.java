@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 
-import com.tvisha.trooptime.activity.activity.Helper.Utility;
+import com.tvisha.trooptime.activity.activity.helper.Utility;
 
 
 public class PoppinsTextView extends androidx.appcompat.widget.AppCompatTextView {

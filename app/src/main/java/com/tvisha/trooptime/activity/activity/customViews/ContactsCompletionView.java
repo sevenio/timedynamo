@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tokenautocomplete.TokenCompleteTextView;
-import com.tvisha.trooptime.activity.activity.Model.Person;
+import com.tvisha.trooptime.activity.activity.model.Person;
 import com.tvisha.trooptime.R;
 
 /**

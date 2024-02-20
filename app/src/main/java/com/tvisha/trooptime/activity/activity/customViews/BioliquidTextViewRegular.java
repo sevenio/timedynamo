@@ -12,20 +12,20 @@ public class BioliquidTextViewRegular extends androidx.appcompat.widget.AppCompa
         super(context);
         //setTypeface(Utility.getTypefaceMedium(context));
         //this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/bioliquid-Regular.ttf"));
-        this.setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/bioliquid-Regular.ttf"));
+        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/bioliquid-Regular.ttf"));
     }
 
     public BioliquidTextViewRegular(Context context, AttributeSet attrs) {
         super(context, attrs);
         //setTypeface(Utility.getTypefaceMedium(context));
         // this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/bioliquid-Regular.ttf"));
-        this.setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/bioliquid-Regular.ttf"));
+        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/bioliquid-Regular.ttf"));
     }
 
     public BioliquidTextViewRegular(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         //setTypeface(Utility.getTypefaceMedium(context));
         //  this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/bioliquid-Regular.ttf"));
-        this.setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/bioliquid-Regular.ttf"));
+        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/bioliquid-Regular.ttf"));
     }
 }

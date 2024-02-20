@@ -43,17 +43,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-import com.tvisha.trooptime.activity.activity.Adapter.TroopTimeAdapter;
+import com.tvisha.trooptime.activity.activity.adapter.TroopTimeAdapter;
 
-import com.tvisha.trooptime.activity.activity.ApiPostModels.Attendance;
-import com.tvisha.trooptime.activity.activity.ApiPostModels.FilterAllAttendanceApi;
-import com.tvisha.trooptime.activity.activity.ApiPostModels.FilterAttendanceApi;
-import com.tvisha.trooptime.activity.activity.ApiPostModels.SelfAttendenceApi;
-import com.tvisha.trooptime.activity.activity.Helper.Constants;
-import com.tvisha.trooptime.activity.activity.Helper.Navigation;
-import com.tvisha.trooptime.activity.activity.Helper.SharePreferenceKeys;
-import com.tvisha.trooptime.activity.activity.Helper.Utilities;
-import com.tvisha.trooptime.activity.activity.Model.CalenderModel;
+import com.tvisha.trooptime.activity.activity.apiPostModels.Attendance;
+import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAllAttendanceApi;
+import com.tvisha.trooptime.activity.activity.apiPostModels.FilterAttendanceApi;
+import com.tvisha.trooptime.activity.activity.apiPostModels.SelfAttendenceApi;
+import com.tvisha.trooptime.activity.activity.helper.Constants;
+import com.tvisha.trooptime.activity.activity.helper.Navigation;
+import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys;
+import com.tvisha.trooptime.activity.activity.helper.Utilities;
+import com.tvisha.trooptime.activity.activity.model.CalenderModel;
 
 import com.tvisha.trooptime.activity.activity.AttendanceActivity;
 import com.tvisha.trooptime.R;

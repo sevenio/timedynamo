@@ -6,7 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.tvisha.trooptime.activity.activity.Model.PhoneNumberModel;
+
+import com.tvisha.trooptime.activity.activity.model.PhoneNumberModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
  * Created by tvisha on 14/4/17.
  */
 
-class DbHelper extends SQLiteOpenHelper {
+public class DbHelper extends SQLiteOpenHelper {
     public static final String DBNAME = "MyDb";
     public static final String TBNAME = "phone_table";
     public static final String MOBILENO = "mobile_no";

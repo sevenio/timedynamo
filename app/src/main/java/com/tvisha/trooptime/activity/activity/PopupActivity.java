@@ -27,13 +27,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tvisha.trooptime.activity.activity.Api_Helper.ApiCallHelper;
-import com.tvisha.trooptime.activity.activity.Helper.Navigation;
-import com.tvisha.trooptime.activity.activity.Helper.ServerUrls;
-import com.tvisha.trooptime.activity.activity.Helper.SharePreferenceKeys;
-import com.tvisha.trooptime.activity.activity.Helper.Utilities;
-import com.tvisha.trooptime.activity.activity.Model.PhoneNumberModel;
-import com.tvisha.trooptime.activity.activity.Service.MyAlarmService;
+import com.tvisha.trooptime.activity.activity.api_Helper.ApiCallHelper;
+import com.tvisha.trooptime.activity.activity.helper.Navigation;
+import com.tvisha.trooptime.activity.activity.helper.ServerUrls;
+import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys;
+import com.tvisha.trooptime.activity.activity.helper.Utilities;
+import com.tvisha.trooptime.activity.activity.model.PhoneNumberModel;
+import com.tvisha.trooptime.activity.activity.service.MyAlarmService;
 import com.tvisha.trooptime.R;
 
 import org.json.JSONArray;

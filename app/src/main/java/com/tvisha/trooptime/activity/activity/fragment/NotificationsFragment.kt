@@ -20,10 +20,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
-import com.google.gson.Gson
 import com.tvisha.trooptime.R
-import com.tvisha.trooptime.activity.activity.Dialog.CustomProgressBar
-import com.tvisha.trooptime.activity.activity.Helper.SharePreferenceKeys
+import com.tvisha.trooptime.activity.activity.dialog.CustomProgressBar
+import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys
 import com.tvisha.trooptime.activity.activity.viewmodels.NotificationFragmentType
 import com.tvisha.trooptime.activity.activity.viewmodels.NotificationViewmodel
 import com.tvisha.trooptime.databinding.FragmentNotificationsBinding

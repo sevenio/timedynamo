@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.hardware.usb.UsbManager;
 
-import com.tvisha.trooptime.activity.activity.Helper.Constants;
+import com.tvisha.trooptime.activity.activity.helper.Constants;
 import com.tvisha.trooptime.activity.activity.handlers.HandlerHolder;
 
 /**

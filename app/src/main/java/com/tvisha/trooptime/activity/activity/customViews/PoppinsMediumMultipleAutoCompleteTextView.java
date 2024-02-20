@@ -3,7 +3,7 @@ package com.tvisha.trooptime.activity.activity.customViews;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.tvisha.trooptime.activity.activity.Helper.Utility;
+import com.tvisha.trooptime.activity.activity.helper.Utility;
 
 /**
  * Created by koti on 18/4/17.

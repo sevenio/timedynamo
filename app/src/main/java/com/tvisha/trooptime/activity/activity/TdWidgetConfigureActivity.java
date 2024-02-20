@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.tvisha.trooptime.activity.activity.Helper.Navigation;
+import com.tvisha.trooptime.activity.activity.helper.Navigation;
 import com.tvisha.trooptime.R;
 
 /**

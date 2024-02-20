@@ -17,11 +17,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tvisha.trooptime.activity.activity.ApiPostModels.VerifyOtpResponse;
-import com.tvisha.trooptime.activity.activity.Dialog.CustomProgressBar;
-import com.tvisha.trooptime.activity.activity.Helper.Helper;
-import com.tvisha.trooptime.activity.activity.Helper.Navigation;
-import com.tvisha.trooptime.activity.activity.Helper.Utilities;
+import com.tvisha.trooptime.activity.activity.apiPostModels.VerifyOtpResponse;
+import com.tvisha.trooptime.activity.activity.dialog.CustomProgressBar;
+import com.tvisha.trooptime.activity.activity.helper.Helper;
+import com.tvisha.trooptime.activity.activity.helper.Navigation;
+import com.tvisha.trooptime.activity.activity.helper.Utilities;
 import com.tvisha.trooptime.activity.activity.api.ApiClient;
 import com.tvisha.trooptime.activity.activity.api.ApiInterface;
 import com.tvisha.trooptime.R;

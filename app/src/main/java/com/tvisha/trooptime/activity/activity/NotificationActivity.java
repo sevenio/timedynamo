@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.tvisha.trooptime.R;
-import com.tvisha.trooptime.activity.activity.Helper.Navigation;
+import com.tvisha.trooptime.activity.activity.helper.Navigation;
 
 /**
  * Created by tvisha on 25/2/17.

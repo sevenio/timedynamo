@@ -300,13 +300,13 @@
                 android:resource="@xml/td_widget_info" />
         </receiver>
 
-        <service android:name=".activity.activity.Fcm.FirebaseIDService"
+        <service android:name=".activity.activity.fcm.FirebaseIDService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".activity.activity.Fcm.MyFirebaseMessagingService"
+        <service android:name=".activity.activity.fcm.MyFirebaseMessagingService"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>

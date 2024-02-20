@@ -16,6 +16,7 @@ public class DbContext {
         dbHelper = DbHelper.getInstance(mContext);
         open();
 
+
     }
 
     public void open() throws SQLException {

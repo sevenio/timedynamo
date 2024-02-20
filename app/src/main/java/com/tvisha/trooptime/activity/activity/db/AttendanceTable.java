@@ -5,8 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.tvisha.trooptime.activity.activity.Helper.Constants;
-import com.tvisha.trooptime.activity.activity.Helper.Utilities;
+import com.tvisha.trooptime.activity.activity.helper.Constants;
+import com.tvisha.trooptime.activity.activity.helper.Utilities;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

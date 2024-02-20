@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.tvisha.trooptime.activity.activity.Helper.Navigation;
+import com.tvisha.trooptime.activity.activity.helper.Navigation;
 import com.tvisha.trooptime.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
