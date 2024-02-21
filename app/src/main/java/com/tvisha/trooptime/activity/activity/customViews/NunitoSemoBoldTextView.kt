@@ -1,31 +1,32 @@
-package com.tvisha.trooptime.activity.activity.customViews;
+package com.tvisha.trooptime.activity.activity.customViews
 
-import android.content.Context;
-import android.util.AttributeSet;
+import android.content.Context
+import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatTextView
 
 /**
  * Created by tvisha on 1/10/18.
  */
-
-public class NunitoSemoBoldTextView extends androidx.appcompat.widget.AppCompatTextView {
-    public NunitoSemoBoldTextView(Context context) {
-        super(context);
+class NunitoSemoBoldTextView : AppCompatTextView {
+    constructor(context: Context?) : super(context!!) {
         //this.setTypeface(Typeface.createFromAsset(context.getAssets(),"Nunito_SemiBold.ttf"));
         //setTypeface(Utility.getTypefaceRegular(context), Typeface.NORMAL);
-        setTypeface(TypeFaceProvider.getTypeFace(context, "Nunito_SemiBold.ttf"));
+        typeface = TypeFaceProvider.getTypeFace(context, "Nunito_SemiBold.ttf")
     }
 
-    public NunitoSemoBoldTextView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    constructor(context: Context?, attrs: AttributeSet?) : super(
+        context!!, attrs
+    ) {
         // this.setTypeface(Typeface.createFromAsset(context.getAssets(),"Nunito_SemiBold.ttf"));
         //setTypeface(Utility.getTypefaceRegular(context), Typeface.NORMAL);
-        setTypeface(TypeFaceProvider.getTypeFace(context, "Nunito_SemiBold.ttf"));
+        typeface = TypeFaceProvider.getTypeFace(context, "Nunito_SemiBold.ttf")
     }
 
-    public NunitoSemoBoldTextView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context!!, attrs, defStyleAttr
+    ) {
         //this.setTypeface(Typeface.createFromAsset(context.getAssets(),"Nunito_SemiBold.ttf"));
         //setTypeface(Utility.getTypefaceRegular(context), Typeface.NORMAL);
-        setTypeface(TypeFaceProvider.getTypeFace(context, "Nunito_SemiBold.ttf"));
+        typeface = TypeFaceProvider.getTypeFace(context, "Nunito_SemiBold.ttf")
     }
 }

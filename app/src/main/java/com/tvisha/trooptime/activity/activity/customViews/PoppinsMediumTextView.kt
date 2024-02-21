@@ -1,25 +1,27 @@
-package com.tvisha.trooptime.activity.activity.customViews;
+package com.tvisha.trooptime.activity.activity.customViews
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.util.AttributeSet;
+import android.content.Context
+import android.graphics.Typeface
+import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatTextView
 
-public class PoppinsMediumTextView extends androidx.appcompat.widget.AppCompatTextView {
-    public PoppinsMediumTextView(Context context) {
-        super(context);
+class PoppinsMediumTextView : AppCompatTextView {
+    constructor(context: Context) : super(context) {
         //setTypeface(Utility.getTypefaceMedium(context), Typeface.NORMAL);
-        setTypeface(Typeface.createFromAsset(context.getAssets(), "font/poppins/Poppins-Medium.ttf"));
+        typeface = Typeface.createFromAsset(context.assets, "font/poppins/Poppins-Medium.ttf")
     }
 
-    public PoppinsMediumTextView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         //setTypeface(Utility.getTypefaceMedium(context), Typeface.NORMAL);
-        setTypeface(Typeface.createFromAsset(context.getAssets(), "font/poppins/Poppins-Medium.ttf"));
+        typeface = Typeface.createFromAsset(context.assets, "font/poppins/Poppins-Medium.ttf")
     }
 
-    public PoppinsMediumTextView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
         //setTypeface(Utility.getTypefaceMedium(context), Typeface.NORMAL);
-        setTypeface(Typeface.createFromAsset(context.getAssets(), "font/poppins/Poppins-Medium.ttf"));
+        typeface = Typeface.createFromAsset(context.assets, "font/poppins/Poppins-Medium.ttf")
     }
 }

@@ -1,29 +1,29 @@
-package com.tvisha.trooptime.activity.activity.customViews;
+package com.tvisha.trooptime.activity.activity.customViews
 
-import android.content.Context;
-import android.util.AttributeSet;
+import android.content.Context
+import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatButton
 
-
-public class PoppinsBoldButton extends androidx.appcompat.widget.AppCompatButton {
-    public PoppinsBoldButton(Context context) {
-        super(context);
+class PoppinsBoldButton : AppCompatButton {
+    constructor(context: Context?) : super(context!!) {
         //setTypeface(Utility.getTypefaceBold(context));
         //this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Bold.ttf"));
-        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Bold.ttf"));
+        typeface = TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Bold.ttf")
     }
 
-    public PoppinsBoldButton(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    constructor(context: Context?, attrs: AttributeSet?) : super(
+        context!!, attrs
+    ) {
         //setTypeface(Utility.getTypefaceBold(context));
         //this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Bold.ttf"));
-        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Bold.ttf"));
-
+        typeface = TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Bold.ttf")
     }
 
-    public PoppinsBoldButton(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context!!, attrs, defStyleAttr
+    ) {
         //setTypeface(Utility.getTypefaceBold(context));
         //this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Bold.ttf"));
-        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Bold.ttf"));
+        typeface = TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Bold.ttf")
     }
 }

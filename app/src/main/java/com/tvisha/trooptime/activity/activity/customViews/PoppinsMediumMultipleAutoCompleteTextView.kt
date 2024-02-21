@@ -1,19 +1,20 @@
-package com.tvisha.trooptime.activity.activity.customViews;
+package com.tvisha.trooptime.activity.activity.customViews
 
-import android.content.Context;
-import android.util.AttributeSet;
-
-import com.tvisha.trooptime.activity.activity.helper.Utility;
+import android.content.Context
+import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView
+import com.tvisha.trooptime.activity.activity.helper.Utility
 
 /**
  * Created by koti on 18/4/17.
  */
-
-public class PoppinsMediumMultipleAutoCompleteTextView extends androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView {
-    public PoppinsMediumMultipleAutoCompleteTextView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.setTypeface(Utility.getTypefaceMedium(context));
-        this.setTokenizer(new CommaTokenizer());
-        this.setThreshold(1);
+class PoppinsMediumMultipleAutoCompleteTextView(context: Context?, attrs: AttributeSet?) :
+    AppCompatMultiAutoCompleteTextView(
+        context!!, attrs
+    ) {
+    init {
+        this.typeface = Utility.getTypefaceMedium(context)
+        setTokenizer(CommaTokenizer())
+        this.threshold = 1
     }
 }

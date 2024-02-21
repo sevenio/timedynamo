@@ -1,25 +1,26 @@
-package com.tvisha.trooptime.activity.activity.customViews;
+package com.tvisha.trooptime.activity.activity.customViews
 
-import android.content.Context;
-import android.util.AttributeSet;
+import android.content.Context
+import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatTextView
 
-public class PoppinsRegularTextView extends androidx.appcompat.widget.AppCompatTextView {
-    public PoppinsRegularTextView(Context context) {
-        super(context);
+class PoppinsRegularTextView : AppCompatTextView {
+    constructor(context: Context?) : super(context!!) {
         //  this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Regular.ttf"));
-        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Regular.ttf"));
-
+        typeface = TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Regular.ttf")
     }
 
-    public PoppinsRegularTextView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    constructor(context: Context?, attrs: AttributeSet?) : super(
+        context!!, attrs
+    ) {
         // this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Regular.ttf"));
-        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Regular.ttf"));
+        typeface = TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Regular.ttf")
     }
 
-    public PoppinsRegularTextView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context!!, attrs, defStyleAttr
+    ) {
         //this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Regular.ttf"));
-        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Regular.ttf"));
+        typeface = TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Regular.ttf")
     }
 }

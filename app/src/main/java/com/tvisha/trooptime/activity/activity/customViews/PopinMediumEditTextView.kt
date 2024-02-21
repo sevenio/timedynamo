@@ -1,28 +1,29 @@
-package com.tvisha.trooptime.activity.activity.customViews;
+package com.tvisha.trooptime.activity.activity.customViews
 
-import android.content.Context;
-import android.util.AttributeSet;
+import android.content.Context
+import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatEditText
 
-
-public class PopinMediumEditTextView extends androidx.appcompat.widget.AppCompatEditText {
-    public PopinMediumEditTextView(Context context) {
-        super(context);
+class PopinMediumEditTextView : AppCompatEditText {
+    constructor(context: Context?) : super(context!!) {
         //setTypeface(Utility.getTypefaceMedium(context));
         // this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/poppins_medium.ttf"));
-        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Medium.ttf"));
+        typeface = TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Medium.ttf")
     }
 
-    public PopinMediumEditTextView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    constructor(context: Context?, attrs: AttributeSet?) : super(
+        context!!, attrs
+    ) {
         //setTypeface(Utility.getTypefaceMedium(context));
         //this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/poppins_medium.ttf"));
-        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Medium.ttf"));
+        typeface = TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Medium.ttf")
     }
 
-    public PopinMediumEditTextView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context!!, attrs, defStyleAttr
+    ) {
         //setTypeface(Utility.getTypefaceMedium(context));
         //  this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/poppins_medium.ttf"));
-        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Medium.ttf"));
+        typeface = TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Medium.ttf")
     }
 }

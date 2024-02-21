@@ -1,25 +1,25 @@
-package com.tvisha.trooptime.activity.activity.customViews;
+package com.tvisha.trooptime.activity.activity.customViews
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.util.AttributeSet;
+import android.content.Context
+import android.graphics.Typeface
+import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatTextView
+import com.tvisha.trooptime.activity.activity.helper.Utility
 
-import com.tvisha.trooptime.activity.activity.helper.Utility;
-
-
-public class PoppinsTextView extends androidx.appcompat.widget.AppCompatTextView {
-    public PoppinsTextView(Context context) {
-        super(context);
-        setTypeface(Utility.getTypeface(context), Typeface.NORMAL);
+class PoppinsTextView : AppCompatTextView {
+    constructor(context: Context?) : super(context!!) {
+        setTypeface(Utility.getTypeface(context), Typeface.NORMAL)
     }
 
-    public PoppinsTextView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        setTypeface(Utility.getTypeface(context), Typeface.NORMAL);
+    constructor(context: Context?, attrs: AttributeSet?) : super(
+        context!!, attrs
+    ) {
+        setTypeface(Utility.getTypeface(context), Typeface.NORMAL)
     }
 
-    public PoppinsTextView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        setTypeface(Utility.getTypeface(context), Typeface.NORMAL);
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context!!, attrs, defStyleAttr
+    ) {
+        setTypeface(Utility.getTypeface(context), Typeface.NORMAL)
     }
 }

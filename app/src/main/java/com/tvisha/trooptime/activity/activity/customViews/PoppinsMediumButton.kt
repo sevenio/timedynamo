@@ -1,27 +1,29 @@
-package com.tvisha.trooptime.activity.activity.customViews;
+package com.tvisha.trooptime.activity.activity.customViews
 
-import android.content.Context;
-import android.util.AttributeSet;
+import android.content.Context
+import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatButton
 
-public class PoppinsMediumButton extends androidx.appcompat.widget.AppCompatButton {
-    public PoppinsMediumButton(Context context) {
-        super(context);
+class PoppinsMediumButton : AppCompatButton {
+    constructor(context: Context?) : super(context!!) {
         //setTypeface(Utility.getTypefaceMedium(context), Typeface.NORMAL);
         // this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Medium.ttf"));
-        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Medium.ttf"));
+        typeface = TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Medium.ttf")
     }
 
-    public PoppinsMediumButton(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    constructor(context: Context?, attrs: AttributeSet?) : super(
+        context!!, attrs
+    ) {
         //setTypeface(Utility.getTypefaceMedium(context), Typeface.NORMAL);
         //this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Medium.ttf"));
-        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Medium.ttf"));
+        typeface = TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Medium.ttf")
     }
 
-    public PoppinsMediumButton(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context!!, attrs, defStyleAttr
+    ) {
         //setTypeface(Utility.getTypefaceMedium(context), Typeface.NORMAL);
         //  this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Medium.ttf"));
-        setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Medium.ttf"));
+        typeface = TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Medium.ttf")
     }
 }

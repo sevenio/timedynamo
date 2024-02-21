@@ -1,31 +1,32 @@
-package com.tvisha.trooptime.activity.activity.customViews;
+package com.tvisha.trooptime.activity.activity.customViews
 
-import android.content.Context;
-import android.util.AttributeSet;
+import android.content.Context
+import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatEditText
 
 /**
  * Created by tvisha on 21/6/18.
  */
-
-public class PopinRegularEditTextView extends androidx.appcompat.widget.AppCompatEditText {
-    public PopinRegularEditTextView(Context context) {
-        super(context);
+class PopinRegularEditTextView : AppCompatEditText {
+    constructor(context: Context?) : super(context!!) {
         //setTypeface(Utility.getTypefaceMedium(context));
         // this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Regular.ttf"));
-        this.setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Regular.ttf"));
+        this.typeface = TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Regular.ttf")
     }
 
-    public PopinRegularEditTextView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    constructor(context: Context?, attrs: AttributeSet?) : super(
+        context!!, attrs
+    ) {
         //setTypeface(Utility.getTypefaceMedium(context));
         // this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Regular.ttf"));
-        this.setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Regular.ttf"));
+        this.typeface = TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Regular.ttf")
     }
 
-    public PopinRegularEditTextView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context!!, attrs, defStyleAttr
+    ) {
         //setTypeface(Utility.getTypefaceMedium(context));
         // this.setTypeface(Typeface.createFromAsset(context.getAssets(),"font/poppins/Poppins-Regular.ttf"));
-        this.setTypeface(TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Regular.ttf"));
+        this.typeface = TypeFaceProvider.getTypeFace(context, "font/poppins/Poppins-Regular.ttf")
     }
 }

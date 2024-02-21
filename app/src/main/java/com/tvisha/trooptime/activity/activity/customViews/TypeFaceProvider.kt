@@ -1,30 +1,23 @@
-package com.tvisha.trooptime.activity.activity.customViews;
+package com.tvisha.trooptime.activity.activity.customViews
 
-import android.content.Context;
-import android.graphics.Typeface;
+import android.content.Context
+import android.graphics.Typeface
+import java.util.*
 
-import java.util.Hashtable;
+object TypeFaceProvider {
+    const val TYPEFACE_FOLDER = "font"
+    const val TYPEFACE_EXTENSION = ".ttf"
+    private val sTypeFaces = Hashtable<String, Typeface?>(
+        4
+    )
 
-public class TypeFaceProvider {
-
-
-    public static final String TYPEFACE_FOLDER = "font";
-    public static final String TYPEFACE_EXTENSION = ".ttf";
-
-    private static Hashtable<String, Typeface> sTypeFaces = new Hashtable<String, Typeface>(
-            4);
-
-    public static Typeface getTypeFace(Context context, String fileName) {
-
-        Typeface tempTypeface = sTypeFaces.get(fileName);
-
+    fun getTypeFace(context: Context, fileName: String): Typeface? {
+        var tempTypeface = sTypeFaces[fileName]
         if (tempTypeface == null) {
             /*String fontPath = new StringBuilder().append(fileName).toString();*/
-            tempTypeface = Typeface.createFromAsset(context.getAssets(), fileName);
-            sTypeFaces.put(fileName, tempTypeface);
+            tempTypeface = Typeface.createFromAsset(context.assets, fileName)
+            sTypeFaces[fileName] = tempTypeface
         }
-
-        return tempTypeface;
+        return tempTypeface
     }
-
 }
