@@ -1,69 +1,75 @@
-package com.tvisha.trooptime.activity.activity.dialog;
+package com.tvisha.trooptime.activity.activity.dialog
 
-import android.content.Context;
-import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
-import android.widget.ImageButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-
-import com.tvisha.trooptime.activity.activity.helper.Navigation;
-import com.tvisha.trooptime.activity.activity.helper.ToastUtil;
-import com.tvisha.trooptime.R;
+import android.app.Dialog
+import android.content.Context
+import android.os.Bundle
+import android.view.View
+import android.view.Window
+import android.widget.ImageButton
+import android.widget.RadioGroup
+import android.widget.TextView
+import com.tvisha.trooptime.R
+import com.tvisha.trooptime.activity.activity.helper.Navigation
+import com.tvisha.trooptime.activity.activity.helper.ToastUtil
+import com.tvisha.trooptime.databinding.DialogRequestBinding
 
 /**
  * Created by koti on 22/5/17.
  */
+class RequestDialog @JvmOverloads constructor(
+    context: Context,
+    style: Int = R.style.common_dialog
+) : Dialog(context, style),
+    View.OnClickListener {
 
-public class RequestDialog extends android.app.Dialog implements View.OnClickListener {
-
-    ImageButton requestClose;
-    TextView request;
-
-    public RequestDialog(Context context) {
-        super(context, R.style.common_dialog);
+    private val binding by lazy {
+        DialogRequestBinding.inflate(layoutInflater)
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.dialog_request);
-        requestClose = (ImageButton) findViewById(R.id.requestClose);
-        request = (TextView) findViewById(R.id.request);
-        requestClose.setOnClickListener(this);
-        request.setOnClickListener(this);
+    public override fun onCreate(savedInstanceState: Bundle?) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        setContentView(R.layout.dialog_request)
+        binding.requestClose.setOnClickListener(this)
+        binding.request.setOnClickListener(this)
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.requestClose:
-                dismiss();
-                break;
-            case R.id.request:
-                int checkedID = ((RadioGroup) findViewById(R.id.requestGroup)).getCheckedRadioButtonId();
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.requestClose -> dismiss()
+            R.id.request -> {
+                val checkedID =
+                    (findViewById<View>(R.id.requestGroup) as RadioGroup).checkedRadioButtonId
                 if (checkedID == R.id.leaveRequest) {
-                    Navigation.getInstance().leaveRequest(getContext());
-                    dismiss();
+                    Navigation.getInstance().leaveRequest(
+                        context
+                    )
+                    dismiss()
                 } else if (checkedID == R.id.permissionRequest) {
-                    Navigation.getInstance().permissionRequest(getContext());
-                    dismiss();
+                    Navigation.getInstance().permissionRequest(
+                        context
+                    )
+                    dismiss()
                 } else if (checkedID == R.id.directClientVistRequest) {
-                    Navigation.getInstance().directClientLocation(getContext());
-                    dismiss();
+                    Navigation.getInstance().directClientLocation(
+                        context
+                    )
+                    dismiss()
                 } else if (checkedID == R.id.compoffrequest) {
-                    Navigation.getInstance().compoffRequest(getContext());
-                    dismiss();
+                    Navigation.getInstance().compoffRequest(
+                        context
+                    )
+                    dismiss()
                 } else if (checkedID == R.id.callManagerRequest) {
                     //ToastUtil.showToast(getContext(), "Comming Soon..!");
                     //Helper.getInstance().callConfirmation(getContext(),"9441255989");
-                    Navigation.getInstance().openCallLog(getContext());
-                    dismiss();
+                    Navigation.getInstance().openCallLog(
+                        context
+                    )
+                    dismiss()
                 } else {
-                    ToastUtil.showToast(getContext(), "Select request type to continue");
+                    ToastUtil.showToast(context, "Select request type to continue")
                 }
-                break;
+            }
         }
     }
 }

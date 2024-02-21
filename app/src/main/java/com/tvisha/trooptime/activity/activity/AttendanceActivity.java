@@ -678,7 +678,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
                 model.setMonthEndDate(end_mon);
                 model.setMonth_Name(month_name);
                 model.setYears(year);
-                model.setIsSelected(false);
+                model.setSelected(false);
                 calenderModels.add(model);
             }
             adapter = new GridCellAdapter(AttendanceActivity.this, month, this.year, "self");
@@ -730,7 +730,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
                 model.setMonthEndDate(end_mon);
                 model.setMonth_Name(month_name);
                 model.setYears(year);
-                model.setIsSelected(false);
+                model.setSelected(false);
                 calenderModels.add(model);
             }
             adapter = new GridCellAdapter(AttendanceActivity.this, month, this.year, "self");
@@ -3145,7 +3145,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
                     model.setMonth(month);
                     model.setDay(day);
                     model.setDate(dates);
-                    model.setIsSelected(false);
+                    model.setSelected(false);
                     calenderModels.add(model);
                 }
 
@@ -3343,7 +3343,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
 
                     if (month_position == position && !calenderModels.get(position).isSelected()) {
 
-                        calenderModels.get(position).setIsSelected(true);
+                        calenderModels.get(position).setSelected(true);
                         scrollPosition();
                         holder.day_name.setTextColor(ContextCompat.getColor(_context, R.color.colorAccent));
 
@@ -3357,7 +3357,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
                     } else if (month_position == position && calenderModels.get(position).isSelected()) {
                         scrollPosition();
                         holder.day_name.setTextColor(ContextCompat.getColor(_context, R.color.colorAccent));
-                        calenderModels.get(position).setIsSelected(true);
+                        calenderModels.get(position).setSelected(true);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                             holder.day_name.setText(Html.fromHtml(model.getMonth_Name(), Html.FROM_HTML_MODE_LEGACY));
                             holder.under_line_month.setVisibility(View.VISIBLE);
@@ -3368,7 +3368,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
                     } else {
                         //change
                         scrollPosition();
-                        calenderModels.get(position).setIsSelected(false);
+                        calenderModels.get(position).setSelected(false);
                         holder.under_line_month.setVisibility(View.GONE);
                         holder.day_name.setTextColor(ContextCompat.getColor(_context, R.color.text_color_team));
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -3417,10 +3417,10 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
                             for (int i = 0; i < calenderModels.size(); i++) {
                                 if (calenderModels.get(i).isSelected()) {
                                     if (month_position != i) {
-                                        calenderModels.get(i).setIsSelected(false);
+                                        calenderModels.get(i).setSelected(false);
                                         notifyItemChanged(i);
                                     } else {
-                                        calenderModels.get(i).setIsSelected(true);
+                                        calenderModels.get(i).setSelected(true);
 
                                     }
 

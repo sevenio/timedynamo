@@ -16,7 +16,7 @@ class NotificationPagingAdapter(var context:Context,var type:Int):PagingDataAdap
         val diffCallback = object : DiffUtil.ItemCallback<Notification>() {
             override fun areItemsTheSame(oldItem: Notification, newItem: Notification): Boolean {
                 return if (oldItem is Notification && newItem is Notification) {
-                    oldItem.ID == newItem.ID
+                    oldItem.iD == newItem.iD
                 } else {
                     oldItem == newItem
                 }

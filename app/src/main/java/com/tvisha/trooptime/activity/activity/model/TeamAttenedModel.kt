@@ -1,92 +1,91 @@
-package com.tvisha.trooptime.activity.activity.model;
+package com.tvisha.trooptime.activity.activity.model
 
 /**
  * Created by tvisha on 10/2/17.
  */
-public class TeamAttenedModel {
-    private String employeeUser_Id;
-    private String employeeFull_Name;
-    private String employeeEmail;
-    private String reportingBossId;
-    private String user_Id;
-    private String emp_Id;
-    private String check_in_time;
-    private String check_out_time;
-    private String date;
-    private String workedTime;
-    private String breakTime;
-    private String breakStartTime;
-    private String breakEndTime;
-    private String breakStartCount;
-    private String breakEndCount;
-    private String userName;
-    private String userAvatar;
-
-    public void setEmployeeUser_Id(String employeeUser_Id) {
-        this.employeeUser_Id = employeeUser_Id;
+class TeamAttenedModel {
+    private var employeeUser_Id: String? = null
+    private var employeeFull_Name: String? = null
+    private var employeeEmail: String? = null
+    private var reportingBossId: String? = null
+    private var user_Id: String? = null
+    private var emp_Id: String? = null
+    private var check_in_time: String? = null
+    private var check_out_time: String? = null
+    private var date: String? = null
+    private var workedTime: String? = null
+    private var breakTime: String? = null
+    private var breakStartTime: String? = null
+    private var breakEndTime: String? = null
+    private var breakStartCount: String? = null
+    private var breakEndCount: String? = null
+    private var userName: String? = null
+    private var userAvatar: String? = null
+    fun setEmployeeUser_Id(employeeUser_Id: String?) {
+        this.employeeUser_Id = employeeUser_Id
     }
 
-    public void setEmployeeFull_Name(String employeeFull_Name) {
-        this.employeeFull_Name = employeeFull_Name;
+    fun setEmployeeFull_Name(employeeFull_Name: String?) {
+        this.employeeFull_Name = employeeFull_Name
     }
 
-    public void setEmployeeEmail(String employeeEmail) {
-        this.employeeEmail = employeeEmail;
+    fun setEmployeeEmail(employeeEmail: String?) {
+        this.employeeEmail = employeeEmail
     }
 
-    public void setReportingBossId(String reportingBossId) {
-        this.reportingBossId = reportingBossId;
+    fun setReportingBossId(reportingBossId: String?) {
+        this.reportingBossId = reportingBossId
     }
 
-    public void setUser_Id(String user_Id) {
-        this.user_Id = user_Id;
+    fun setUser_Id(user_Id: String?) {
+        this.user_Id = user_Id
     }
 
-    public void setEmp_Id(String emp_Id) {
-        this.emp_Id = emp_Id;
+    fun setEmp_Id(emp_Id: String?) {
+        this.emp_Id = emp_Id
     }
 
-    public void setCheck_in_time(String check_in_time) {
-        this.check_in_time = check_in_time;
+    fun setCheck_in_time(check_in_time: String?) {
+        this.check_in_time = check_in_time
     }
 
-    public void setCheck_out_time(String check_out_time) {
-        this.check_out_time = check_out_time;
+    fun setCheck_out_time(check_out_time: String?) {
+        this.check_out_time = check_out_time
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    fun setDate(date: String?) {
+        this.date = date
     }
 
-    public void setWorkedTime(String workedTime) {
-        this.workedTime = workedTime;
+    fun setWorkedTime(workedTime: String?) {
+        this.workedTime = workedTime
     }
 
-    public void setBreakTime(String breakTime) {
-        this.breakTime = breakTime;
+    fun setBreakTime(breakTime: String?) {
+        this.breakTime = breakTime
     }
 
-    public void setBreakStartTime(String breakStartTime) {
-        this.breakStartTime = breakStartTime;
+    fun setBreakStartTime(breakStartTime: String?) {
+        this.breakStartTime = breakStartTime
     }
 
-    public void setBreakEndTime(String breakEndTime) {
-        this.breakEndTime = breakEndTime;
+    fun setBreakEndTime(breakEndTime: String?) {
+        this.breakEndTime = breakEndTime
     }
 
-    public void setBreakStartCount(String breakStartCount) {
-        this.breakStartCount = breakStartCount;
+    fun setBreakStartCount(breakStartCount: String?) {
+        this.breakStartCount = breakStartCount
     }
 
-    public void setBreakEndCount(String breakEndCount) {
-        this.breakEndCount = breakEndCount;
+    fun setBreakEndCount(breakEndCount: String?) {
+        this.breakEndCount = breakEndCount
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    fun setUserName(userName: String?) {
+        this.userName = userName
     }
 
-    public void setUserAvatar(String userAvatar) {
-        this.userAvatar = userAvatar;
+    fun setUserAvatar(userAvatar: String?) {
+        this.userAvatar = userAvatar
     }
 }
