@@ -1,116 +1,71 @@
-package com.tvisha.trooptime.activity.activity.fcm;
+package com.tvisha.trooptime.activity.activity.fcm
 
-import android.content.SharedPreferences;
+import android.content.SharedPreferences
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.FirebaseMessagingService
+import com.tvisha.trooptime.activity.activity.api.ApiClient
+import com.tvisha.trooptime.activity.activity.api.ApiInterface
+import com.tvisha.trooptime.activity.activity.apiPostModels.CommonResponse
+import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys
+import com.tvisha.trooptime.activity.activity.helper.Utilities
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.FirebaseMessagingService;
-import com.tvisha.trooptime.activity.activity.apiPostModels.CommonResponse;
-import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys;
-import com.tvisha.trooptime.activity.activity.helper.Utilities;
-import com.tvisha.trooptime.activity.activity.api.ApiClient;
-import com.tvisha.trooptime.activity.activity.api.ApiInterface;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-
-public class FirebaseIDService extends FirebaseMessagingService {
-
-
-    public static String token = "", userId = "", fcmToken = "", deviceId = "";
-    boolean isLogin = false;
-    SharedPreferences sharedPreferences;
-    ApiInterface apiService;
-
-    public String getRefreshToken() {
-        FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
-        firebaseMessaging.getToken().addOnCompleteListener(new OnCompleteListener<String>() {
-            @Override
-            public void onComplete(@NonNull Task<String> task) {
-                if (!task.isSuccessful()){
-                    return;
-                }
-                fcmToken = task.getResult();
-            }
-        });
-        return fcmToken;
-        //return FirebaseInstanceId.getInstance().getToken();
+class FirebaseIDService : FirebaseMessagingService() {
+    private val sharedPreferences by lazy {
+        getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE)
+    }
+    private val apiService by lazy {
+        ApiClient.getInstance()
     }
 
-    @Override
-    public void onNewToken(@NonNull String s) {
-        super.onNewToken(s);
-        fcmToken = getRefreshToken();
-        callToserver(fcmToken);
+
+
+    override fun onNewToken(s: String) {
+        super.onNewToken(s)
+        callToserver(s)
     }
 
-    public void onTokenRefresh() {
-        // Get updated InstanceID token.
+
+
+    private fun callToserver(refreshedToken: String?) {
         try {
-
-            String refreshedToken = getRefreshToken();
-            callToserver(refreshedToken);
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-    }
-    public void callToserver(String refreshedToken){
-        try {
-            fcmToken = refreshedToken;
-
-            sharedPreferences = getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE);
-            isLogin = sharedPreferences.getBoolean(SharePreferenceKeys.SP_LOGIN_STATUS, false);
-            userId = sharedPreferences.getString(SharePreferenceKeys.USER_ID, "");
-            deviceId = sharedPreferences.getString(SharePreferenceKeys.DEVICE_ID, "");
-            token = sharedPreferences.getString(SharePreferenceKeys.API_KEY, "");
-            apiService = ApiClient.getInstance();
-            if (isLogin) {
-                sendRegistrationToServer(refreshedToken);
+            if (sharedPreferences.getBoolean(SharePreferenceKeys.SP_LOGIN_STATUS, false)) {
+                sendRegistrationToServer(refreshedToken)
             }
-        }catch (Exception e){
-            e.printStackTrace();
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
-    public void sendRegistrationToServer(String refreshedToken) {
-
-
-        if (Utilities.isNetworkAvailable(getApplicationContext())) {
-            callSaveFcmApi(refreshedToken);
+    fun sendRegistrationToServer(refreshedToken: String?) {
+        if (Utilities.isNetworkAvailable(
+                applicationContext
+            )
+        ) {
+            callSaveFcmApi(refreshedToken)
         }
     }
 
-    public void callSaveFcmApi(String refreshedToken) {
-
-        Call<CommonResponse> call = apiService.saveFcmToken(token, userId, refreshedToken, "1", deviceId);
-        call.enqueue(new Callback<CommonResponse>() {
-            @Override
-            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
-                CommonResponse apiResponse = response.body();
-
+    fun callSaveFcmApi(refreshedToken: String?) {
+        val userId = sharedPreferences.getString(SharePreferenceKeys.USER_ID, "")
+        val deviceId = sharedPreferences.getString(SharePreferenceKeys.DEVICE_ID, "")
+        val token = sharedPreferences.getString(SharePreferenceKeys.API_KEY, "")
+        val call = apiService?.saveFcmToken(token, userId, refreshedToken, "1", deviceId)
+        call?.enqueue(object : Callback<CommonResponse?> {
+            override fun onResponse(
+                call: Call<CommonResponse?>,
+                response: Response<CommonResponse?>
+            ) {
+                val apiResponse = response.body()
                 if (apiResponse != null) {
-
                 }
-
             }
 
-            @Override
-            public void onFailure(Call<CommonResponse> call, Throwable t) {
-
-
-            }
-
-        });
+            override fun onFailure(call: Call<CommonResponse?>, t: Throwable) {}
+        })
     }
 
 }
