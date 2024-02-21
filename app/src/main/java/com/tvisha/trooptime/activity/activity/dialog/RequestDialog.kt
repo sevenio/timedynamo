@@ -27,10 +27,13 @@ class RequestDialog @JvmOverloads constructor(
     }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.dialog_request)
-        binding.requestClose.setOnClickListener(this)
-        binding.request.setOnClickListener(this)
+        binding.apply {
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setContentView(binding.root)
+            binding.requestClose.setOnClickListener(this@RequestDialog)
+            binding.request.setOnClickListener(this@RequestDialog)
+        }
+
     }
 
     override fun onClick(v: View) {

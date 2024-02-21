@@ -81,7 +81,7 @@ public class DirectClientVistActivity extends AppCompatActivity implements View.
                 onBackPressed();
                 break;
             case R.id.date:
-                TimePicker.getInstance(TimePicker.TYPE_DATE, TimePicker.CALENDAR_TYPE_FEATURE, (TextView) v).show(getSupportFragmentManager(), "pic_date");
+                TimePicker.Companion.getInstance(TimePicker.TYPE_DATE, TimePicker.CALENDAR_TYPE_FEATURE, (TextView) v).show(getSupportFragmentManager(), "pic_date");
                 break;
             case R.id.submitForm:
                 if (validateForm()) {

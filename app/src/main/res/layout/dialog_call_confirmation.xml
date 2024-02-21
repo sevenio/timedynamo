@@ -1,45 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout>
 
-    <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
-        android:id="@+id/message"
-        style="@style/callConfirmation"
-        android:background="#F5F5F5"
-        android:gravity="center"
-        android:minHeight="100dp"
-        android:text="You like to call" />
-
-    <LinearLayout
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/message"
-        android:weightSum="2">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumButton
-            android:id="@+id/no"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/colorAccent"
-            android:text="@string/no"
-            android:textColor="@android:color/white" />
+        <com.tvisha.trooptime.activity.activity.customViews.PoppinsTextView
+            android:id="@+id/message"
+            style="@style/callConfirmation"
+            android:background="#F5F5F5"
+            android:gravity="center"
+            android:minHeight="100dp"
+            android:text="You like to call" />
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/white" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/message"
+            android:weightSum="2">
 
-        <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumButton
-            android:id="@+id/yes"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:text="@string/yes"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumButton
+                android:id="@+id/no"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"
+                android:text="@string/no"
+                android:textColor="@android:color/white" />
 
-</RelativeLayout>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/white" />
+
+            <com.tvisha.trooptime.activity.activity.customViews.PoppinsMediumButton
+                android:id="@+id/yes"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="@string/yes"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>
