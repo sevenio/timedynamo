@@ -28,8 +28,8 @@ class SettingsViewmodel : ViewModel() {
     val isMuteTeamClientVisitNotifications: MutableLiveData<Boolean> = MutableLiveData(true)
     val isMuteTeamLeaveApprovalNotifications: MutableLiveData<Boolean> = MutableLiveData(true)
 
-    private val apiService: ApiInterface by lazy {
-        ApiClient.getInstance()
+    private val apiService by lazy {
+        ApiClient.instance
     }
 
     val showProgress: MutableLiveData<Boolean> = MutableLiveData(false)
@@ -43,11 +43,11 @@ class SettingsViewmodel : ViewModel() {
         viewModelScope.launch {
             showProgress.postValue(true)
 
-            val call: Call<ForgotPasswordResponce> = apiService.getOtp("number")
-            call.enqueue(object : Callback<ForgotPasswordResponce> {
+            val call = apiService?.getOtp("number")
+            call?.enqueue(object : Callback<ForgotPasswordResponce?> {
                 override fun onResponse(
-                    call: Call<ForgotPasswordResponce>,
-                    response: Response<ForgotPasswordResponce>
+                    call: Call<ForgotPasswordResponce?>,
+                    response: Response<ForgotPasswordResponce?>
                 ) {
                     showProgress.postValue(false)
 
@@ -58,7 +58,7 @@ class SettingsViewmodel : ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: Call<ForgotPasswordResponce>, t: Throwable) {
+                override fun onFailure(call: Call<ForgotPasswordResponce?>, t: Throwable) {
                     showProgress.postValue(true)
                     responceFailure.postValue("")
 
@@ -72,11 +72,11 @@ class SettingsViewmodel : ViewModel() {
         viewModelScope.launch {
             showProgress.postValue(true)
 
-            val call: Call<ForgotPasswordResponce> = apiService.getOtp("number")
-            call.enqueue(object : Callback<ForgotPasswordResponce> {
+            val call = apiService?.getOtp("number")
+            call?.enqueue(object : Callback<ForgotPasswordResponce?> {
                 override fun onResponse(
-                    call: Call<ForgotPasswordResponce>,
-                    response: Response<ForgotPasswordResponce>
+                    call: Call<ForgotPasswordResponce?>,
+                    response: Response<ForgotPasswordResponce?>
                 ) {
                     showProgress.postValue(false)
 
@@ -87,7 +87,7 @@ class SettingsViewmodel : ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: Call<ForgotPasswordResponce>, t: Throwable) {
+                override fun onFailure(call: Call<ForgotPasswordResponce?>, t: Throwable) {
                     showProgress.postValue(true)
                     saveSettingsFailure.postValue("")
 

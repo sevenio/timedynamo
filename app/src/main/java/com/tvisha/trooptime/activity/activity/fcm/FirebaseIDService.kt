@@ -18,7 +18,7 @@ class FirebaseIDService : FirebaseMessagingService() {
         getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE)
     }
     private val apiService by lazy {
-        ApiClient.getInstance()
+        ApiClient.instance
     }
 
 

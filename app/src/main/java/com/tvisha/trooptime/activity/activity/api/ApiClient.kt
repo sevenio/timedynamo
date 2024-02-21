@@ -1,59 +1,52 @@
-package com.tvisha.trooptime.activity.activity.api;
+package com.tvisha.trooptime.activity.activity.api
+
+import com.google.gson.GsonBuilder
+import com.tvisha.trooptime.activity.activity.helper.ServerUrls
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by tvisha on 8/6/18.
  */
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.tvisha.trooptime.activity.activity.helper.ServerUrls;
-
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
-
-public class ApiClient {
-
-    public static final String BASE_URL = ServerUrls.BaseUrl;
-
-    private static Retrofit retrofit = null;
-
-    private static ApiInterface apiInterface = null;
-
-    private static OkHttpClient httpClient = new OkHttpClient.Builder()
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .writeTimeout(3000, TimeUnit.SECONDS)
-            .readTimeout(60, TimeUnit.SECONDS)
-            .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).build();
-
-    private static Retrofit getClient() {
-
-        Gson gson = new GsonBuilder()
+object ApiClient {
+    const val BASE_URL = ServerUrls.BaseUrl
+    private var retrofit: Retrofit? = null
+    private var apiInterface: ApiInterface? = null
+    private val httpClient: OkHttpClient = OkHttpClient.Builder()
+        .connectTimeout(60, TimeUnit.SECONDS)
+        .writeTimeout(3000, TimeUnit.SECONDS)
+        .readTimeout(60, TimeUnit.SECONDS)
+        .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        .build()
+    private val client: Retrofit?
+        private get() {
+            val gson = GsonBuilder()
                 .setLenient()
-                .create();
-
-        if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
+                .create()
+            if (retrofit == null) {
+                retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .client(httpClient)
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create(gson))
-                    .build();
+                    .build()
+            }
+            return retrofit
         }
-        return retrofit;
-    }
 
-    public static synchronized ApiInterface getInstance() {
-
-        if (apiInterface == null) {
-            apiInterface = getClient().create(ApiInterface.class);
+    @JvmStatic
+    @get:Synchronized
+    val instance: ApiInterface?
+        get() {
+            if (apiInterface == null) {
+                apiInterface = client!!.create(
+                    ApiInterface::class.java
+                )
+            }
+            return apiInterface
         }
-        return apiInterface;
-    }
-
-
 }

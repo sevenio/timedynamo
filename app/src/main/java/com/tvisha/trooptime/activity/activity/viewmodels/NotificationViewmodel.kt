@@ -43,8 +43,8 @@ class NotificationViewmodel : ViewModel() {
     var selfIsLoadingBool = true
     val selfIsLoading = MutableLiveData<Boolean>(false)
 
-    private val apiService: ApiInterface by lazy {
-        ApiClient.getInstance()
+    private val apiService by lazy {
+        ApiClient.instance
     }
 
 
@@ -83,11 +83,11 @@ class NotificationViewmodel : ViewModel() {
         viewModelScope.launch {
             showProgress.postValue(true)
 
-            val call: Call<ForgotPasswordResponce> = apiService.getOtp("number")
-            call.enqueue(object : Callback<ForgotPasswordResponce> {
+            val call= apiService?.getOtp("number")
+            call?.enqueue(object : Callback<ForgotPasswordResponce?> {
                 override fun onResponse(
-                    call: Call<ForgotPasswordResponce>,
-                    response: Response<ForgotPasswordResponce>
+                    call: Call<ForgotPasswordResponce?>,
+                    response: Response<ForgotPasswordResponce?>
                 ) {
                     showProgress.postValue(true)
 
@@ -112,7 +112,7 @@ class NotificationViewmodel : ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: Call<ForgotPasswordResponce>, t: Throwable) {
+                override fun onFailure(call: Call<ForgotPasswordResponce?>, t: Throwable) {
                     showProgress.postValue(true)
 
                 }
@@ -127,11 +127,11 @@ class NotificationViewmodel : ViewModel() {
         viewModelScope.launch {
             showProgress.postValue(true)
 
-            val call: Call<ForgotPasswordResponce> = apiService.getOtp("number")
-            call.enqueue(object : Callback<ForgotPasswordResponce> {
+            val call = apiService?.getOtp("number")
+            call?.enqueue(object : Callback<ForgotPasswordResponce?> {
                 override fun onResponse(
-                    call: Call<ForgotPasswordResponce>,
-                    response: Response<ForgotPasswordResponce>
+                    call: Call<ForgotPasswordResponce?>,
+                    response: Response<ForgotPasswordResponce?>
                 ) {
                     showProgress.postValue(true)
 
@@ -156,7 +156,7 @@ class NotificationViewmodel : ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: Call<ForgotPasswordResponce>, t: Throwable) {
+                override fun onFailure(call: Call<ForgotPasswordResponce?>, t: Throwable) {
                     showProgress.postValue(true)
 
                 }

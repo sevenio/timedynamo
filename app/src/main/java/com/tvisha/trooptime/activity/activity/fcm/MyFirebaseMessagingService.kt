@@ -127,8 +127,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         deviceId: String?
     ) {
         val call =
-            ApiClient.getInstance().saveFcmToken(token, userId, refreshedToken, "1", deviceId)
-        call.enqueue(object : Callback<CommonResponse?> {
+            ApiClient.instance?.saveFcmToken(token, userId, refreshedToken, "1", deviceId)
+        call?.enqueue(object : Callback<CommonResponse?> {
             override fun onResponse(
                 call: Call<CommonResponse?>,
                 response: Response<CommonResponse?>
