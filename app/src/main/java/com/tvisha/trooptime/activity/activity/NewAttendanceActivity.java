@@ -318,7 +318,7 @@ public class NewAttendanceActivity extends AppCompatActivity implements TabLayou
             logout = findViewById(R.id.logoutLayout);
             attendance = findViewById(R.id.attendanceLayout);
             navigation = findViewById(R.id.navigation);
-            apiService = ApiClient.getInstance();
+            apiService = new ApiClient().getInstance();
             time = findViewById(R.id.time);
             dynamo = findViewById(R.id.dynamo);
             profile_pic = findViewById(R.id.profileImage);

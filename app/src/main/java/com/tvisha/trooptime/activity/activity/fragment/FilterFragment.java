@@ -1048,7 +1048,7 @@ public  class FilterFragment extends Fragment implements View.OnClickListener, C
     }
     private void callToserverToGetThedata(String date) {
         try {
-            retrofit2.Call<FilterAttendenceApiResponce> call =  ApiClient.getInstance()
+            retrofit2.Call<FilterAttendenceApiResponce> call =  new ApiClient().getInstance()
                     .getFilterAttendence(userId,clciked_date,sharedPreferences.getString(SharePreferenceKeys.API_KEY,""),
                             emp_userId,attendance_filter+"",filte_working_time+"");
             call.enqueue(new retrofit2.Callback<FilterAttendenceApiResponce>() {
@@ -1083,7 +1083,7 @@ public  class FilterFragment extends Fragment implements View.OnClickListener, C
     private void callToServerToGetSelfData(String date) {
         try {
             retrofit2.Call<SelfAttendenceApiResponce> call =
-                    ApiClient.getInstance().getSelefAttendence(userId,sharedPreferences.getString(SharePreferenceKeys.API_KEY,""),
+                    new ApiClient().getInstance().getSelefAttendence(userId,sharedPreferences.getString(SharePreferenceKeys.API_KEY,""),
                             fromDate,toDate,String.valueOf(attendance_filter),String .valueOf(filte_working_time));
             call.enqueue(new retrofit2.Callback<SelfAttendenceApiResponce>() {
                 @Override
@@ -1129,7 +1129,7 @@ public  class FilterFragment extends Fragment implements View.OnClickListener, C
     private void callToserverToGetAllThedata(String date) {
         try {
 
-            retrofit2.Call<FilterAllAttendenceApiResponce> call = ApiClient.getInstance()
+            retrofit2.Call<FilterAllAttendenceApiResponce> call = new ApiClient().getInstance()
                     .getFilterAllAttendence(userId,clciked_date,sharedPreferences.getString(SharePreferenceKeys.API_KEY,""),
                             emp_userId,attendance_filter,filte_working_time);
             call.enqueue(new retrofit2.Callback<FilterAllAttendenceApiResponce>() {

@@ -1004,7 +1004,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
 
         try {
 
-            apiService = ApiClient.getInstance();
+            apiService = new ApiClient().getInstance();
             customProgressBar = new CustomProgressBar(AttendanceActivity.this);
 
 
@@ -2013,7 +2013,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
             team = false;
             all = true;
             try {
-                retrofit2.Call<AllAttendenceApiResponce> call = ApiClient.getInstance().getAllAttendence(userId, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), date);
+                retrofit2.Call<AllAttendenceApiResponce> call = new ApiClient().getInstance().getAllAttendence(userId, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), date);
                 call.enqueue(new retrofit2.Callback<AllAttendenceApiResponce>() {
                     @Override
                     public void onResponse(@NonNull Call<AllAttendenceApiResponce> call, @NonNull Response<AllAttendenceApiResponce> response) {
@@ -2076,7 +2076,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
             //team attendance api
 
             try {
-                retrofit2.Call<FilterAttendenceApiResponce> call =  ApiClient.getInstance()
+                retrofit2.Call<FilterAttendenceApiResponce> call =  new ApiClient().getInstance()
                         .getFilterAttendence(userId, date, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""),
                                 employee_userid.trim(), attendance_filter, filte_working_time);
 
@@ -2149,7 +2149,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
             openProgress();
 
 
-            retrofit2.Call<FilterAllAttendenceApiResponce> call = ApiClient.getInstance()
+            retrofit2.Call<FilterAllAttendenceApiResponce> call = new ApiClient().getInstance()
                     .getFilterAllAttendence(userId, selected_date, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""),
                             employee_userid.trim(), Integer.parseInt(attendance_filter), Integer.parseInt(filte_working_time));
 
@@ -2220,7 +2220,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
             openProgress();
 
 
-            retrofit2.Call<FilterAttendenceApiResponce> call =  ApiClient.getInstance()
+            retrofit2.Call<FilterAttendenceApiResponce> call =  new ApiClient().getInstance()
                     .getFilterAttendence(userId, selected_date, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""),
                             employee_userid.trim(), attendance_filter + "", filte_working_time + "");
 

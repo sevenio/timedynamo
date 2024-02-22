@@ -19,7 +19,9 @@ class AppCompositionRoot(
     private val application: MyApplication,
     private val coroutineScope: CoroutineScope
 ) {
-
+    val context: Context by lazy {
+        application
+    }
 //    val networkHandler by lazy {
 //        NetworkHandler(application)
 //    }
@@ -39,7 +41,7 @@ class AppCompositionRoot(
     }
 
     val retrofitClient by lazy {
-        ApiClient.instance
+        ApiClient().instance
 //        RetrofitClient(sharedPreferences, AuthorizationInterceptor(application))
     }
 //    val sharePreferenceUtils by lazy {

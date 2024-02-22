@@ -600,7 +600,7 @@ public class AttendanceFragment extends Fragment implements TabLayout.OnTabSelec
             navigation = rootView.findViewById(R.id.navigation);
             attendanceTablayout = rootView.findViewById(R.id.attendanceTablayout);
             leaveTablayout = rootView.findViewById(R.id.leaveTablayout);
-            apiService = ApiClient.getInstance();
+            apiService = new ApiClient().getInstance();
             customProgressBar = new CustomProgressBar(context);
 
 

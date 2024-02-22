@@ -251,7 +251,7 @@ public class Employee_SelfAttendence extends Activity implements View.OnClickLis
 
     private void callToselfAttendence(String user_id, String f_date, String e_date) {
         try {
-            retrofit2.Call<SelfAttendenceApiResponce> call = ApiClient.getInstance()
+            retrofit2.Call<SelfAttendenceApiResponce> call = new ApiClient().getInstance()
                     .getSelefAttendence(user_id, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), f_date, e_date, "", "");
             call.enqueue(new retrofit2.Callback<SelfAttendenceApiResponce>() {
                 @Override
@@ -882,7 +882,7 @@ public class Employee_SelfAttendence extends Activity implements View.OnClickLis
 
     private void callToserverToGetAllThedata(String userId, String date) {
         try {
-            retrofit2.Call<AllAttendenceApiResponce> call = ApiClient.getInstance()
+            retrofit2.Call<AllAttendenceApiResponce> call = new ApiClient().getInstance()
                     .getAllAttendence(userId, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), date);
             call.enqueue(new retrofit2.Callback<AllAttendenceApiResponce>() {
                 @Override
@@ -915,7 +915,7 @@ public class Employee_SelfAttendence extends Activity implements View.OnClickLis
 
     private void callToserverToGetThedata(String userId, String date) {
         try {
-            retrofit2.Call<TeamAttendenceApiResponce> call = ApiClient.getInstance()
+            retrofit2.Call<TeamAttendenceApiResponce> call = new ApiClient().getInstance()
                     .getTeamfAttendence(userId, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), date);
             call.enqueue(new retrofit2.Callback<TeamAttendenceApiResponce>() {
                 @Override

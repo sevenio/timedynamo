@@ -254,7 +254,7 @@ public class SwapActivity extends AppCompatActivity implements View.OnClickListe
             sendRequest = findViewById(R.id.sendRequest);
 
 
-            apiService = ApiClient.getInstance();
+            apiService = new ApiClient().getInstance();
             actionLable = (TextView) findViewById(R.id.actionLable);
             actionLable.setText("Request Swap");
             toUserName = findViewById(R.id.toUserName);

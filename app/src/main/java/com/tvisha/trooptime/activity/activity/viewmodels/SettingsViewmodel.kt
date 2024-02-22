@@ -29,7 +29,7 @@ class SettingsViewmodel : ViewModel() {
     val isMuteTeamLeaveApprovalNotifications: MutableLiveData<Boolean> = MutableLiveData(true)
 
     private val apiService by lazy {
-        ApiClient.instance
+        ApiClient().instance
     }
 
     val showProgress: MutableLiveData<Boolean> = MutableLiveData(false)
@@ -43,7 +43,7 @@ class SettingsViewmodel : ViewModel() {
         viewModelScope.launch {
             showProgress.postValue(true)
 
-            val call = apiService?.getOtp("number")
+            val call = apiService.getOtp("number")
             call?.enqueue(object : Callback<ForgotPasswordResponce?> {
                 override fun onResponse(
                     call: Call<ForgotPasswordResponce?>,
@@ -72,7 +72,7 @@ class SettingsViewmodel : ViewModel() {
         viewModelScope.launch {
             showProgress.postValue(true)
 
-            val call = apiService?.getOtp("number")
+            val call = apiService.getOtp("number")
             call?.enqueue(object : Callback<ForgotPasswordResponce?> {
                 override fun onResponse(
                     call: Call<ForgotPasswordResponce?>,

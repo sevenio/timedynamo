@@ -129,7 +129,7 @@ public class AttendanceFilterActivity extends Activity implements OnClickListene
         setContentView(R.layout.filter_layout);
         customProgressBar = new CustomProgressBar(AttendanceFilterActivity.this);
         sharedPreferences = getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE);
-        apiService = ApiClient.getInstance();
+        apiService = new ApiClient().getInstance();
         teamLead = sharedPreferences.getBoolean(SharePreferenceKeys.TEAM_LEAD, false);
         userId = sharedPreferences.getString(SharePreferenceKeys.USER_ID, "");
         if (getIntent().getExtras() != null) {
@@ -813,7 +813,7 @@ public class AttendanceFilterActivity extends Activity implements OnClickListene
                 try {
 
                     openProgress();
-                    retrofit2.Call<FilterAllAttendenceApiResponce> call = ApiClient.getInstance()
+                    retrofit2.Call<FilterAllAttendenceApiResponce> call = new ApiClient().getInstance()
                             .getFilterAllAttendence(userId, select_date, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""),
                                     mul_emp_ids.trim(), attendance_filter, filte_working_time);
 
@@ -939,7 +939,7 @@ public class AttendanceFilterActivity extends Activity implements OnClickListene
 
                 openProgress();
 
-                retrofit2.Call<FilterAttendenceApiResponce> call =  ApiClient.getInstance()
+                retrofit2.Call<FilterAttendenceApiResponce> call =  new ApiClient().getInstance()
                         .getFilterAttendence(userId, select_date, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""),
                                 mul_emp_ids.trim(), attendance_filter + "", filte_working_time + "");
 
@@ -1060,7 +1060,7 @@ public class AttendanceFilterActivity extends Activity implements OnClickListene
             try {
                 openProgress();
                 retrofit2.Call<SelfAttendenceApiResponce> call =
-                        ApiClient.getInstance().getSelefAttendence(userId, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""),
+                        new ApiClient().getInstance().getSelefAttendence(userId, sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""),
                                 fromDate, toDate, String.valueOf(attendance_filter), String.valueOf(filte_working_time));
 
                 call.enqueue(new Callback<SelfAttendenceApiResponce>() {

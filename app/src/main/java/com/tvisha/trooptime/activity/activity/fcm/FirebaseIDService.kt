@@ -18,7 +18,7 @@ class FirebaseIDService : FirebaseMessagingService() {
         getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE)
     }
     private val apiService by lazy {
-        ApiClient.instance
+        ApiClient().instance
     }
 
 
@@ -53,7 +53,7 @@ class FirebaseIDService : FirebaseMessagingService() {
         val userId = sharedPreferences.getString(SharePreferenceKeys.USER_ID, "")
         val deviceId = sharedPreferences.getString(SharePreferenceKeys.DEVICE_ID, "")
         val token = sharedPreferences.getString(SharePreferenceKeys.API_KEY, "")
-        val call = apiService?.saveFcmToken(token, userId, refreshedToken, "1", deviceId)
+        val call = apiService.saveFcmToken(token, userId, refreshedToken, "1", deviceId)
         call?.enqueue(object : Callback<CommonResponse?> {
             override fun onResponse(
                 call: Call<CommonResponse?>,

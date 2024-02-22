@@ -193,7 +193,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
     private void initViews() {
         try {
             customProgressBar = new CustomProgressBar(ForgotPasswordActivity.this);
-            apiService = ApiClient.getInstance();
+            apiService = new ApiClient().getInstance();
             mobileNumber = findViewById(R.id.mobileNumber);
             login = findViewById(R.id.tv_login);
             next = findViewById(R.id.next);

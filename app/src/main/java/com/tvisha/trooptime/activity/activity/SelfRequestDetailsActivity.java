@@ -350,7 +350,7 @@ public class SelfRequestDetailsActivity extends AppCompatActivity implements Vie
     private void initViews() {
         try {
             customProgressBar = new CustomProgressBar(SelfRequestDetailsActivity.this);
-            apiService = ApiClient.getInstance();
+            apiService = new ApiClient().getInstance();
 
             employeeName = findViewById(R.id.employeeName);
             employeeName1 = findViewById(R.id.employeeName1);

@@ -549,7 +549,7 @@ public class TeamRequestDetailsActivity extends AppCompatActivity implements Vie
             reasonTitle = findViewById(R.id.reasonTitle);
             fromdate = findViewById(R.id.from);
             toDate = findViewById(R.id.to);
-            apiService = ApiClient.getInstance();
+            apiService = new ApiClient().getInstance();
             subRequestType = findViewById(R.id.subRequestType);
             requestType = findViewById(R.id.requestType);
             nameLayout = findViewById(R.id.nameLayout);

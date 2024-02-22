@@ -44,7 +44,7 @@ class NotificationViewmodel : ViewModel() {
     val selfIsLoading = MutableLiveData<Boolean>(false)
 
     private val apiService by lazy {
-        ApiClient.instance
+        ApiClient().instance
     }
 
 
@@ -83,7 +83,7 @@ class NotificationViewmodel : ViewModel() {
         viewModelScope.launch {
             showProgress.postValue(true)
 
-            val call= apiService?.getOtp("number")
+            val call= apiService.getOtp("number")
             call?.enqueue(object : Callback<ForgotPasswordResponce?> {
                 override fun onResponse(
                     call: Call<ForgotPasswordResponce?>,
@@ -127,7 +127,7 @@ class NotificationViewmodel : ViewModel() {
         viewModelScope.launch {
             showProgress.postValue(true)
 
-            val call = apiService?.getOtp("number")
+            val call = apiService.getOtp("number")
             call?.enqueue(object : Callback<ForgotPasswordResponce?> {
                 override fun onResponse(
                     call: Call<ForgotPasswordResponce?>,

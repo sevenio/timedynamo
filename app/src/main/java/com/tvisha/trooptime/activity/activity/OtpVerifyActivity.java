@@ -119,7 +119,7 @@ public class OtpVerifyActivity extends AppCompatActivity implements View.OnClick
     private void initViews() {
         try {
             customProgressBar = new CustomProgressBar(OtpVerifyActivity.this);
-            apiService = ApiClient.getInstance();
+            apiService = new ApiClient().getInstance();
             otpEditText = findViewById(R.id.otp);
             login = findViewById(R.id.tv_login);
             resendOtp = findViewById(R.id.resendOtp);

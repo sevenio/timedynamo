@@ -467,7 +467,7 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
         try {
             drawer = findViewById(R.id.drawer_layout);
             drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-            apiService = ApiClient.getInstance();
+            apiService = new ApiClient().getInstance();
             time = findViewById(R.id.time);
             dynamo = findViewById(R.id.dynamo);
             navigation = findViewById(R.id.navigation);
@@ -615,7 +615,7 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
 
     private void callToLogoutSrever() {
         try {
-            retrofit2.Call<LogoutApiResponce> call = ApiClient.getInstance().getLogoutDetails(sharedPreferences.getString(SharePreferenceKeys.USER_ID, ""), sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), sharedPreferences.getString(SharePreferenceKeys.FCM_TOKEN, ""));
+            retrofit2.Call<LogoutApiResponce> call = new ApiClient().getInstance().getLogoutDetails(sharedPreferences.getString(SharePreferenceKeys.USER_ID, ""), sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), sharedPreferences.getString(SharePreferenceKeys.FCM_TOKEN, ""));
             call.enqueue(new retrofit2.Callback<LogoutApiResponce>() {
                 @Override
                 public void onResponse(@NonNull Call<LogoutApiResponce> call, @NonNull Response<LogoutApiResponce> response) {

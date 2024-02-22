@@ -35,8 +35,8 @@ class LoginViewModel(application: Application) : AndroidViewModel(application = 
 
                 try {
 
-                    val client = ApiClient.instance
-                    val call = client?.getLoginDetails(email, password, Constants.TOKEN)
+                    val client = ApiClient().instance
+                    val call = client.getLoginDetails(email, password, Constants.TOKEN)
 //                    call?.enqueue(object : Callback<String?> {
 //                        override fun onResponse(call: Call<String?>, response: Response<String?>) {
 //                            if (response.code() == Constants.RESPONCE_SUCCESSFUL) {

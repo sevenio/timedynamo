@@ -643,7 +643,7 @@ public class SelfRequestFragment extends Fragment implements DatePickerDialog.On
 
     private void initializeViews(View view) {
         try {
-            apiService = ApiClient.getInstance();
+            apiService = new ApiClient().getInstance();
             requestListRecycleView = view.findViewById(R.id.self_request_recycler_view);
             requestListRecycleView.setHasFixedSize(true);
             layoutManager = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false);

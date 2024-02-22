@@ -253,7 +253,7 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
             userId = sharedPreferences.getString(SharePreferenceKeys.USER_ID, "");
             deviceId = sharedPreferences.getString(SharePreferenceKeys.DEVICE_ID, "");
             token = sharedPreferences.getString(SharePreferenceKeys.API_KEY, "");
-            apiService = ApiClient.getInstance();
+            apiService = new ApiClient().getInstance();
             if (isLogin) {
 
                 sendRegistrationToServer(refreshedToken);
@@ -607,7 +607,7 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
             logout = findViewById(R.id.logoutLayout);
             attendance = findViewById(R.id.attendanceLayout);
             navigation = findViewById(R.id.navigation);
-            apiService = ApiClient.getInstance();
+            apiService = new ApiClient().getInstance();
             time = findViewById(R.id.time);
             dynamo = findViewById(R.id.dynamo);
             profile_pic = findViewById(R.id.profileImage);
@@ -875,7 +875,7 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void callToLogoutSrever() {
         try {
-            retrofit2.Call<LogoutApiResponce> call = ApiClient.getInstance().getLogoutDetails(sharedPreferences.getString(SharePreferenceKeys.USER_ID, ""), sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), sharedPreferences.getString(SharePreferenceKeys.FCM_TOKEN, ""));
+            retrofit2.Call<LogoutApiResponce> call = new ApiClient().getInstance().getLogoutDetails(sharedPreferences.getString(SharePreferenceKeys.USER_ID, ""), sharedPreferences.getString(SharePreferenceKeys.API_KEY, ""), sharedPreferences.getString(SharePreferenceKeys.FCM_TOKEN, ""));
             call.enqueue(new retrofit2.Callback<LogoutApiResponce>() {
                 @Override
                 public void onResponse(@NonNull Call<LogoutApiResponce> call, @NonNull Response<LogoutApiResponce> response) {
@@ -969,7 +969,7 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
             selfAttendanceLayout = findViewById(R.id.selfAttendanceLayout);
             teamAttendanceLayout = findViewById(R.id.teamAttendanceLayout);
             teamRequestLayout = findViewById(R.id.teamRequestLayout);
-            apiService = ApiClient.getInstance();
+            apiService = new ApiClient().getInstance();
             checkinTime = findViewById(R.id.checkinTime);
             totalHours = findViewById(R.id.totalHours);
             isHolidayStatus = findViewById(R.id.isHolidayStatus);
