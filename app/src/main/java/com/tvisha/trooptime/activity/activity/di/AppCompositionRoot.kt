@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import com.tvisha.trooptime.activity.activity.api.ApiClient
 
 import com.tvisha.trooptime.activity.activity.app.MyApplication
+import com.tvisha.trooptime.activity.activity.base.BaseRepository
 import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys
 import kotlinx.coroutines.CoroutineScope
 
@@ -53,9 +54,9 @@ class AppCompositionRoot(
 //        QuadgenAtDatabase.DatabaseManager(application).createDatabase()
 //    }
     
-//    val repository by lazy {
-//        BaseRepository(appCompositionRoot = this)
-//    }
+    val repository by lazy {
+        BaseRepository(appCompositionRoot = this)
+    }
 
 
 }

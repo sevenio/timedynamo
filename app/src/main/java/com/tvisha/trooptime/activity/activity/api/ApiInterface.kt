@@ -3,6 +3,7 @@ package com.tvisha.trooptime.activity.activity.api
 import com.tvisha.trooptime.activity.activity.apiPostModels.*
 import com.tvisha.trooptime.activity.activity.helper.ServerUrls
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -11,11 +12,11 @@ interface ApiInterface {
 
     @FormUrlEncoded
     @POST(ServerUrls.Loginurl)
-    fun getLoginDetails(
+    suspend fun getLoginDetails(
         @Field("username") username: String?,
         @Field("password") password: String?,
         @Field("token") token: String?
-    ): Call<String?>?
+    ): Response<String?>
 
     @FormUrlEncoded
     @POST(ServerUrls.All_Attendence)

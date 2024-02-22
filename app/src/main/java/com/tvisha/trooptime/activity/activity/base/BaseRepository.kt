@@ -38,34 +38,34 @@ open class BaseRepository(val appCompositionRoot: AppCompositionRoot) {
         return sharedPreferences.getString(SharePreferenceKeys.AWS_BASE_URL, "")?:""
     }
 
-//    suspend fun login(email: String, password: String): ResponseResult<String> {
-//        return try {
-//            val loginResponse =
-//                apiService.getLoginDetails(
-//                    username = email,
-//                    password = password,
-//                    token = Constants.TOKEN
-//                )
-//            if (loginResponse.isSuccessful && loginResponse.body() != null) {
+    suspend fun login(email: String, password: String): ResponseResult<String> {
+        return try {
+            val loginResponse =
+                apiService.getLoginDetails(
+                    username = email,
+                    password = password,
+                    token = Constants.TOKEN
+                )
+            if (loginResponse.isSuccessful && loginResponse.body() != null) {
 //                val awsConfigResult = callAwsKeys()
 //                if (awsConfigResult is ResponseResult.Success) {
-//                    saveUserDetails(loginResponse.body()!!)
-//                    if (JSONObject(loginResponse.body()).optBoolean("success")) {
-//                        ResponseResult.Success(loginResponse.body()!!)
-//                    }else {
-//                        ResponseResult.Error(loginResponse.message())
-//                    }
+                    saveUserDetails(loginResponse.body()!!)
+                    if (JSONObject(loginResponse.body()).optBoolean("success")) {
+                        ResponseResult.Success(loginResponse.body()!!)
+                    }else {
+                        ResponseResult.Error(loginResponse.message())
+                    }
 //                } else {
 //                    awsConfigResult as ResponseResult.Error
 //                }
-//            } else {
-//                ResponseResult.Error(loginResponse.message())
-//            }
-//        } catch (e: Exception) {
-//            Log.e("error---> ", "" + e.message)
-//            ResponseResult.Error(getMessage(e))
-//        }
-//    }
+            } else {
+                ResponseResult.Error(loginResponse.message())
+            }
+        } catch (e: Exception) {
+            Log.e("error---> ", "" + e.message)
+            ResponseResult.Error(getMessage(e))
+        }
+    }
 
 //    suspend fun callAwsKeys(): ResponseResult<GetAwsConfigResponse> {
 //        return try {

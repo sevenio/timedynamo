@@ -145,13 +145,13 @@ class MyApplication : Application(), ActivityLifecycleCallbacks {
         }
         registerActivityLifecycleCallbacks(this);
 */
-        val sharedPreferences = getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE)
-        if (sharedPreferences.getBoolean(SharePreferenceKeys.SP_LOGIN_STATUS, false)) {
-            AWS_KEY = sharedPreferences.getString(SharePreferenceKeys.AWS_KEY, "")
-            AWS_BASE_URL = sharedPreferences.getString(SharePreferenceKeys.AWS_BASE_URL, "")
-            AWS_BUCKET = sharedPreferences.getString(SharePreferenceKeys.AWS_BUCKET, "")
-            AWS_SECRET_KEY = sharedPreferences.getString(SharePreferenceKeys.AWS_SECRET_KEY, "")
-            AWS_REGION = sharedPreferences.getString(SharePreferenceKeys.AWS_REGION, "")
+        sharedPreferences = getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE)
+        if (sharedPreferences?.getBoolean(SharePreferenceKeys.SP_LOGIN_STATUS, false) == true) {
+            AWS_KEY = sharedPreferences?.getString(SharePreferenceKeys.AWS_KEY, "")
+            AWS_BASE_URL = sharedPreferences?.getString(SharePreferenceKeys.AWS_BASE_URL, "")
+            AWS_BUCKET = sharedPreferences?.getString(SharePreferenceKeys.AWS_BUCKET, "")
+            AWS_SECRET_KEY = sharedPreferences?.getString(SharePreferenceKeys.AWS_SECRET_KEY, "")
+            AWS_REGION = sharedPreferences?.getString(SharePreferenceKeys.AWS_REGION, "")
             HandlerHolder.applicationHandlers = uiHandler
             callAwsKeys()
         }
