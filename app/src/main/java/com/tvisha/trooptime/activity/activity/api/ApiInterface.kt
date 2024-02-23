@@ -73,7 +73,7 @@ interface ApiInterface {
 
     @FormUrlEncoded
     @POST("send-forgot-password")
-    fun getOtp(@Field("mobile") email: String?): Call<ForgotPasswordResponce?>?
+    suspend fun getOtp(@Field("mobile") email: String?): Response<ForgotPasswordResponce?>
 
     @FormUrlEncoded
     @POST("resend-otp")

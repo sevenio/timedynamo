@@ -40,61 +40,61 @@ class SettingsViewmodel : ViewModel() {
     val saveSettingsFailure: MutableLiveData<String> = MutableLiveData()
 
     fun getSettings() {
-        viewModelScope.launch {
-            showProgress.postValue(true)
-
-            val call = apiService.getOtp("number")
-            call?.enqueue(object : Callback<ForgotPasswordResponce?> {
-                override fun onResponse(
-                    call: Call<ForgotPasswordResponce?>,
-                    response: Response<ForgotPasswordResponce?>
-                ) {
-                    showProgress.postValue(false)
-
-                    if (response.isSuccessful) {
-                        responseSuccess.postValue("")
-                    } else {
-                        responceFailure.postValue("")
-                    }
-                }
-
-                override fun onFailure(call: Call<ForgotPasswordResponce?>, t: Throwable) {
-                    showProgress.postValue(true)
-                    responceFailure.postValue("")
-
-                }
-            })
-
-        }
+//        viewModelScope.launch {
+//            showProgress.postValue(true)
+//
+//            val call = apiService.getOtp("number")
+//            call?.enqueue(object : Callback<ForgotPasswordResponce?> {
+//                override fun onResponse(
+//                    call: Call<ForgotPasswordResponce?>,
+//                    response: Response<ForgotPasswordResponce?>
+//                ) {
+//                    showProgress.postValue(false)
+//
+//                    if (response.isSuccessful) {
+//                        responseSuccess.postValue("")
+//                    } else {
+//                        responceFailure.postValue("")
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<ForgotPasswordResponce?>, t: Throwable) {
+//                    showProgress.postValue(true)
+//                    responceFailure.postValue("")
+//
+//                }
+//            })
+//
+//        }
     }
 
     fun saveSettings() {
-        viewModelScope.launch {
-            showProgress.postValue(true)
-
-            val call = apiService.getOtp("number")
-            call?.enqueue(object : Callback<ForgotPasswordResponce?> {
-                override fun onResponse(
-                    call: Call<ForgotPasswordResponce?>,
-                    response: Response<ForgotPasswordResponce?>
-                ) {
-                    showProgress.postValue(false)
-
-                    if (response.isSuccessful) {
-                        saveSettingsSuccess.postValue("")
-                    } else {
-                        saveSettingsFailure.postValue("")
-                    }
-                }
-
-                override fun onFailure(call: Call<ForgotPasswordResponce?>, t: Throwable) {
-                    showProgress.postValue(true)
-                    saveSettingsFailure.postValue("")
-
-                }
-            })
-
-        }
+//        viewModelScope.launch {
+//            showProgress.postValue(true)
+//
+//            val call = apiService.getOtp("number")
+//            call?.enqueue(object : Callback<ForgotPasswordResponce?> {
+//                override fun onResponse(
+//                    call: Call<ForgotPasswordResponce?>,
+//                    response: Response<ForgotPasswordResponce?>
+//                ) {
+//                    showProgress.postValue(false)
+//
+//                    if (response.isSuccessful) {
+//                        saveSettingsSuccess.postValue("")
+//                    } else {
+//                        saveSettingsFailure.postValue("")
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<ForgotPasswordResponce?>, t: Throwable) {
+//                    showProgress.postValue(true)
+//                    saveSettingsFailure.postValue("")
+//
+//                }
+//            })
+//
+//        }
     }
 
 

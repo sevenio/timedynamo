@@ -80,89 +80,89 @@ class NotificationViewmodel : ViewModel() {
     }
 
     fun getSelfNotifications(isLoading: Boolean) {
-        viewModelScope.launch {
-            showProgress.postValue(true)
-
-            val call= apiService.getOtp("number")
-            call?.enqueue(object : Callback<ForgotPasswordResponce?> {
-                override fun onResponse(
-                    call: Call<ForgotPasswordResponce?>,
-                    response: Response<ForgotPasswordResponce?>
-                ) {
-                    showProgress.postValue(true)
-
-                    if (response.isSuccessful) {
-                        if (isLoading) {
-                            selfIsLoading.postValue(false)
-                        }
-                        selfNotificationsList.postValue(arrayListOf())
-                        selfTotalCount += 0 //data size or 0
-                        selfOffset += 0 //data size or 0
-                        if(true /* data is empty*/){
-                            selfIsLastPage = true
-                        }
-                        if(selfTotalCount == 0){
-                            selfNoData.postValue(true)
-                        }else {
-                            selfNoData.postValue(false)
-                        }
-
-                    } else {
-
-                    }
-                }
-
-                override fun onFailure(call: Call<ForgotPasswordResponce?>, t: Throwable) {
-                    showProgress.postValue(true)
-
-                }
-            })
-
-        }
+//        viewModelScope.launch {
+//            showProgress.postValue(true)
+//
+//            val call= apiService.getOtp("number")
+//            call?.enqueue(object : Callback<ForgotPasswordResponce?> {
+//                override fun onResponse(
+//                    call: Call<ForgotPasswordResponce?>,
+//                    response: Response<ForgotPasswordResponce?>
+//                ) {
+//                    showProgress.postValue(true)
+//
+//                    if (response.isSuccessful) {
+//                        if (isLoading) {
+//                            selfIsLoading.postValue(false)
+//                        }
+//                        selfNotificationsList.postValue(arrayListOf())
+//                        selfTotalCount += 0 //data size or 0
+//                        selfOffset += 0 //data size or 0
+//                        if(true /* data is empty*/){
+//                            selfIsLastPage = true
+//                        }
+//                        if(selfTotalCount == 0){
+//                            selfNoData.postValue(true)
+//                        }else {
+//                            selfNoData.postValue(false)
+//                        }
+//
+//                    } else {
+//
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<ForgotPasswordResponce?>, t: Throwable) {
+//                    showProgress.postValue(true)
+//
+//                }
+//            })
+//
+//        }
     }
 
 
 
     fun getTeamNotifications(isLoading: Boolean) {
-        viewModelScope.launch {
-            showProgress.postValue(true)
-
-            val call = apiService.getOtp("number")
-            call?.enqueue(object : Callback<ForgotPasswordResponce?> {
-                override fun onResponse(
-                    call: Call<ForgotPasswordResponce?>,
-                    response: Response<ForgotPasswordResponce?>
-                ) {
-                    showProgress.postValue(true)
-
-                    if (response.isSuccessful) {
-                        if (isLoading) {
-                            teamIsLoading.postValue(false)
-                        }
-                        teamNotificationsList.postValue(arrayListOf())
-                        teamTotalCount += 0 //data size or 0
-                        teamOffset += 0 //data size or 0
-                        if(true /* data is empty*/){
-                            teamIsLastPage = true
-                        }
-                        if(teamTotalCount == 0){
-                            teamNoData.postValue(true)
-                        }else {
-                            teamNoData.postValue(false)
-                        }
-
-                    } else {
-
-                    }
-                }
-
-                override fun onFailure(call: Call<ForgotPasswordResponce?>, t: Throwable) {
-                    showProgress.postValue(true)
-
-                }
-            })
-
-        }
+//        viewModelScope.launch {
+//            showProgress.postValue(true)
+//
+//            val call = apiService.getOtp("number")
+//            call?.enqueue(object : Callback<ForgotPasswordResponce?> {
+//                override fun onResponse(
+//                    call: Call<ForgotPasswordResponce?>,
+//                    response: Response<ForgotPasswordResponce?>
+//                ) {
+//                    showProgress.postValue(true)
+//
+//                    if (response.isSuccessful) {
+//                        if (isLoading) {
+//                            teamIsLoading.postValue(false)
+//                        }
+//                        teamNotificationsList.postValue(arrayListOf())
+//                        teamTotalCount += 0 //data size or 0
+//                        teamOffset += 0 //data size or 0
+//                        if(true /* data is empty*/){
+//                            teamIsLastPage = true
+//                        }
+//                        if(teamTotalCount == 0){
+//                            teamNoData.postValue(true)
+//                        }else {
+//                            teamNoData.postValue(false)
+//                        }
+//
+//                    } else {
+//
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<ForgotPasswordResponce?>, t: Throwable) {
+//                    showProgress.postValue(true)
+//
+//                }
+//            })
+//
+//        }
     }
 
 }

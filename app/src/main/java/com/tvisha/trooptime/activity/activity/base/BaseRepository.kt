@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.tvisha.trooptime.activity.activity.api.ApiClient
 import com.tvisha.trooptime.activity.activity.api.ResponseResult
+import com.tvisha.trooptime.activity.activity.apiPostModels.ForgotPasswordResponce
 import com.tvisha.trooptime.activity.activity.apiPostModels.GetAwsConfigResponse
 import com.tvisha.trooptime.activity.activity.apiPostModels.User
 import com.tvisha.trooptime.activity.activity.di.AppCompositionRoot
@@ -35,7 +36,24 @@ open class BaseRepository(val appCompositionRoot: AppCompositionRoot) {
     }
 
     fun getAwsBaseUrl(): String {
-        return sharedPreferences.getString(SharePreferenceKeys.AWS_BASE_URL, "")?:""
+        return sharedPreferences.getString(SharePreferenceKeys.AWS_BASE_URL, "") ?: ""
+    }
+
+    suspend fun getOtp(number: String): ResponseResult<ForgotPasswordResponce> {
+        return try {
+
+            val forgotPasswordResponce = apiService.getOtp(number)
+            if (forgotPasswordResponce.isSuccessful && forgotPasswordResponce.body() != null) {
+
+                ResponseResult.Success(forgotPasswordResponce.body()!!)
+            } else {
+                ResponseResult.Error(forgotPasswordResponce.message())
+            }
+
+        } catch (e: Exception) {
+            Log.e("error---> ", "" + e.message)
+            ResponseResult.Error(getMessage(e))
+        }
     }
 
     suspend fun login(email: String, password: String): ResponseResult<String> {
@@ -52,7 +70,7 @@ open class BaseRepository(val appCompositionRoot: AppCompositionRoot) {
                     saveUserDetails(loginResponse.body()!!)
                     if (JSONObject(loginResponse.body()).optBoolean("success")) {
                         ResponseResult.Success(loginResponse.body()!!)
-                    }else {
+                    } else {
                         ResponseResult.Error(loginResponse.message())
                     }
                 } else {

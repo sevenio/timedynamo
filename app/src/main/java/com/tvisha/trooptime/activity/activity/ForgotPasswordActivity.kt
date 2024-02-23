@@ -1,257 +1,172 @@
-package com.tvisha.trooptime.activity.activity;
+package com.tvisha.trooptime.activity.activity
 
-import android.os.Bundle;
-import android.os.SystemClock;
-import androidx.appcompat.app.AppCompatActivity;
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.os.Bundle
+import android.os.SystemClock
+import android.util.Log
+import android.view.KeyEvent
+import android.view.View
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.tvisha.trooptime.R
+import com.tvisha.trooptime.activity.activity.api.ApiClient
+import com.tvisha.trooptime.activity.activity.api.ApiInterface
+import com.tvisha.trooptime.activity.activity.apiPostModels.ForgotPasswordResponce
+import com.tvisha.trooptime.activity.activity.dialog.CustomProgressBar
+import com.tvisha.trooptime.activity.activity.helper.Helper
+import com.tvisha.trooptime.activity.activity.helper.Navigation
+import com.tvisha.trooptime.activity.activity.helper.Utilities
+import com.tvisha.trooptime.activity.activity.viewmodels.ForgotPasswordViewModel
+import com.tvisha.trooptime.activity.activity.viewmodels.LoginViewModel
+import com.tvisha.trooptime.databinding.ActivityForgotPasswordBinding
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-import com.tvisha.trooptime.activity.activity.apiPostModels.ForgotPasswordResponce;
-import com.tvisha.trooptime.activity.activity.dialog.CustomProgressBar;
-import com.tvisha.trooptime.activity.activity.helper.Helper;
-import com.tvisha.trooptime.activity.activity.helper.Navigation;
-import com.tvisha.trooptime.activity.activity.helper.Utilities;
-import com.tvisha.trooptime.activity.activity.api.ApiClient;
-import com.tvisha.trooptime.activity.activity.api.ApiInterface;
-import com.tvisha.trooptime.R;
+class ForgotPasswordActivity : AppCompatActivity(), View.OnClickListener {
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-public class ForgotPasswordActivity extends AppCompatActivity implements View.OnClickListener {
-    ApiInterface apiService;
-    EditText mobileNumber;
-    TextView next;
-    String number = "";
-    TextView login;
-    CustomProgressBar customProgressBar;
-    long mLastClicked = 0;
-
-    public void openProgress() {
-
-        try {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        if (!(ForgotPasswordActivity.this).isFinishing()) {
-                            if (customProgressBar != null && !customProgressBar.isShowing()) {
-                                customProgressBar.show();
-                            }
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    private val binding by lazy {
+        ActivityForgotPasswordBinding.inflate(layoutInflater)
     }
-
-    public void closeProgress() {
-        try {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        if (!(ForgotPasswordActivity.this).isFinishing()) {
-                            if (customProgressBar != null && customProgressBar.isShowing()) {
-                                customProgressBar.dismiss();
-                            }
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    private val customProgressBar: CustomProgressBar by lazy {
+        CustomProgressBar(this@ForgotPasswordActivity)
     }
+    private val viewModel: ForgotPasswordViewModel by viewModels()
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    var mLastClicked: Long = 0
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgot_password);
-        initViews();
-        initListeners();
-
-
-        mobileNumber.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-
-                if ((keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    Helper.getInstance().openKeyboard(ForgotPasswordActivity.this, mobileNumber);
-                    next.performClick();
-                    next.setClickable(false);
-                    return true;
-                } else {
-                    return false;
-                }
-
+    fun openProgress() {
+        lifecycleScope.launch {
+            if (!customProgressBar.isShowing) {
+                customProgressBar.show()
             }
-        });
-
-
-    }
-
-    private void initListeners() {
-        try {
-            next.setOnClickListener(this);
-            login.setOnClickListener(this);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-
     }
 
-    private void getOtpApi() {
-        try {
-            if (Utilities.isNetworkAvailable(ForgotPasswordActivity.this)) {
+    fun closeProgress() {
+        lifecycleScope.launch {
+            if (customProgressBar.isShowing) {
+                customProgressBar.dismiss()
+            }
+        }
+    }
 
-                getOtp();
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(binding.root)
+        initListeners()
+        binding.mobileNumber.setOnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                Helper.getInstance().openKeyboard(this@ForgotPasswordActivity, binding.mobileNumber)
+                binding.next.performClick()
+                binding.next.isClickable = false
+                true
             } else {
-                next.setClickable(true);
-                Utilities.showSnackBar(mobileNumber, getResources().getString(R.string.no_internet_connection));
-
+                false
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        }
+        viewModel.progress.observe(this) {
+            if (it) {
+                openProgress()
+            } else {
+                closeProgress()
+            }
+        }
+        viewModel.forgotSuccess.observe(this) {
+            Log.d("ganga", "success")
+            closeProgress()
+            binding.next.isClickable = true
+
+            Toast.makeText(
+                this@ForgotPasswordActivity,
+                it.message,
+                Toast.LENGTH_LONG
+            ).show()
+
+            Navigation.getInstance().openOtpVerify(
+                this@ForgotPasswordActivity,
+                it.userId,
+                binding.mobileNumber.text.toString().trim { it <= ' ' }
+            )
+
+        }
+
+        viewModel.forgotFail.observe(this) {
+            closeProgress()
+            if (it.isNotBlank()) {
+                binding.next.isClickable = true
+                Utilities.ShowSnackbar(
+                    this@ForgotPasswordActivity,
+                    binding.mobileNumber,
+                    it
+                )
+            }
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        try {
-            switch (v.getId()) {
-                case R.id.next:
-                    next.setClickable(false);
-                    validateForm();
-                    if (mobileNumber != null)
-                        break;
-                case R.id.tv_login:
-                    login.setClickable(false);
-                    Navigation.getInstance().openLoginPage(ForgotPasswordActivity.this);
+    private fun initListeners() {
 
-                    break;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        binding.next.setOnClickListener(this)
+        binding.tvLogin.setOnClickListener(this)
+
     }
 
-    private void validateForm() {
 
+    override fun onClick(v: View) {
+
+        when (v.id) {
+            R.id.next -> {
+                binding.next!!.isClickable = false
+                validateForm()
+
+            }
+            R.id.tv_login -> {
+                binding.tvLogin!!.isClickable = false
+                Navigation.getInstance().openLoginPage(this@ForgotPasswordActivity)
+            }
+        }
+
+    }
+
+    private fun validateForm() {
         try {
-
-
-            Helper.getInstance().closeKeyBoard(ForgotPasswordActivity.this, mobileNumber);
-
+            Helper.getInstance().closeKeyBoard(this@ForgotPasswordActivity, binding.mobileNumber)
             if (SystemClock.elapsedRealtime() - mLastClicked < 100) {
-                return;
+                return
             }
-            mLastClicked = SystemClock.elapsedRealtime();
-
-            number = mobileNumber.getText().toString().trim();
-            if (number.length() == 0) {
-                next.setClickable(true);
-                Utilities.showSnackBar(mobileNumber, "Please enter Email/Mobile Number");
-                Helper.getInstance().openKeyboard(ForgotPasswordActivity.this, mobileNumber);
-
-            } else if (!Utilities.validEmail(number) && Utilities.isNumeric(number) && number.length() < 10) {
-                next.setClickable(true);
-                Utilities.showSnackBar(mobileNumber, "Please enter valid Mobile Number");
-                Helper.getInstance().openKeyboard(ForgotPasswordActivity.this, mobileNumber);
-
+            mLastClicked = SystemClock.elapsedRealtime()
+            val number = binding.mobileNumber!!.text.toString().trim { it <= ' ' }
+            if (number.isEmpty()) {
+                binding.next.isClickable = true
+                Utilities.showSnackBar(binding.mobileNumber, "Please enter Email/Mobile Number")
+                Helper.getInstance().openKeyboard(this@ForgotPasswordActivity, binding.mobileNumber)
+            } else if (!Utilities.validEmail(number) && Utilities.isNumeric(number) && number.length < 10) {
+                binding.next.isClickable = true
+                Utilities.showSnackBar(binding.mobileNumber, "Please enter valid Mobile Number")
+                Helper.getInstance().openKeyboard(this@ForgotPasswordActivity, binding.mobileNumber)
             } else if (!Utilities.validEmail(number) && !Utilities.isNumeric(number)) {
-                next.setClickable(true);
-                Utilities.showSnackBar(mobileNumber, "Please enter valid Email");
-                Helper.getInstance().openKeyboard(ForgotPasswordActivity.this, mobileNumber);
+                binding.next.isClickable = true
+                Utilities.showSnackBar(binding.mobileNumber, "Please enter valid Email")
+                Helper.getInstance().openKeyboard(this@ForgotPasswordActivity, binding.mobileNumber)
             } else {
-
-                getOtpApi();
+                if (Utilities.isNetworkAvailable(this@ForgotPasswordActivity)) {
+                    viewModel.getOtp(binding.mobileNumber.text.toString().trim { it <= ' ' })
+                } else {
+                    binding.next.isClickable = true
+                    Utilities.showSnackBar(
+                        binding.mobileNumber,
+                        resources.getString(R.string.no_internet_connection)
+                    )
+                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void initViews() {
-        try {
-            customProgressBar = new CustomProgressBar(ForgotPasswordActivity.this);
-            apiService = new ApiClient().getInstance();
-            mobileNumber = findViewById(R.id.mobileNumber);
-            login = findViewById(R.id.tv_login);
-            next = findViewById(R.id.next);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void getOtp() {
-
-        try {
-
-            Helper.getInstance().closeKeyBoard(ForgotPasswordActivity.this, mobileNumber);
-            openProgress();
-
-            Call<ForgotPasswordResponce> call = apiService.getOtp(number);
-
-            call.enqueue(new Callback<ForgotPasswordResponce>() {
-                @Override
-                public void onResponse(Call<ForgotPasswordResponce> call, Response<ForgotPasswordResponce> response) {
-                    ForgotPasswordResponce apiResponse = response.body();
-                    if (apiResponse != null) {
-                        closeProgress();
-                        if (apiResponse.isSuccess()) {
-
-                            Toast.makeText(ForgotPasswordActivity.this, apiResponse.getMessage(), Toast.LENGTH_LONG).show();
-                            Navigation.getInstance().openOtpVerify(ForgotPasswordActivity.this, apiResponse.getUserId(), number);
-
-                            next.setClickable(true);
-
-                        } else {
-                            next.setClickable(true);
-                            Utilities.ShowSnackbar(ForgotPasswordActivity.this, mobileNumber, apiResponse.getMessage());
-
-                        }
-
-                    } else {
-                        next.setClickable(true);
-                        Utilities.ShowSnackbar(ForgotPasswordActivity.this, mobileNumber, getResources().getString(R.string.somthing_went_wrong));
-                        ;
-                        closeProgress();
-
-
-                    }
-
-                }
-
-                @Override
-                public void onFailure(Call<ForgotPasswordResponce> call, Throwable t) {
-                    next.setClickable(true);
-                    closeProgress();
-
-
-                }
-
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
