@@ -462,7 +462,7 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private void updateProfile() {
         try {
             if (user_avatar != null && !user_avatar.isEmpty()) {
-                Glide.with(HomeActivity.this).load(MyApplication.AWS_BASE_URL + user_avatar)
+                Glide.with(HomeActivity.this).load(sharedPreferences.getString(SharePreferenceKeys.AWS_BASE_URL, "") + user_avatar)
                         .apply(RequestOptions.circleCropTransform())
                         .into(profile_pic);
             } else {

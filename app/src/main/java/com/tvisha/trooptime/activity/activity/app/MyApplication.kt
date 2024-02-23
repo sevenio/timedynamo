@@ -23,6 +23,8 @@ import com.tvisha.trooptime.activity.activity.handlers.HandlerHolder
 import com.tvisha.trooptime.activity.activity.helper.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -145,15 +147,10 @@ class MyApplication : Application(), ActivityLifecycleCallbacks {
         }
         registerActivityLifecycleCallbacks(this);
 */
-        sharedPreferences = getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE)
-        if (sharedPreferences?.getBoolean(SharePreferenceKeys.SP_LOGIN_STATUS, false) == true) {
-//            AWS_KEY = sharedPreferences?.getString(SharePreferenceKeys.AWS_KEY, "")
-            AWS_BASE_URL = sharedPreferences?.getString(SharePreferenceKeys.AWS_BASE_URL, "")
-//            AWS_BUCKET = sharedPreferences?.getString(SharePreferenceKeys.AWS_BUCKET, "")
-//            AWS_SECRET_KEY = sharedPreferences?.getString(SharePreferenceKeys.AWS_SECRET_KEY, "")
-//            AWS_REGION = sharedPreferences?.getString(SharePreferenceKeys.AWS_REGION, "")
-            HandlerHolder.applicationHandlers = uiHandler
-            callAwsKeys()
+        if (getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE).getBoolean(SharePreferenceKeys.SP_LOGIN_STATUS, false)) {
+            applicationScope.launch {
+                appCompositionRoot.repository.callAwsKeys()
+            }
         }
         super.onCreate()
     }
@@ -179,87 +176,9 @@ class MyApplication : Application(), ActivityLifecycleCallbacks {
             e.printStackTrace();
         }
     }*/
-    @SuppressLint("HandlerLeak")
-    var uiHandler: Handler = object : Handler() {
-        override fun handleMessage(msg: Message) {
-            super.handleMessage(msg)
-            when (msg.what) {
-                Constants.LOGIN_SUCCESSFUL -> callAwsKeys()
-            }
-        }
-    }
 
-    fun callAwsKeys() {
-        if (Utilities.isNetworkAvailable(
-                applicationContext
-            )
-        ) {
-            Thread { callGetAwsConfig() }.start()
-        }
-    }
 
-    private fun callGetAwsConfig() {
-        try {
-            val call = ApiClient().instance.getAwsConfig(Constants.TOKEN)
-            call!!.enqueue(object : Callback<GetAwsConfigResponse?> {
-                override fun onResponse(
-                    call: Call<GetAwsConfigResponse?>,
-                    response: Response<GetAwsConfigResponse?>
-                ) {
-                    val apiResponse = response.body()
-                    if (apiResponse != null) {
-                        if (apiResponse.isSuccess) {
-                            decryptData(apiResponse)
-                        }
-                    }
-                }
 
-                override fun onFailure(call: Call<GetAwsConfigResponse?>, t: Throwable) {}
-            })
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    private fun decryptData(apiResponse: GetAwsConfigResponse) {
-        try {
-            val base64 = apiResponse.data
-            if (base64 != null) {
-                val data = Base64.decode(base64, Base64.DEFAULT)
-                try {
-                    val text = String(data, Charsets.UTF_8)
-                    var jsonObject: JSONObject? = null
-                    try {
-                        jsonObject = JSONObject(text)
-                        if (jsonObject != null) {
-                            val AWS_KEY = jsonObject.getString("key")
-                            val AWS_SECRET_KEY = jsonObject.getString("secret")
-                            val AWS_BUCKET = jsonObject.getString("bucket")
-                            val AWS_REGION = jsonObject.getString("region")
-                            AWS_BASE_URL = jsonObject.getString("base_url")
-                            sharedPreferences!!.edit()
-                                .putString(SharePreferenceKeys.AWS_KEY, AWS_KEY).apply()
-                            sharedPreferences!!.edit()
-                                .putString(SharePreferenceKeys.AWS_BUCKET, AWS_BUCKET).apply()
-                            sharedPreferences!!.edit()
-                                .putString(SharePreferenceKeys.AWS_REGION, AWS_REGION).apply()
-                            sharedPreferences!!.edit()
-                                .putString(SharePreferenceKeys.AWS_BASE_URL, AWS_BASE_URL).apply()
-                            sharedPreferences!!.edit()
-                                .putString(SharePreferenceKeys.AWS_SECRET_KEY, AWS_SECRET_KEY)
-                                .apply()
-                        }
-                    } catch (e: JSONException) {
-                        e.printStackTrace()
-                    }
-                } catch (e: UnsupportedEncodingException) {
-                    e.printStackTrace()
-                }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
 
     override fun onTerminate() {
         unregisterActivityLifecycleCallbacks(this)
@@ -283,16 +202,7 @@ class MyApplication : Application(), ActivityLifecycleCallbacks {
         var UserRequestListResponse: UserRequestListResponse? = null
         @JvmField
         var selfAttendenceApiResponce: SelfAttendenceApiResponce? = null
-//        @JvmField
-//        var AWS_KEY: String? = ""
-//        @JvmField
-//        var AWS_SECRET_KEY: String? = ""
-//        @JvmField
-//        var AWS_BUCKET: String? = ""
-//        var AWS_REGION: String? = ""
-        @JvmField
-        var AWS_BASE_URL: String? = ""
-        @JvmField
-        var sharedPreferences: SharedPreferences? = null
+
+
     }
 }

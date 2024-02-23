@@ -32,7 +32,7 @@ public class Constants {
 
 
 
-    public final static int LOGIN_SUCCESSFUL = 1000;
+//    public final static int LOGIN_SUCCESSFUL = 1000;
 
 
     public static final String MONTHS[] = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};

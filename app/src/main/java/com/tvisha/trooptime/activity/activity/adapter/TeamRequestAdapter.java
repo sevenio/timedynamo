@@ -23,6 +23,7 @@ import com.tvisha.trooptime.activity.activity.RoundishImageView;
 import com.tvisha.trooptime.activity.activity.TeamRequestDetailsActivity;
 import com.tvisha.trooptime.activity.activity.app.MyApplication;
 import com.tvisha.trooptime.R;
+import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -460,7 +461,7 @@ public class TeamRequestAdapter extends RecyclerView.Adapter<TeamRequestAdapter.
                 RequestOptions options = new RequestOptions()
                         .error(R.drawable.avtar_placeholder_rectangle)
                         .priority(Priority.HIGH);
-                Glide.with(context).load(MyApplication.AWS_BASE_URL + user_avatar)
+                Glide.with(context).load(context.getSharedPreferences(SharePreferenceKeys.SP_NAME, Context.MODE_PRIVATE).getString(SharePreferenceKeys.AWS_BASE_URL, "") + user_avatar)
                         .apply(options)
                         .into(viewHolder.profileImage);
             } else {

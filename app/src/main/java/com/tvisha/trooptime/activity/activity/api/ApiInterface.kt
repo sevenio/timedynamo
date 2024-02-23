@@ -344,9 +344,9 @@ interface ApiInterface {
 
     @FormUrlEncoded
     @POST("get-image-upload-keys")
-    fun getAwsConfig(
+    suspend fun getAwsConfig(
         @Field("token") token: String?
-    ): Call<GetAwsConfigResponse?>?
+    ): Response<GetAwsConfigResponse?>
 
     @FormUrlEncoded
     @POST("update-profile-pic")

@@ -1,5 +1,7 @@
 package com.tvisha.trooptime.activity.activity.adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 
@@ -165,13 +167,13 @@ public class EventsAdaper extends RecyclerView.Adapter<EventsAdaper.ViewHolder> 
 
             String user_avatar = items.get(i).getUser_avatar();
 
-            if (items.get(i).getUser_id().equals(MyApplication.sharedPreferences.getString(SharePreferenceKeys.USER_ID,""))){
-                MyApplication.sharedPreferences.edit().putString(SharePreferenceKeys.USER_AVATAR,user_avatar).apply();
+            if (items.get(i).getUser_id().equals(context.getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE).getString(SharePreferenceKeys.USER_ID,""))){
+                context.getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE).edit().putString(SharePreferenceKeys.USER_AVATAR,user_avatar).apply();
             }
 
 
             if (user_avatar != null && !user_avatar.isEmpty()) {
-                Glide.with(context).load(MyApplication.AWS_BASE_URL + user_avatar)
+                Glide.with(context).load(context.getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE).getString(SharePreferenceKeys.AWS_BASE_URL, "") + user_avatar)
                         .apply(options)
                         .into(viewHolder.profileImage);
             } else {

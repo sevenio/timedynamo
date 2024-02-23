@@ -315,7 +315,7 @@ public class TroopTimeAdapter extends RecyclerSwipeAdapter<TroopTimeAdapter.View
                                 .circleCropTransform()
                                 .error(R.drawable.avatar_placeholder_light)
                                 .priority(Priority.HIGH);
-                        Glide.with(context).load(MyApplication.AWS_BASE_URL + model.getUserAvatar())
+                        Glide.with(context).load(sharedPreferences.getString(SharePreferenceKeys.AWS_BASE_URL, "") + model.getUserAvatar())
                                 .apply(options).into(holder.employee_profile_pic);
                     } else {
                         Glide.with(context).load(R.drawable.avatar_placeholder_light).into(holder.employee_profile_pic);

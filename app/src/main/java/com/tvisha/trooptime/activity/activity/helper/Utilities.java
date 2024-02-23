@@ -1,5 +1,7 @@
 package com.tvisha.trooptime.activity.activity.helper;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -870,12 +872,12 @@ sView.setLayoutParams(params);*//*
                     usersModel.setReportingPermissionId(empObj.optString("reporting_permission_id"));
 
                     String url = empObj.optString("user_avatar");
-                    if (empObj.optString("user_id").equals(MyApplication.sharedPreferences.getString(SharePreferenceKeys.USER_ID,""))){
-                        MyApplication.sharedPreferences.edit().putString(SharePreferenceKeys.USER_AVATAR,url).apply();
+                    if (empObj.optString("user_id").equals(context.getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE).getString(SharePreferenceKeys.USER_ID,""))){
+                        context.getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE).edit().putString(SharePreferenceKeys.USER_AVATAR,url).apply();
                     }
                     if (url != null && !url.trim().isEmpty()) {
                         if (url.contains("data") || url.trim().startsWith("user_avatar/")) {
-                            url = MyApplication.AWS_BASE_URL + url;
+                            url = context.getSharedPreferences(SharePreferenceKeys.SP_NAME, Context.MODE_PRIVATE).getString(SharePreferenceKeys.AWS_BASE_URL, "") + url;
                         }
 
                         String imgName = url.substring(url.lastIndexOf("/") + 1, url.length());
@@ -1046,7 +1048,7 @@ sView.setLayoutParams(params);*//*
                 String url = empObj.optString("user_avatar");
                 if (url != null && !url.trim().isEmpty()) {
                     if (url.contains("data") || url.trim().startsWith("user_avatar/")) {
-                        url = MyApplication.AWS_BASE_URL + url;
+                        url = context.getSharedPreferences(SharePreferenceKeys.SP_NAME, Context.MODE_PRIVATE).getString(SharePreferenceKeys.AWS_BASE_URL, "") + url;
                     }
 
                     String imgName = url.substring(url.lastIndexOf("/") + 1, url.length());

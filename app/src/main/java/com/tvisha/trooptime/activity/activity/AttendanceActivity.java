@@ -1003,6 +1003,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
     private void initializeWidgets() {
 
         try {
+            String AWS_BASE_URL = sharedPreferences.getString(SharePreferenceKeys.AWS_BASE_URL, "");
 
             apiService = new ApiClient().getInstance();
             customProgressBar = new CustomProgressBar(AttendanceActivity.this);
@@ -1080,7 +1081,7 @@ public class AttendanceActivity extends Activity implements View.OnClickListener
                         .circleCropTransform()
                         .error(R.drawable.avatar_placeholder_light)
                         .priority(Priority.HIGH);
-                Glide.with(AttendanceActivity.this).load(MyApplication.AWS_BASE_URL + user_avatar)
+                Glide.with(AttendanceActivity.this).load(AWS_BASE_URL + user_avatar)
                         .apply(options).into(profile_pic);
             } else {
                 Glide.with(AttendanceActivity.this).load(R.drawable.avatar_placeholder_light).into(profile_pic);

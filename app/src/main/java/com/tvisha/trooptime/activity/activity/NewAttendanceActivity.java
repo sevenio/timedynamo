@@ -209,7 +209,7 @@ public class NewAttendanceActivity extends AppCompatActivity implements TabLayou
                         .circleCropTransform()
                         .error(R.drawable.user)
                         .priority(Priority.HIGH);
-                Glide.with(NewAttendanceActivity.this).load(MyApplication.AWS_BASE_URL + user_avatar)
+                Glide.with(NewAttendanceActivity.this).load(sharedPreferences.getString(SharePreferenceKeys.AWS_BASE_URL, "") + user_avatar)
                         .apply(options)
                         .into(profile_pic);
             } else {

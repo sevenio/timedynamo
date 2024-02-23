@@ -1,5 +1,6 @@
 package com.tvisha.trooptime.activity.activity.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.tvisha.trooptime.R
 import com.tvisha.trooptime.activity.activity.app.MyApplication
 import com.tvisha.trooptime.activity.activity.db.UsersModel
+import com.tvisha.trooptime.activity.activity.helper.SharePreferenceKeys
 import com.tvisha.trooptime.activity.activity.viewmodels.SelectEmployeesViewmodel
 import com.tvisha.trooptime.databinding.FragmentSelectEmployeeSettingsBinding
 import com.tvisha.trooptime.databinding.ItemSelectEmployeeBinding
@@ -77,7 +79,7 @@ class EmployeesRecyclerViewAdapter(val date: List<UsersModel>, var selectedItemS
             .placeholder(ContextCompat.getDrawable(context, R.drawable.avatar_placeholder_light))
             .error(ContextCompat.getDrawable(context, R.drawable.avatar_placeholder_light))
             .priority(Priority.HIGH)
-        Glide.with(holder.itemView.context).load(MyApplication.AWS_BASE_URL + item.userAvatar)
+        Glide.with(holder.itemView.context).load(context.getSharedPreferences(SharePreferenceKeys.SP_NAME, Context.MODE_PRIVATE)?.getString(SharePreferenceKeys.AWS_BASE_URL, "") + item.userAvatar)
             .apply(options)
             .into(holder.binding.ivProfile)
 

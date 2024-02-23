@@ -1892,12 +1892,13 @@ public class AttendanceFragment extends Fragment implements TabLayout.OnTabSelec
 
     private void updateProfile() {
         try {
+
             RequestOptions options = new RequestOptions()
                     .circleCropTransform()
                     .error(R.drawable.avatar_placeholder_light)
                     .priority(Priority.HIGH);
             if (user_avatar != null && !user_avatar.trim().isEmpty()) {
-                Glide.with(context).load(MyApplication.AWS_BASE_URL + user_avatar)
+                Glide.with(context).load(sharedPreferences.getString(SharePreferenceKeys.AWS_BASE_URL, "") + user_avatar)
                         .apply(options).into(profileImage);
             } else {
                 Glide.with(context).load(R.drawable.avatar_placeholder_light).into(profileImage);

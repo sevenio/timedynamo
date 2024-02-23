@@ -344,7 +344,7 @@ public class TeamRequestDetailsActivity extends AppCompatActivity implements Vie
                         .circleCropTransform()
                         .error(R.drawable.avatar_placeholder_rectangle)
                         .priority(Priority.HIGH);
-                Glide.with(TeamRequestDetailsActivity.this).load(MyApplication.AWS_BASE_URL + user_avatar)
+                Glide.with(TeamRequestDetailsActivity.this).load(sharedPreferences.getString(SharePreferenceKeys.AWS_BASE_URL, "") + user_avatar)
                         .apply(options)
                         .into(profileImage);
             } else {

@@ -374,7 +374,7 @@ public class RequestActivity extends AppCompatActivity implements TabLayout.OnTa
     private void updateProfile() {
         try {
             if (user_avatar != null && !user_avatar.isEmpty()) {
-                Glide.with(RequestActivity.this).load(MyApplication.AWS_BASE_URL + user_avatar)
+                Glide.with(RequestActivity.this).load(sharedPreferences.getString(SharePreferenceKeys.AWS_BASE_URL, "") + user_avatar)
                         .apply(RequestOptions.circleCropTransform())
                         .into(profile_pic);
             } else {

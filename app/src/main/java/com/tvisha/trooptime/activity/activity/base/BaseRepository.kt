@@ -47,17 +47,17 @@ open class BaseRepository(val appCompositionRoot: AppCompositionRoot) {
                     token = Constants.TOKEN
                 )
             if (loginResponse.isSuccessful && loginResponse.body() != null) {
-//                val awsConfigResult = callAwsKeys()
-//                if (awsConfigResult is ResponseResult.Success) {
+                val awsConfigResult = callAwsKeys()
+                if (awsConfigResult is ResponseResult.Success) {
                     saveUserDetails(loginResponse.body()!!)
                     if (JSONObject(loginResponse.body()).optBoolean("success")) {
                         ResponseResult.Success(loginResponse.body()!!)
                     }else {
                         ResponseResult.Error(loginResponse.message())
                     }
-//                } else {
-//                    awsConfigResult as ResponseResult.Error
-//                }
+                } else {
+                    awsConfigResult as ResponseResult.Error
+                }
             } else {
                 ResponseResult.Error(loginResponse.message())
             }
@@ -67,23 +67,23 @@ open class BaseRepository(val appCompositionRoot: AppCompositionRoot) {
         }
     }
 
-//    suspend fun callAwsKeys(): ResponseResult<GetAwsConfigResponse> {
-//        return try {
-//
-//            val awsConfigResponse = apiService.getAwsConfig(Constants.TOKEN)
-//            if (awsConfigResponse.isSuccessful && awsConfigResponse.body() != null) {
-//                decryptData(awsConfigResponse.body()!!)
-//                ResponseResult.Success(awsConfigResponse.body()!!)
-//            } else {
-//                ResponseResult.Error(awsConfigResponse.message())
-//            }
-//
-//        } catch (e: Exception) {
-//            Log.e("error---> ", "" + e.message)
-//            ResponseResult.Error(getMessage(e))
-//        }
-//
-//    }
+    suspend fun callAwsKeys(): ResponseResult<GetAwsConfigResponse> {
+        return try {
+
+            val awsConfigResponse = apiService.getAwsConfig(Constants.TOKEN)
+            if (awsConfigResponse.isSuccessful && awsConfigResponse.body() != null) {
+                decryptData(awsConfigResponse.body()!!)
+                ResponseResult.Success(awsConfigResponse.body()!!)
+            } else {
+                ResponseResult.Error(awsConfigResponse.message())
+            }
+
+        } catch (e: Exception) {
+            Log.e("error---> ", "" + e.message)
+            ResponseResult.Error(getMessage(e))
+        }
+
+    }
 
     private fun decryptData(apiResponse: GetAwsConfigResponse) {
         try {

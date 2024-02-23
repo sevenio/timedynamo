@@ -222,7 +222,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         .error(R.drawable.default_profile)
                         .priority(Priority.HIGH);
                 Glide.with(ProfileActivity.this)
-                        .load(MyApplication.AWS_BASE_URL + user_avatar)
+                        .load(sharedPreferences.getString(SharePreferenceKeys.AWS_BASE_URL, "") + user_avatar)
                         //.transform(new BlurTransformation(this))
                         .apply(options)
                         .listener(new RequestListener<Drawable>() {
