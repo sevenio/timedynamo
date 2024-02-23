@@ -147,11 +147,11 @@ class MyApplication : Application(), ActivityLifecycleCallbacks {
 */
         sharedPreferences = getSharedPreferences(SharePreferenceKeys.SP_NAME, MODE_PRIVATE)
         if (sharedPreferences?.getBoolean(SharePreferenceKeys.SP_LOGIN_STATUS, false) == true) {
-            AWS_KEY = sharedPreferences?.getString(SharePreferenceKeys.AWS_KEY, "")
+//            AWS_KEY = sharedPreferences?.getString(SharePreferenceKeys.AWS_KEY, "")
             AWS_BASE_URL = sharedPreferences?.getString(SharePreferenceKeys.AWS_BASE_URL, "")
-            AWS_BUCKET = sharedPreferences?.getString(SharePreferenceKeys.AWS_BUCKET, "")
-            AWS_SECRET_KEY = sharedPreferences?.getString(SharePreferenceKeys.AWS_SECRET_KEY, "")
-            AWS_REGION = sharedPreferences?.getString(SharePreferenceKeys.AWS_REGION, "")
+//            AWS_BUCKET = sharedPreferences?.getString(SharePreferenceKeys.AWS_BUCKET, "")
+//            AWS_SECRET_KEY = sharedPreferences?.getString(SharePreferenceKeys.AWS_SECRET_KEY, "")
+//            AWS_REGION = sharedPreferences?.getString(SharePreferenceKeys.AWS_REGION, "")
             HandlerHolder.applicationHandlers = uiHandler
             callAwsKeys()
         }
@@ -232,10 +232,10 @@ class MyApplication : Application(), ActivityLifecycleCallbacks {
                     try {
                         jsonObject = JSONObject(text)
                         if (jsonObject != null) {
-                            AWS_KEY = jsonObject.getString("key")
-                            AWS_SECRET_KEY = jsonObject.getString("secret")
-                            AWS_BUCKET = jsonObject.getString("bucket")
-                            AWS_REGION = jsonObject.getString("region")
+                            val AWS_KEY = jsonObject.getString("key")
+                            val AWS_SECRET_KEY = jsonObject.getString("secret")
+                            val AWS_BUCKET = jsonObject.getString("bucket")
+                            val AWS_REGION = jsonObject.getString("region")
                             AWS_BASE_URL = jsonObject.getString("base_url")
                             sharedPreferences!!.edit()
                                 .putString(SharePreferenceKeys.AWS_KEY, AWS_KEY).apply()
@@ -283,13 +283,13 @@ class MyApplication : Application(), ActivityLifecycleCallbacks {
         var UserRequestListResponse: UserRequestListResponse? = null
         @JvmField
         var selfAttendenceApiResponce: SelfAttendenceApiResponce? = null
-        @JvmField
-        var AWS_KEY: String? = ""
-        @JvmField
-        var AWS_SECRET_KEY: String? = ""
-        @JvmField
-        var AWS_BUCKET: String? = ""
-        var AWS_REGION: String? = ""
+//        @JvmField
+//        var AWS_KEY: String? = ""
+//        @JvmField
+//        var AWS_SECRET_KEY: String? = ""
+//        @JvmField
+//        var AWS_BUCKET: String? = ""
+//        var AWS_REGION: String? = ""
         @JvmField
         var AWS_BASE_URL: String? = ""
         @JvmField

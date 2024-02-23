@@ -857,9 +857,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private void uploadImageAWS(String path) {
 
         try {
+            String AWS_KEY = sharedPreferences.getString(SharePreferenceKeys.AWS_KEY, "");
+            String AWS_SECRET_KEY = sharedPreferences.getString(SharePreferenceKeys.AWS_SECRET_KEY, "");
+            String AWS_BUCKET = sharedPreferences.getString(SharePreferenceKeys.AWS_BUCKET, "");
 
             File file = new File(path);
-            BasicAWSCredentials credentials = new BasicAWSCredentials(MyApplication.AWS_KEY, MyApplication.AWS_SECRET_KEY);
+            BasicAWSCredentials credentials = new BasicAWSCredentials(AWS_KEY, AWS_SECRET_KEY);
             AmazonS3Client s3Client = new AmazonS3Client(credentials);
 
             TransferUtility transferUtility =
@@ -875,7 +878,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 FILE_NAME = AWS_FILE_KEY;
 
 
-                TransferObserver uploadObserver = transferUtility.upload(MyApplication.AWS_BUCKET, AWS_FILE_KEY, file, new ObjectMetadata(),
+                TransferObserver uploadObserver = transferUtility.upload(AWS_BUCKET, AWS_FILE_KEY, file, new ObjectMetadata(),
                         CannedAccessControlList.PublicRead);
 
                 openProgress();
